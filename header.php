@@ -64,8 +64,8 @@ if ( is_home() && ! is_front_page() ){
 
 <body <?php body_class(); ?>>
 
-<?php if(oax_show_preloader() === true) get_template_part( 'template-parts/site-preloader-dom' ); ?>
-<?php if(oax_show_preloader() === 'TRANSITION') get_template_part( 'template-parts/site-preloader-transition' ); ?>
+<?php if(oax_show_preloader() !== false) get_template_part( 'template-parts/site-preloader-dom' ); ?>
+<?php // if(oax_show_preloader() === 'TRANSITION') get_template_part( 'template-parts/site-preloader-transition' ); ?>
 
 <?php get_template_part( 'template-parts/site-icon-set' ); ?>
 

@@ -29,7 +29,6 @@ get_header( 'shop' );
 do_action( 'woocommerce_before_main_content' );
 
 ?>
-
 <?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
 	<header class="woocommerce-products-header c-section c-section--header pt-75">
 		<div class="container container-lg">
@@ -66,7 +65,8 @@ do_action( 'woocommerce_before_main_content' );
 		<div class="container container-lg">
 			<div class="pb-1">
 				<?php 
-					echo do_shortcode('[yith_wcan_filters slug="default-preset"]');				
+					echo do_shortcode('[yith_wcan_filters slug="default-preset"]');
+					// echo do_shortcode('[woof sid="auto_shortcode" autohide=0]');
 				?>			
 			</div>
 		</div>

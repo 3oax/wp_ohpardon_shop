@@ -102,6 +102,10 @@ if ( post_password_required() ) {
 										</div>
 									</div>
 								</div>
+							<?php else: ?>
+								<div class="ratio-rect-tall overflow-hidden relative bg-black-light">
+									<span class="absolute inset text-white">BILD FEHLT</span>
+								</div>
 							<?php endif; ?>
 						</div>
 

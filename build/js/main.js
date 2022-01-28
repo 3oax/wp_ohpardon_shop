@@ -3129,7 +3129,9 @@ function () {
       $links.filter(function () {
         var $el = jQuery(this); // eslint-disable-line
 
-        if (window.location.href.endsWith($el.attr('href'))) {
+        var href = $el.attr('href');
+
+        if (window.location.href.contains(href)) {
           return true;
         }
 

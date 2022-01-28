@@ -43,7 +43,10 @@ switch ( $template ) {
 	case 'twentysixteen':
 		echo '<div id="primary" class="content-area twentysixteen"><main id="main" class="site-main" role="main">';
 		break;
+	case 'oax-ohpardon':
+		echo '<div data-barba="shop-wrapper"><div data-barba="shop-container">';
+		break;
 	default:
-		echo '';
+		echo '<div data-barba="shop-wrapper"><div data-barba="shop-container">';
 		break;
 }

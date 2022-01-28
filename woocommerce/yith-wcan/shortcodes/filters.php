@@ -60,4 +60,4 @@ if ( ! defined( 'YITH_WCAN' ) ) {
 	</div>
 <?php endif; ?>
 
-<?php wp_enqueue_script( 'yith-wcan-shortcodes' ); ?>
+<?php // wp_enqueue_script( 'yith-wcan-shortcodes' ); ?>

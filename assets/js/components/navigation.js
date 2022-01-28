@@ -172,8 +172,8 @@ export default class Navigation {
 
 		$links.filter( function(){
 			const $el = jQuery( this ); // eslint-disable-line
-			
-			if ( window.location.href.endsWith( $el.attr( 'href' ) ) ){
+			const href = $el.attr( 'href' );
+			if ( window.location.href.contains( href ) ){
 				return true;
 			}
 

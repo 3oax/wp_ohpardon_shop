@@ -889,7 +889,8 @@ function oax_get_random_bg_color_class(){
 function oax_show_preloader(){
 	
 	global $post;
-
+	
+	/*
 	$pageRefreshed = (isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] == 'max-age=0');	
 	$isNotFirstSession = (isset($_SESSION["oax_preloader"]) && $_SESSION["oax_preloader"] == "TRANSITION");
 
@@ -901,7 +902,7 @@ function oax_show_preloader(){
 		return true;
 	} else if( $isNotFirstSession ){
 		return 'TRANSITION';
-	} else if( is_admin_bar_showing() ){
+	} else */if( is_admin_bar_showing() ){
 		return false;
 	} else if( isset($_GET) && isset($_GET['nopreloader']) ){
 		return false;

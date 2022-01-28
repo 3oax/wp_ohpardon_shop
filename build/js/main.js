@@ -3131,7 +3131,7 @@ function () {
 
         var href = $el.attr('href');
 
-        if (window.location.href.contains(href)) {
+        if (window.location.href.includes(href)) {
           return true;
         }
 

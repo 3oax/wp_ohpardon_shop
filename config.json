@@ -1,0 +1,26 @@
+{
+  "entry": {
+    "vendor" : [
+      "./js/autoload/vendor.js"
+    ],
+    "main": [
+      "./js/main.js",
+      "./css/style.scss"
+    ],
+    "customizer": [
+      "./js/admin/customizer.js"
+    ]
+  },
+  "enabled": {
+    "cacheBusting": false
+  },
+  "publicPath": "/wp_ohpardon/wordpress/wp-content/themes/oax-ohpardon",
+  "devUrl": "http://localhost:8888/wp_ohpardon/wordpress",
+  "proxyUrl": "http://localhost:3000",
+  "cacheBusting": "",
+  "watch": [
+    "../**/*.php",
+    "js/**/*.js",
+    "css/**/*.scss"
+  ]
+}

@@ -1,0 +1,38 @@
+.c-blog-pagination {
+  .page-numbers {
+    @extend .btn;
+    &:after {
+      display: none;
+    }
+    &:hover,
+    &:active,
+    &:focus {
+      color: inherit !important;
+      transform: translateY(0);
+    }
+    padding: 0.2rem .8rem;
+    
+    [data-barba-namespace="blog"] & {
+      margin-left: 0.5rem;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &.current {
+      background-color: var(--color__black-light);
+      border-color: var(--color__black-light);
+      color: white;
+      &:hover,
+      &:focus,
+      &:active {
+        color: white !important;
+      }
+    }
+
+    &.next, &.prev {
+      transition: border-color .3s ease-in-out, color .3s ease-in-out;
+    }
+  }
+}

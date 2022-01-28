@@ -1,0 +1,39 @@
+.c-section {
+  position: relative;
+  + .c-section {
+
+  }
+}
+
+.c-section__bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.c-section__content {
+  z-index: 2;
+  position: relative;
+}
+
+/*
+ * Designs
+ */
+.c-section--designs {
+  .c-section__col {
+    width: 33.333333%;
+    @media (min-width: $break__medium) {
+      width: 16.6666666667%;
+    }
+    &--content {
+      width: 100%;
+      @media (min-width: $break__medium) {
+        width: 33.333333%;
+      }      
+    }
+  }
+}

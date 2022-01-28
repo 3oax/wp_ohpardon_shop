@@ -1,0 +1,129 @@
+.page-content .wp-smiley,
+.entry-content .wp-smiley,
+.comment-content .wp-smiley {
+	border: none;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: 0;
+}
+
+/* Make sure embeds and iframes fit their containers. */
+embed,
+iframe,
+object {
+	max-width: 100%;
+}
+
+/* Make sure logo link wraps around logo image. */
+.custom-logo-link{
+	display: inline-block;
+}
+
+
+/* CAPTIONS */
+
+.wp-caption {
+  margin-bottom: 1.5em;
+  max-width: 100%;
+
+  img[class*="wp-image-"] {
+	@include center-block;
+  }
+
+  .wp-caption-text {
+	margin: 0.8075em 0;
+  }
+}
+
+.wp-caption-text {
+  text-align: center;
+}
+
+/* GALLERIES */
+
+.gallery {
+  margin-bottom: 1.5em;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.gallery-item {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  width: 100%;
+}
+
+  // Loops to enumerate the classes for gallery columns.
+@for $i from 2 through 9 {
+  .gallery-columns-#{$i} .gallery-item {
+    max-width: 50%;
+    @media (min-width: $break__medium){
+      max-width: math.div( 100% , $i );
+    }
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.gallery-caption {
+  display: block;
+  font-size: 0.65rem;
+  text-align: right;
+  font-style: italic;  
+}
+
+img.js--lazy,
+img.lazyload,
+img.lazyloading {
+  opacity: 0;
+  transform-origin: 50% 50%;
+  &.has-placeholder {
+    opacity: 1;
+    // filter: blur(10px);
+  }  
+}
+
+img.lazyloaded {
+  transform-origin: 50% 50%;  
+  opacity: 1;
+  // transform: scale(1.02);
+  // transition: opacity .4s $cubic__default, transform 1s .2s ease-out;
+  transition: opacity .4s $cubic__default;
+  // filter: blur(0);
+}
+
+.c-image__figure.is-canvas-filter {
+  canvas { 
+    opacity: 1;
+    transition: opacity .5s $cubic__default; 
+  }
+  &:hover {
+    canvas {
+      opacity: 0;
+    }
+  }
+}
+
+// Embeded
+//
+.tmblr-embed {
+  &[data-provider="youtube"]{
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; // 16/9
+    iframe {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      left: 0;
+      height: 100%;      
+    }
+  }
+}

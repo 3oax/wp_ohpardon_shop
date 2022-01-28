@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'Vaccine Extra';
+    src: url('Vaccine-ExtraBoldItalic.woff2') format('woff2'),
+        url('Vaccine-ExtraBoldItalic.woff') format('woff');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Vaccine';
+    src: url('Vaccine-Regular.woff2') format('woff2'),
+        url('Vaccine-Regular.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vaccine';
+    src: url('Vaccine-Black.woff2') format('woff2'),
+        url('Vaccine-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vaccine';
+    src: url('Vaccine-LightItalic.woff2') format('woff2'),
+        url('Vaccine-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Vaccine';
+    src: url('Vaccine-BoldItalic.woff2') format('woff2'),
+        url('Vaccine-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Vaccine';
+    src: url('Vaccine-Bold.woff2') format('woff2'),
+        url('Vaccine-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vaccine';
+    src: url('Vaccine-Light.woff2') format('woff2'),
+        url('Vaccine-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vaccine';
+    src: url('Vaccine-BlackItalic.woff2') format('woff2'),
+        url('Vaccine-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Vaccine';
+    src: url('Vaccine-Italic.woff2') format('woff2'),
+        url('Vaccine-Italic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Vaccine Extra';
+    src: url('Vaccine-ExtraBold.woff2') format('woff2'),
+        url('Vaccine-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+

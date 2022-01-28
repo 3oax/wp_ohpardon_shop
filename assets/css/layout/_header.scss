@@ -1,0 +1,106 @@
+.site__header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;  
+  background-color: transparent;
+  z-index: 99999;
+  
+  transform: translateY(0rem);
+  transition: all .45s $cubic__default;
+
+  @media (min-width: $break__medium) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  &.headroom--top {
+    @media (max-width: $break__medium) {
+      // transform: translateY(0%);
+    }
+  }
+  &.headroom--unpinned {
+    @media (max-width: $break__medium) {
+      // transform: translateY(-100%);
+    }
+  }
+  &.headroom--pinned {
+    @media (max-width: $break__medium) {
+      // transform: translateY(0%);
+    }
+  }
+  &.headroom--not-top {
+    @media (min-width: $break__medium) {
+      // transform: translateY(-2rem);
+    }
+  }
+}
+
+.site__navigation {
+  transition: transform .6s ease-in-out;
+}
+
+.site__brand {
+  width: 5.5rem;
+  position: relative;
+  z-index: 10000;
+  line-height: 0;
+  transition: all .4s ease-in-out;
+  margin-top: 0rem;
+  mix-blend-mode: difference;
+  @media (min-width: $break__medium) {
+    position: absolute;
+    left: 50%;
+    margin-left: -3.25rem;
+    width: 6.5rem;
+    top: 1rem;
+    padding-top: 0;
+  }  
+  .o-logo {
+    path { transition: all .4s ease-in-out; }
+  }
+}
+
+.site__brand-sign {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .4s ease-in-out, visibility .4s ease-in-out;
+  will-change: opacity, visibility;  
+}
+
+// Color Changes in Header on Specific Pages
+.site__navigation-social {
+  svg {
+    fill: var(--color__white);
+    path[fill="#FFFFFF"] {
+      fill: var(--color__white);
+    }
+  }
+}
+
+body.is-navigation--open {
+  @media (max-width: $break__medium) {
+    .site__brand-sign .o-logo {
+      path[fill="#FFFFFF"] {
+        fill: white; 
+      }
+      path[stroke="#FFFFFF"]{
+        stroke: white;
+      }
+    }
+    .site__navigation-social,
+    .site__navigation-toggle {
+      svg {
+        fill: white;
+        path[fill="#FFFFFF"] {
+          fill: white;  
+        }
+        circle[stroke="#FFFFFF"] {
+          stroke: white;
+        }
+      }
+    } 
+  } 
+}

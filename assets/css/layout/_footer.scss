@@ -1,0 +1,25 @@
+.site__footer {
+
+}
+
+.site__footer-content {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.site__footer-content-nav-sitemap {}
+.site__footer-content-nav-legal {
+  ul {
+    li + li {
+      margin-top: 0.5rem;
+    }
+  }
+}

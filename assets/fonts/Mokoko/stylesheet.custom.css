@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Mokoko';
+  src: url('Mokoko-Bold.eot');
+  src: local('Mokoko Bold'), local('Mokoko-Bold'),
+      url('Mokoko-Bold.eot?#iefix') format('embedded-opentype'),
+      url('Mokoko-Bold.woff2') format('woff2'),
+      url('Mokoko-Bold.woff') format('woff'),
+      url('Mokoko-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mokoko';
+  src: url('Mokoko-Regular.eot');
+  src: local('Mokoko Regular'), local('Mokoko-Regular'),
+      url('Mokoko-Regular.eot?#iefix') format('embedded-opentype'),
+      url('Mokoko-Regular.woff2') format('woff2'),
+      url('Mokoko-Regular.woff') format('woff'),
+      url('Mokoko-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

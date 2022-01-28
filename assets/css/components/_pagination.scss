@@ -1,0 +1,20 @@
+.c-pagination,
+.c-blog-pagination {
+  .page-numbers {
+    padding: 0.5rem 0.75rem;
+    background-color: var(--color__blue);
+    text-decoration: none;
+    font-family: var(--font__serif);
+    font-size: 0.9rem;  
+    color: white; 
+    + .page-numbers {
+      margin-left: 0.25rem;
+    }
+  }
+  a.page-numbers {
+    font-weight: bold;    
+  }
+  span.page-numbers {
+    background-color: var(--color__blue-2-80);
+  }
+}

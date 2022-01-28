@@ -1,0 +1,18 @@
+.sticky {
+  position: -webkit-sticky;  
+  position: sticky;
+}
+
+.md\:sticky {
+  @media (min-width: $break__medium) {
+    position: -webkit-sticky;  
+    position: sticky;
+  }
+}
+
+.lg\:sticky {
+  @media (min-width: $break__large) {
+    position: -webkit-sticky;  
+    position: sticky;
+  }
+}

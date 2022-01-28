@@ -1,0 +1,35 @@
+.js .a-blur {
+  // display: inline-block;
+  opacity: 0;
+  filter: blur(6px);
+  transform: translateZ(0);
+  transition: filter 1.54s, opacity .84s;
+  
+  &--2 {
+    transition-delay: .08s;
+  }
+  &--3 {
+    transition-delay: .18s;
+    transition-delay: .54s; 
+  }
+  &--4 {
+    transition-delay: .32s;
+  } 
+}
+
+.js .is-in-view {
+  .a-blur {
+    opacity: 1;
+    filter: blur(0.01px);
+    transition: filter 2.2s, opacity 1.2s;
+    &--2 {
+      transition-delay: .24s;
+    } 
+    &--3 {
+      transition-delay: .54s;
+    } 
+    &--4 {
+      transition-delay: .96s; 
+    }            
+  }
+}

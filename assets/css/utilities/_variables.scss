@@ -1,0 +1,69 @@
+:root {
+  /* MAIN COLORS */  
+
+  /* Theme Colors added in config-theme.json */
+
+  /* COLORS */
+  --color__background-body: var(--color__white);
+  --color__background-button: var(--color__black);
+
+  --color__background-hr: #ccc;
+
+  --color__background-pre: var(--color__background-hr);
+  --color__background-ins: var(--color__background-hr);
+  
+  --color__text-main: var(--color__black);
+  --color__text-input: var(--color__text-main);
+  --color__text-input-focus: var(--color__text-main);
+  
+  --color__link: inherit;
+  --color__link-visited: inherit;
+  --color__link-hover: inherit;
+
+  /* TYPOGRAPHY */
+  --font__main: 'Roboto Mono', 'monospace';
+  --font__serif: 'Raisonne Pro', 'Lucida Bright', 'Lucidabright', 'Lucida Serif', 'Lucida', 'DejaVu Serif', 'Bitstream Vera Serif', 'Liberation Serif', 'Georgia', 'serif';
+  
+  --font__line-height-body: 1.5;
+  --font__line-height-pre: 1.6;
+  --font__letter-spacing: normal;
+  --font__letter-spacing--xl: 0.15rem;
+
+  --font__size-root-small: 3.7vw; // phone
+  --font__size-root-medium: 1.4vw; // tablet
+  --font__size-root-large: 1.25vw; // desktop
+
+  /* STRUCTURE */
+  --size__site-main: 100%;
+
+  --size__site-small: 95vw;
+  --size__site-medium: 72vw;
+  --size__site-large: 70vw;
+
+  --size__site-medium-sm: 68vw;
+  --size__site-large-sm: 64vw; 
+
+  --size__site-medium-lg: 85vw;
+  --size__site-large-lg: 85vw;
+
+  --size__site-sidebar: 25vw;
+
+  /* Bezier Curves */
+  --bezier__default: cubic-bezier(0.55, 0, 0.1, 1);
+
+  /* RWD */
+  --break__small: 754px;
+  --break__medium: 992px;
+  --break__large: 1200px;
+}
+
+$cubic__default: cubic-bezier(0.55, 0, 0.1, 1);
+$animation-easing: cubic-bezier(0.33, 1, 0.68, 1);
+
+$size__site-small: 95vw;
+$size__site-medium: 78vw;
+$size__site-large: 75vw;
+
+$break__small: 754px;
+$break__medium: 992px;
+$break__large: 1200px;

@@ -1,0 +1,29 @@
+// Other stuff in Tailwind.
+
+.inset {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.md\:inset {
+  @media (min-width: $break__medium) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.lg\:inset {
+  @media (min-width: $break__large) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "debug" : 1,
+  "is_ajax": 1,
+  "colors" : {
+    "black-light" : "#212121",
+    "grey"        : "#8e8e8e",
+    "grey-light"  : "#eeeeee"
+  } 
+}

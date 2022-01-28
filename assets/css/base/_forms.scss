@@ -1,0 +1,51 @@
+/* BUTTONS */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  border: 1px solid;
+  border-color: var(--color__border-button);
+  border-radius: 3px;
+  background: var(--color__background-button);
+  color: rgba(0, 0, 0, .8);
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: .6em 1em .4em;
+
+  &:active,
+  &:focus,
+  &:hover {
+    border-color: var(--color__border-button-focus);
+  }
+}
+
+/* FIELDS */
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+select,
+textarea {
+  color: var(--color__text-input);
+  border: 1px solid var(--color__border-input);
+  border-radius: 3px;
+
+  &:focus {
+    color: var(--color__text-input-focus);
+  }
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"] {
+  padding: 3px;
+}
+
+textarea {
+  padding-left: 3px;
+  width: 100%;
+}

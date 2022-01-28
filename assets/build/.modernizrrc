@@ -1,0 +1,22 @@
+{
+  "minify": true,
+  "options": [
+    "mq",
+    "testProp",
+    "setClasses"
+  ],
+  "feature-detects": [
+    "test/css/positionsticky",
+    "test/customevent",
+    "test/svg",
+    "test/webgl",
+    "test/css/objectfit",
+    "test/css/filters",
+    "test/css/flexbox",
+    "test/css/flexboxlegacy",
+    "test/css/mask",
+    "test/img/webp",
+    "test/svg/filters",
+    "test/network/fetch"
+  ]
+}

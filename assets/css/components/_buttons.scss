@@ -1,0 +1,59 @@
+.btn {
+  position: relative;
+  background-color: black;
+  cursor: pointer;
+  display: inline-block;
+  font-family: var(--font__serif);
+  font-size: 1em;
+  font-weight: normal;
+  height: unset;
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  text-decoration: none;  
+  white-space: nowrap;
+  isolation: isolate;
+
+  line-height: 1.75;
+
+  color: white;
+
+  &:hover {
+    color: white;  
+  }
+
+
+  > * { 
+    display: inline-block; 
+    position: relative; 
+    z-index: 1;
+  }
+
+  i { 
+    line-height: 1; 
+    > svg { 
+      transition: fill .3s ease;
+      fill: white; 
+    }
+  }
+
+  &--sm {
+    font-size: 0.5rem;
+  }
+  
+  &--white {
+    background-color: white;
+    color: black;
+    &:hover {
+      color: black;  
+    }
+  }
+
+  &.single_add_to_cart_button {
+
+  }
+  
+  &.loading {
+    opacity: 0.5;
+    cursor: progress;    
+  }
+}

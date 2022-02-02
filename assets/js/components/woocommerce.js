@@ -134,7 +134,9 @@ export default class WooCommerce {
 	onGermanizedVariationData( event, variationData, $wrapper ){
 		console.log( event, variationData );
 		const $container = $( event.target ).closest( '[data-barba="container"]' );
-		$container.find( '.js--product-price' ).html( variationData.price_html );
+		if ( Utils.isset( variationData.price_html ) && variationData.price_html !== '' ) {
+			$container.find( '.js--product-price' ).html( variationData.price_html );
+		}
 	}
 
 	onVariationAddToCart( event ){

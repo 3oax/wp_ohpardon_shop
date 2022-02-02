@@ -23,8 +23,8 @@ if ( ! defined( 'YITH_WCAN' ) ) {
 <?php if ( $preset->has_filters() ) : ?>
 	<div class="yith-wcan-filters <?php echo esc_attr( $preset->get_additional_classes() ); ?>" id="preset_<?php echo esc_attr( $preset->get_id() ); ?>" data-preset-id="<?php echo esc_attr( $preset->get_id() ); ?>" data-target="<?php echo esc_attr( $selector ); ?>">
 		<div class="filters-container">
-			<form method="POST">
-				<div class="flex justify-center">
+			<form method="POST" class="filters-form flex justify-center">
+				<div class="md:w-3/4 flex flex-wrap">
 					<?php
 					/**
 					 * Hook: yith_wcan_before_preset_filters.

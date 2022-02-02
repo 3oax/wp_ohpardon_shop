@@ -7,6 +7,8 @@
 * Remove Styles and Scripts
 */
 function oax_remove_wc_styles(){
+	wp_dequeue_style( 'wc-blocks-style' );
+	
 	// Remove Filter CSS
 	//
 	if ( defined( 'YITH_WCAN' ) ){
@@ -80,6 +82,31 @@ if ( ! function_exists( 'woocommerce_get_product_thumbnail' ) ) {
 	}
 }
 
+/**
+ * Change number of related products output
+ */ 
+add_filter( 'woocommerce_output_related_products_args', 'oax_related_products_args', 20 );
+function oax_related_products_args( $args ) {
+	$args['posts_per_page'] = 3; // 4 related products
+	return $args;
+}
+
+add_filter('wvs_variable_item', function( $args ){
+	$variable_items_string = $args;		
+	
+	$dom = new DOMDocument;
+	@$dom->loadHTML($args);
+	$imgTags = $dom->getElementsByTagName('img');
+	$imgObjArr = iterator_to_array($imgTags);
+
+	if(count($imgObjArr) > 0){
+		return $args;
+	}
+
+	return $args;
+
+}, 20);
+
 add_action( 'before_woocommerce_init', function() {
 	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 );
 	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
@@ -89,8 +116,31 @@ add_action( 'before_woocommerce_init', function() {
 add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 add_filter( 'woocommerce_show_page_title', '__return_false' );
 
+/**
+ * RETURNS MINIMUM PRICE AND HIDES MAXIMUM PRICE FOR VARIABLE PRODUCTS
+ **/
+// add_filter( 'woocommerce_variable_sale_price_html', 'oax_variation_price_format', 10, 2 );
+// add_filter( 'woocommerce_variable_price_html', 'oax_variation_price_format', 10, 2 );
+function oax_variation_price_format( $price, $product ) {
+	// Main Price
+	$prices = array( $product->get_variation_price( 'min', true ), $product->get_variation_price( 'max', true ) );
+	$price = $prices[0] !== $prices[1] ? sprintf( __( 'Starting at %1$s', 'woocommerce' ), wc_price( $prices[0] ) ) : wc_price( $prices[0] );
+	
+	// Sale Price
+	$prices = array( $product->get_variation_regular_price( 'min', true ), $product->get_variation_regular_price( 'max', true ) );
+	sort( $prices );
+	
+	$saleprice = $prices[0] !== $prices[1] ? sprintf( __( 'Starting at %1$s', 'woocommerce' ), wc_price( $prices[0] ) ) : wc_price( $prices[0] );
+	
+	if ( $price !== $saleprice ) {
+		$price = '' . $saleprice . ' ' . $price . '';
+	}
+
+	return $price;
+}
+
 function woocommerce_template_loop_product_title() {
-	echo '<h3 class="mt-0 mb-0 text-primary-green h5 leading-relaxed ' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</h3>'; 
+	echo '<span class="sr-only">' . get_the_title() . '</span>'; 
 }
 
 /*
@@ -112,6 +162,9 @@ add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_a
 // -> Remove Data Tabs
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
 
+// -> Remove Variation wählen and add to card in loop
+remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
+
 if( defined( 'YITH_WCWL' ) && ! function_exists( 'yith_wcwl_move_wishlist_button' ) ){
 	function yith_wcwl_move_wishlist_button(){
 		echo do_shortcode( '[yith_wcwl_add_to_wishlist]' );
@@ -125,6 +178,10 @@ function oax_yith_wcan_content_selector( $selector ){
 }
 add_filter( 'yith_wcan_content_selector', 'oax_yith_wcan_content_selector' );
 
+function oax_yith_wcan_filter_title_tag(){
+	return '';
+}
+add_filter( 'yith_wcan_filter_title_tag', 'yith_wcan_filter_title_tag' );
 
 /******************************
  ****** WooCommerce END *******

@@ -41,12 +41,22 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 */
 	do_action( 'woocommerce_before_shop_loop_item_title' );
 
-	/**
-	 * Hook: woocommerce_shop_loop_item_title.
-	 *
-	 * @hooked woocommerce_template_loop_product_title - 10
-	 */
-	do_action( 'woocommerce_shop_loop_item_title' );
+	echo '<div class="flex flex-wrap justify-between items-center pt-05">';
+
+	// get an array of the WP_Term objects for a defined product ID
+	//
+	$terms = wp_get_post_terms( $product->get_id(), 'product_tag' );
+	$first_term = $terms[0];
+	echo '<h3 class="h6 no-underline">';
+		echo $first_term->name;
+		/**
+		 * Hook: woocommerce_shop_loop_item_title.
+		 *
+		 * @hooked woocommerce_template_loop_product_title - 10
+		 */	
+		do_action( 'woocommerce_shop_loop_item_title' );
+	echo '</h3>';
+
 
 	/**
 	 * Hook: woocommerce_after_shop_loop_item_title.
@@ -55,7 +65,8 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 * @hooked woocommerce_template_loop_price - 10
 	 */
 	do_action( 'woocommerce_after_shop_loop_item_title' );
-
+	
+	echo '</div>';
 	/**
 	 * Hook: woocommerce_after_shop_loop_item.
 	 *

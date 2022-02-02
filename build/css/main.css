@@ -4258,7 +4258,6 @@ textarea {
   -o-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
   margin-top: 0rem;
-  mix-blend-mode: difference;
 }
 
 @media (min-width: 992px) {
@@ -8649,7 +8648,7 @@ form[role=search] .is-search-icon > svg {
 
 @supports (display: grid) {
   .v-product .variations .variable-items-wrapper {
-    gap: 0.5rem;
+    gap: 1rem;
   }
 
   .v-product .variations .variable-items-wrapper .variable-item {
@@ -8691,8 +8690,8 @@ form[role=search] .is-search-icon > svg {
 }
 
 .v-product .variations .image-variable-wrapper .variable-item:not(.radio-variable-item).selected {
-  -webkit-box-shadow: 0px 0px 0px 2px;
-          box-shadow: 0px 0px 0px 2px;
+  -webkit-box-shadow: 0px 0px 0px 3px white, 0px 0px 0px 6px black;
+          box-shadow: 0px 0px 0px 3px white, 0px 0px 0px 6px black;
 }
 
 .v-product .variations .button-variable-wrapper .variable-item.selected {

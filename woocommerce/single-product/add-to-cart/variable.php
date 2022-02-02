@@ -36,7 +36,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 		<div class="variations py-2">
 			<?php $attr_i = 0; foreach ( $attributes as $attribute_name => $options ) : ?>
-				<div class="row flex flex-wrap items-center<?= $attr_i == 0 ? '' : ' mt-05' ; ?>">
+				<div class="variations__item row flex flex-wrap items-center<?= $attr_i == 0 ? '' : ' mt-05' ; ?>">
 					<div class="label w-1/3">
 						<label class="text-sm" for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>">
 							<?php echo wc_attribute_label( $attribute_name ); // WPCS: XSS ok. ?>

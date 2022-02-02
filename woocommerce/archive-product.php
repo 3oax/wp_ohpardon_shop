@@ -116,7 +116,9 @@ do_action( 'woocommerce_before_main_content' );
 				 *
 				 * @hooked wc_no_products_found - 10
 				 */
-				do_action( 'woocommerce_no_products_found' );
+				echo '<div class="text-center pt-3 pb-2 h4">';
+					do_action( 'woocommerce_no_products_found' );
+				echo '</div>';
 			}
 			?>
 		</div>

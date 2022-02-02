@@ -57,9 +57,9 @@ $wrapper_classes   = apply_filters(
 							echo '<div class="woocommerce-product-gallery__main-slider-item relative" style="width: '. ( 100 / (count($thumbnails) + 1) ) .'%;">';
 								echo oax_image([
 									'post' => get_post(),
-									'xclass' => 'object-fit-cover inset',
+									'xclass' => 'object-fit-cover inset wp-post-image',
 									'wrapper' => true,
-									'xclass_wrapper' => 'overflow-hidden inset',
+									'xclass_wrapper' => 'overflow-hidden inset woocommerce-product-gallery__image',
 									// 'placeholder' => true,
 									'lazy' => true
 								]);
@@ -68,9 +68,9 @@ $wrapper_classes   = apply_filters(
 							echo '<div class="woocommerce-product-gallery__main-slider-item relative" style="width: '. ( 100 / (count($thumbnails) + 1) ) .'%;">';
 								echo oax_image([
 									'img' => $thumbnail,
-									'xclass' => 'object-fit-cover inset',
+									'xclass' => 'object-fit-cover inset wp-post-image',
 									'wrapper' => true,
-									'xclass_wrapper' => 'overflow-hidden inset',
+									'xclass_wrapper' => 'overflow-hidden inset woocommerce-product-gallery__image',
 									'lazy' => true
 								]);
 							echo '</div>';
@@ -82,9 +82,9 @@ $wrapper_classes   = apply_filters(
 				} else {
 					$html = oax_image([
 						'post' => get_post(),
-						'xclass' => 'object-fit-cover inset',
+						'xclass' => 'object-fit-cover inset wp-post-image',
 						'wrapper' => true,
-						'xclass_wrapper' => 'overflow-hidden',
+						'xclass_wrapper' => 'overflow-hidden woocommerce-product-gallery__image',
 						'holder' => true,
 						'placeholder' => true,
 						'lazy' => true

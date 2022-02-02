@@ -1,13 +1,18 @@
-<?php 
-  $slider_items = [1,1,1,1,1,1,1,1,1,1];
-  $slider_items_prep = array_slice($slider_items, 0, 10); 
-  $link = '#';
-  $link_title = 'Zur Übersicht';
-  $headline = '30+ Designs';
+<?php
+  $terms = get_terms( [ 
+    'taxonomy' => 'product_tag',
+    'hide_empty' => false,
+    'number' => 10
+  ] );
+  $slider_items = $terms;  
+  // $slider_items_prep = array_slice($slider_items, 0, 10); 
+  $link = '/designs';
+  $link_title = __('Zur Übersicht', 'oax-ohpardon');
+  $headline = __('30+ Designs', 'oax-ohpardon');
 ?>
 <section class="c-section c-section--designs">
   <div class="flex flex-wrap">
-    <?php $slider_i = 0; foreach($slider_items_prep as $slider_item): ?>
+    <?php $slider_i = 0; foreach($slider_items as $slider_item): ?>
 
       <?php if($slider_i == 8): ?>
         <div class="c-section__col c-section__col--content">
@@ -23,7 +28,13 @@
       <?php endif; ?>
 
       <div class="c-section__col">
-        <a class="ratio-square bg-<?= $slider_i % 2 === 0 ? 'black' : 'black-light'; ?> block" href="#"></a>
+        <a class="ratio-square bg-<?= $slider_i % 2 === 0 ? 'black' : 'black-light'; ?> block relative" href="<?= get_term_link($slider_item); ?>">
+          <?= oax_image([
+            'img' => get_field('img', $slider_item->taxonomy . '_' . $slider_item->term_id),
+            'xclass' => 'inset object-fit',
+            'lazy' => true
+          ]); ?>
+        </a>
       </div>        
       
     <?php $slider_i++; endforeach; ?>

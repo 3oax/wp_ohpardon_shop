@@ -6,7 +6,7 @@
   .v-product {
     .variations {
       .variable-items-wrapper {
-        gap: 0.5rem;
+        gap: 1rem;
         .variable-item {
           margin: 0 !important;
         }
@@ -46,7 +46,7 @@
         height: auto;
         font-size: 0.5rem;
         &.selected {
-          box-shadow: 0px 0px 0px 2px;          
+          box-shadow: 0px 0px 0px 3px white, 0px 0px 0px 6px black;        
         }
       }
     }

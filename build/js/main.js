@@ -3882,7 +3882,10 @@ function () {
     value: function onGermanizedVariationData(event, variationData, $wrapper) {
       console.log(event, variationData);
       var $container = $(event.target).closest('[data-barba="container"]');
-      $container.find('.js--product-price').html(variationData.price_html);
+
+      if (_app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset(variationData.price_html) && variationData.price_html !== '') {
+        $container.find('.js--product-price').html(variationData.price_html);
+      }
     }
   }, {
     key: "onVariationAddToCart",

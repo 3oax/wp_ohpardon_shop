@@ -36,6 +36,15 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 				$thumbnail         = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
 				$product_price     = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
 				$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+				
+				if ( WC()->cart->display_prices_including_tax() ) {
+					$raw_price = wc_get_price_including_tax( $_product );
+				} else {
+					$raw_price = wc_get_price_excluding_tax( $_product );
+				}
+
+				$price_with_qty = $raw_price * $cart_item['quantity'];
+				$product_price = wc_price($price_with_qty);
 				?>
 				<li class="woocommerce-mini-cart-item <?php echo esc_attr( apply_filters( 'woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key ) ); ?>" data-product-id="<?= esc_attr( $product_id ); ?>" data-cart-item-key="<?= esc_attr( $cart_item_key ); ?>">
 					<?php
@@ -62,11 +71,11 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 					
 					<?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					
-					<div class="flex pr-2 justify-between">
+					<div class="flex pr-2 justify-between items-center">
 						<div class="js--cart-qty-change flex flex-wrap">
-							<span class="js--cart-qty-change-btn js--cart-qty-change-btn--minus inline-block w-2 h-2 flex items-center justify-center cursor-pointer">&minus;</span>
+							<button class="js--cart-qty-change-btn js--cart-qty-change-btn--minus inline-block w-2 h-2 flex items-center justify-center cursor-pointer bg-grey-light" style="border: none;">&minus;</button>
 							<input type="text" style="border: none;" value="<?= $cart_item['quantity'] ?>" class="js--cart-qty-change-input h-2 w-2 text-center">
-							<span class="js--cart-qty-change-btn js--cart-qty-change-btn--plus inline-block w-2 h-2 flex items-center justify-center cursor-pointer">&plus;</span>
+							<button class="js--cart-qty-change-btn js--cart-qty-change-btn--plus inline-block w-2 h-2 flex items-center justify-center cursor-pointer bg-grey-light" style="border: none;">&plus;</button>
 						</div>
 						<div>
 							<?= $product_price ?>
@@ -84,7 +93,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 	</ul>
   
   <div>
-    <p class="woocommerce-mini-cart__total total">
+    <p class="woocommerce-mini-cart__total total mb-0">
       <?php
       /**
        * Hook: woocommerce_widget_shopping_cart_total.
@@ -97,7 +106,9 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
     <?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
 
-    <p class="woocommerce-mini-cart__buttons buttons"><?php do_action( 'woocommerce_widget_shopping_cart_buttons' ); ?></p>
+    <div class="woocommerce-mini-cart__buttons flex flex-wrap justify-between items-center">
+			<?php do_action( 'woocommerce_widget_shopping_cart_buttons' ); ?>
+		</div>
 
     <?php do_action( 'woocommerce_widget_shopping_cart_after_buttons' ); ?>
   </div>

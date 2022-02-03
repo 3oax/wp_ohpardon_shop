@@ -4012,6 +4012,7 @@ function () {
     value: function onItemQtyChange(event) {
       var $target = $(event.target);
       var $item = $target.closest('.woocommerce-mini-cart-item');
+      var $siblingTargets = $item.find('.js--cart-qty-change-btn, .js--cart-qty-change-input');
       var cartItemKey = $item.data('cartItemKey');
       var cartItemQty = parseInt($item.find('.js--cart-qty-change-input').val(), 10);
 
@@ -4023,7 +4024,7 @@ function () {
         }
       }
 
-      console.log($target);
+      $siblingTargets.prop('disabled', true);
       var data = {
         action: 'oax_ajax_cart_update_qty',
         cart_item_key: cartItemKey,
@@ -4032,6 +4033,9 @@ function () {
 
       };
       $.post(OAX.config.url_ajax, data, function (response) {
+        jQuery(document.body).one('wc_fragments_loaded', function () {
+          $siblingTargets.prop('disabled', false);
+        });
         jQuery(document.body).trigger('wc_fragment_refresh');
       });
 

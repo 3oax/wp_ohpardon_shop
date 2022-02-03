@@ -255,7 +255,7 @@ export default class WooCommerce {
 	onItemQtyChange( event ){
 		const $target = $( event.target );
 		const $item = $target.closest( '.woocommerce-mini-cart-item' );
-		
+		const $siblingTargets = $item.find( '.js--cart-qty-change-btn, .js--cart-qty-change-input' );
 		const cartItemKey = $item.data( 'cartItemKey' );
 		let cartItemQty = parseInt( $item.find( '.js--cart-qty-change-input' ).val(), 10 );
 
@@ -267,7 +267,7 @@ export default class WooCommerce {
 			}
 		}
 
-		console.log( $target );
+		$siblingTargets.prop( 'disabled', true );
 
 		const data = {
 			action: 'oax_ajax_cart_update_qty',
@@ -276,7 +276,10 @@ export default class WooCommerce {
 		};
 
 		$.post( OAX.config.url_ajax, data, ( response ) => {
-			jQuery( document.body ).trigger( 'wc_fragment_refresh' );
+			jQuery( document.body ).one( 'wc_fragments_loaded', () => {
+				$siblingTargets.prop( 'disabled', false );
+			} );
+			jQuery( document.body ).trigger( 'wc_fragment_refresh' );			
 		} );		
 
 		if ( event.type === 'click' ){

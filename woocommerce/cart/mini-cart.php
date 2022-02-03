@@ -37,7 +37,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 				$product_price     = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
 				$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
 				?>
-				<li class="woocommerce-mini-cart-item <?php echo esc_attr( apply_filters( 'woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key ) ); ?>">
+				<li class="woocommerce-mini-cart-item <?php echo esc_attr( apply_filters( 'woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key ) ); ?>" data-product-id="<?= esc_attr( $product_id ); ?>" data-cart-item-key="<?= esc_attr( $cart_item_key ); ?>">
 					<?php
 					echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						'woocommerce_cart_item_remove_link',
@@ -59,8 +59,21 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 							<?php echo $thumbnail . wp_kses_post( $product_name ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						</a>
 					<?php endif; ?>
+					
 					<?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					
+					<div class="flex pr-2 justify-between">
+						<div class="js--cart-qty-change flex flex-wrap">
+							<span class="js--cart-qty-change-btn js--cart-qty-change-btn--minus inline-block w-2 h-2 flex items-center justify-center cursor-pointer">&minus;</span>
+							<input type="text" style="border: none;" value="<?= $cart_item['quantity'] ?>" class="js--cart-qty-change-input h-2 w-2 text-center">
+							<span class="js--cart-qty-change-btn js--cart-qty-change-btn--plus inline-block w-2 h-2 flex items-center justify-center cursor-pointer">&plus;</span>
+						</div>
+						<div>
+							<?= $product_price ?>
+						</div>
+					</div>
+					
+					<?php // echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</li>
 				<?php
 			}

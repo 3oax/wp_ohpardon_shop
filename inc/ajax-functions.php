@@ -100,3 +100,22 @@ function oax_ajax_get_section_events(){
 
   die();
 }
+
+add_action('wp_ajax_oax_ajax_cart_update_qty', 'oax_ajax_cart_update_qty');
+add_action('wp_ajax_nopriv_oax_ajax_cart_update_qty', 'oax_ajax_cart_update_qty');
+
+function oax_ajax_cart_update_qty(){
+  if ( isset( $_POST['cart_item_key'], $_POST['cart_item_qty'] ) && ! empty( $_POST['cart_item_key'] ) ) {
+    if ( WC()->cart->get_cart_item( $_POST['cart_item_key'] ) ) {
+      if ( (float) $_POST['cart_item_qty'] > 0 ) {
+        WC()->cart->set_quantity( $_POST['cart_item_key'], (float) $_POST['cart_item_qty'] );
+      } else {
+        WC()->cart->remove_cart_item( $_POST['cart_item_key'] );
+      }
+    }
+
+    echo json_encode( array( 'action' => 'update_qty' ) );
+
+    die();
+  }
+}

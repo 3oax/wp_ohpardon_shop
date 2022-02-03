@@ -3877,6 +3877,8 @@ function () {
         $(document).on('click.oax::add-to-cart', "".concat(this.options.product.buyBtn, ":not(.disabled)"), this.onVariationAddToCart);
         $(document.body).on('added_to_cart', $.proxy(this.onAddedToCard, this));
         $(document).on('click.oax::open-cart', this.options.cart.trigger, $.proxy(this.onToggleCart, this));
+        $(document).on('click.oax::change-cart-qty', '.js--cart-qty-change-btn', this.onItemQtyChange);
+        $(document).on('focusout.oax::change-cart-qty', '.js--cart-qty-change-input', this.onItemQtyChange);
       } else {
         var $container = $(container);
         var namespace = $container.data('barbaNamespace');
@@ -4003,6 +4005,38 @@ function () {
         this.closeCart();
       } else {
         this.openCart();
+      }
+    }
+  }, {
+    key: "onItemQtyChange",
+    value: function onItemQtyChange(event) {
+      var $target = $(event.target);
+      var $item = $target.closest('.woocommerce-mini-cart-item');
+      var cartItemKey = $item.data('cartItemKey');
+      var cartItemQty = parseInt($item.find('.js--cart-qty-change-input').val(), 10);
+
+      if ($target.hasClass('js--cart-qty-change-btn')) {
+        if ($target.hasClass('js--cart-qty-change-btn--minus')) {
+          cartItemQty = cartItemQty - 1 <= 0 ? 0 : cartItemQty - 1;
+        } else {
+          cartItemQty += 1;
+        }
+      }
+
+      console.log($target);
+      var data = {
+        action: 'oax_ajax_cart_update_qty',
+        cart_item_key: cartItemKey,
+        // eslint-disable-line
+        cart_item_qty: cartItemQty // eslint-disable-line
+
+      };
+      $.post(OAX.config.url_ajax, data, function (response) {
+        jQuery(document.body).trigger('wc_fragment_refresh');
+      });
+
+      if (event.type === 'click') {
+        event.preventDefault();
       }
     }
     /* eslint-disable */

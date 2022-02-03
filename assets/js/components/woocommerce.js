@@ -132,6 +132,8 @@ export default class WooCommerce {
 			$( document ).on( 'click.oax::add-to-cart', `${this.options.product.buyBtn}:not(.disabled)`, this.onVariationAddToCart );    
 			$( document.body ).on( 'added_to_cart', $.proxy( this.onAddedToCard, this ) );
 			$( document ).on( 'click.oax::open-cart', this.options.cart.trigger, $.proxy( this.onToggleCart, this ) );
+			$( document ).on( 'click.oax::change-cart-qty', '.js--cart-qty-change-btn', this.onItemQtyChange );
+			$( document ).on( 'focusout.oax::change-cart-qty', '.js--cart-qty-change-input', this.onItemQtyChange );
 		} else {
 			const $container = $( container );
 			const namespace = $container.data( 'barbaNamespace' );
@@ -248,6 +250,38 @@ export default class WooCommerce {
 		} else {
 			this.openCart();
 		}	
+	}
+
+	onItemQtyChange( event ){
+		const $target = $( event.target );
+		const $item = $target.closest( '.woocommerce-mini-cart-item' );
+		
+		const cartItemKey = $item.data( 'cartItemKey' );
+		let cartItemQty = parseInt( $item.find( '.js--cart-qty-change-input' ).val(), 10 );
+
+		if ( $target.hasClass( 'js--cart-qty-change-btn' ) ){
+			if ( $target.hasClass( 'js--cart-qty-change-btn--minus' ) ){
+				cartItemQty = cartItemQty - 1 <= 0 ? 0 : cartItemQty - 1;
+			} else {
+				cartItemQty += 1;
+			}
+		}
+
+		console.log( $target );
+
+		const data = {
+			action: 'oax_ajax_cart_update_qty',
+			cart_item_key: cartItemKey, // eslint-disable-line
+			cart_item_qty: cartItemQty, // eslint-disable-line
+		};
+
+		$.post( OAX.config.url_ajax, data, ( response ) => {
+			jQuery( document.body ).trigger( 'wc_fragment_refresh' );
+		} );		
+
+		if ( event.type === 'click' ){
+			event.preventDefault();
+		}
 	}
   
 	/* eslint-disable */

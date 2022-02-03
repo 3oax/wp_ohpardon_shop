@@ -26,6 +26,11 @@ export default class WooCommerce {
 				variationsForm: '.variations_form',
 				buyBtn: '.single_add_to_cart_button',
 				swatchesLoaded: 'wvs-loaded',
+			},
+			cart: {
+				open: 'is-open',
+				trigger: '.js--cart-trigger',
+				selector: '.c-cart'
 			}
 		};
     
@@ -34,6 +39,8 @@ export default class WooCommerce {
 		
 		this._addJQuerySerializeInput();
 		this.addEventListener();
+
+		window.OAX.WooCommerce = this;
 	}
 
 	init( _container ){
@@ -47,6 +54,10 @@ export default class WooCommerce {
 			if ( namespace === 'product' ){
 				this.initProductDetail( $container );
 			}
+
+			if ( namespace === 'archive' ){
+				this.initJetpackInfiniteScroll();
+			}
 		} else {
 			// only first init
 			$container = $container.find( OAX.APP.options.selector.siteInner );
@@ -56,6 +67,12 @@ export default class WooCommerce {
 			if ( namespace === 'product' ){
 				this.addEventListener( container );
 			}
+
+			/*
+			 * if ( Utils.isset( wpNotesIsJetpackClient ) && Utils.isset( wpNotesIsJetpackClientV2 ) ){
+			 * // console.log
+			 * }
+			 */
 		}
 
 		/*
@@ -102,12 +119,19 @@ export default class WooCommerce {
 		 */
 	}
 
+	initJetpackInfiniteScroll(){
+		if ( Utils.isset( infiniteScroll ) ){
+			infiniteScroll.scroller = new infiniteScroll.scroller.constructor( infiniteScroll.settings, true );
+		}
+	}
+
 	addEventListener( _container ){
 		const container = Utils.isset( _container ) ? _container : null;
     
 		if ( container === null ){
-			$( document ).on( 'click.oax::add-to-cart', '.single_add_to_cart_button:not(.disabled)', this.onVariationAddToCart );    
-			$( document.body ).on( 'added_to_cart', this.onAddedToCard );    
+			$( document ).on( 'click.oax::add-to-cart', `${this.options.product.buyBtn}:not(.disabled)`, this.onVariationAddToCart );    
+			$( document.body ).on( 'added_to_cart', $.proxy( this.onAddedToCard, this ) );
+			$( document ).on( 'click.oax::open-cart', this.options.cart.trigger, $.proxy( this.onToggleCart, this ) );
 		} else {
 			const $container = $( container );
 			const namespace = $container.data( 'barbaNamespace' );
@@ -124,15 +148,22 @@ export default class WooCommerce {
 	}
 	
 	onAddedToCard( event, fragments, cartHash, $button ){
-		console.log( 'onaddadetocart', event, fragments, cartHash, $button );
+		if ( OAX.debug ) {
+			console.log( 'onaddadetocart', event, fragments, cartHash, $button );
+		}
+		this.openCart();
 	}
 
 	onShowVariation( event, variationData, keineAhnung ){
-		console.log( event, variationData );
+		if ( OAX.debug ) {
+			console.log( event, variationData );
+		}
 	}
 
 	onGermanizedVariationData( event, variationData, $wrapper ){
-		console.log( event, variationData );
+		if ( OAX.debug ) {
+			console.log( event, variationData );
+		}
 		const $container = $( event.target ).closest( '[data-barba="container"]' );
 		if ( Utils.isset( variationData.price_html ) && variationData.price_html !== '' ) {
 			$container.find( '.js--product-price' ).html( variationData.price_html );
@@ -179,6 +210,44 @@ export default class WooCommerce {
 		} );
 
 		event.preventDefault();
+	}
+
+	/*
+	 * Shopping Cart
+	 */
+	onToggleCart( event ){
+		const $target = $( event.target ).hasClass( this.options.cart.trigger ) ? $( event.target ) : $( event.target ).closest( this.options.cart.trigger );
+		const $cart = $( this.options.cart.selector );
+		this.toggleCart();
+		event.preventDefault();
+	}
+
+	onOutsideCartClick( event ){
+		const $target = $( event.target );
+		if ( ! $target.closest( this.options.cart.selector ).length ){
+			this.closeCart();
+		}	
+	}
+
+	openCart(){
+		const $cart = $( this.options.cart.selector );
+		$( document ).on( 'click.oax::cart-outside', $.proxy( this.onOutsideCartClick, this ) );
+		$cart.addClass( this.options.cart.open );
+	}
+
+	closeCart(){
+		const $cart = $( this.options.cart.selector );
+		$( document ).off( 'click.oax::cart-outside', $.proxy( this.onOutsideCartClick, this ) );
+		$cart.removeClass( this.options.cart.open );
+	}
+
+	toggleCart(){
+		const $cart = $( this.options.cart.selector );
+		if ( $cart.hasClass( this.options.cart.open ) ){
+			this.closeCart();
+		} else {
+			this.openCart();
+		}	
 	}
   
 	/* eslint-disable */

@@ -19,4 +19,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<ul class="products columns-<?php echo esc_attr( wc_get_loop_prop( 'columns' ) ); ?> list-none flex flex-wrap p-0 -mx-05 md:-mx-1 -mt-1 md:-mt-2 mb-0">
+<div id="infinite-list" class="products columns-<?php echo esc_attr( wc_get_loop_prop( 'columns' ) ); ?> list-none flex flex-wrap p-0 -mx-05 md:-mx-1 -mt-1 md:-mt-2 mb-0">

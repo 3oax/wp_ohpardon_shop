@@ -10,11 +10,12 @@
 get_header(); ?>
   <div class="v-start">
     <?php 
-      $hero_slider_items = get_field('hero_slider');
+      $hero_slider_items = get_field('hero_slider');            
     ?>
     <header class="c-section c-section--header">
       
-      <div class="v-start__slider<?php if(count($hero_slider_item) > 1): ?> js--slider<?php endif; ?>"<?php if(count($hero_slider_item) > 1): ?> data-init-by="start"<?php endif; ?>>
+      <?php if(!empty($hero_slider_items)): ?>
+      <div class="v-start__slider<?php if(count($hero_slider_items) > 1): ?> js--slider<?php endif; ?>"<?php if(count($hero_slider_items) > 1): ?> data-init-by="start"<?php endif; ?>>
         <?php $hero_slider = 0; foreach($hero_slider_items as $hero_slider_item): ?>
         <div class="v-start__slider-item">
           <div class="flex items-center">
@@ -41,6 +42,7 @@ get_header(); ?>
         </div>
         <?php $hero_slider++; endforeach; ?>
       </div>
+      <?php endif; ?>
 
       <div class="container text-center pt-15 pb-3">
         <?php

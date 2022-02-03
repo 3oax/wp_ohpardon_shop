@@ -24,7 +24,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<li <?php wc_product_class( 'w-1/2 md:w-1/3 px-025 md:px-1 mt-1 md:mt-2', $product ); ?>>
+<div <?php wc_product_class( 'w-full md:w-1/3 px-025 md:px-1 mt-1 md:mt-2', $product ); ?>>
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
@@ -47,7 +47,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	//
 	$terms = wp_get_post_terms( $product->get_id(), 'product_tag' );
 	$first_term = $terms[0];
-	echo '<h3 class="h6 no-underline">';
+	echo '<h3 class="h6 no-underline md:pb-0">';
 		echo $first_term->name;
 		/**
 		 * Hook: woocommerce_shop_loop_item_title.
@@ -75,4 +75,4 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 */
 	do_action( 'woocommerce_after_shop_loop_item' );
 	?>
-</li>
+</div>

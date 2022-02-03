@@ -126,13 +126,21 @@ if ( is_home() && ! is_front_page() ){
 			</ul>		
 			*/ ?>	
 
-			<?php /*
-			<div class="site__navigation-login self-start">
-				<div class="text-right md:pr-2 lg:pr-4 md:pl-15">
-					<?= do_shortcode('[xoo_el_inline_form active="login"]'); ?>
-				</div>
-			</div>
-			*/ ?>
+			<ul class="site__navigation-user flex items-center list-none m-0 p-0">
+				<li>
+					<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>">
+						<svg class="w-1 h-1" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 22 21" fill="none">
+							<circle cx="10.5" cy="5.5" r="4.5" stroke="black" stroke-width="2"/>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M10.893 13.0007C13.0901 12.9771 15.2567 13.5163 17.1865 14.5668C19.1163 15.6174 20.745 17.1445 21.9177 19.0026L20.2263 20.07C19.2359 18.5006 17.8602 17.2108 16.2302 16.3234C14.6002 15.436 12.7703 14.9807 10.9145 15.0006C9.05879 15.0206 7.23904 15.5152 5.62854 16.4374C4.01804 17.3596 2.6704 18.6787 1.71392 20.2691L0 19.2383C1.13242 17.3554 2.72796 15.7937 4.6347 14.7018C6.54144 13.61 8.69593 13.0244 10.893 13.0007Z" fill="black"/>
+						</svg>
+					</a>
+				</li>
+				<li class="ml-1">
+					<a href="<?= wc_get_cart_url(); ?>" class="js--cart-trigger">
+						Cart
+					</a>
+				</li>
+			</ul>
 
 			<button class="site__navigation-toggle md:none" aria-expanded="false" aria-controls="l-navigation-main">
 				<svg class="o-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 82" width="82" height="82">
@@ -146,6 +154,14 @@ if ( is_home() && ! is_front_page() ){
 		</div><!-- #site__navigation -->
 	</div>
 </header><!-- #site__header -->
+
+<aside class="c-cart bg-white fixed right-0 h-screen bg-white overflow-hidden" style="transform: translateX(100%); width: 100%; min-width: 300px; max-width: 30rem; z-index: 999999; box-shadow: 0 0 10px -4px rgb(0 0 0 / 40%);">
+	<div class="c-cart__scroll h-full w-full p-1 lg:p-2 overflow-scroll">
+		<div class="widget_shopping_cart_content">
+			<?php woocommerce_mini_cart(); ?>
+		</div>	
+	</div>
+</aside>
 
 <?php /*
 <?php $show_shop_nav = false; ?>

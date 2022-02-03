@@ -319,7 +319,8 @@ const APP = {
 				const selectorList = [
 					'.remove_from_wishlist',
 					'.remove[data-product_id]',
-					'.restore-item'
+					'.restore-item',
+					WC.options.cart.trigger
 				];
 
 				if ( $( el ).closest( '.js--pagination' ).length !== 0 ){

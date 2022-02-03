@@ -3,6 +3,8 @@
  ****** WooCommerce START *****
  ******************************/
 
+$OAX_INFINITESCROLL_SUPPORT = false;
+
 /* 
 * Remove Styles and Scripts
 */
@@ -15,10 +17,19 @@ function oax_remove_wc_styles(){
 		wp_dequeue_style( 'yith-wcan-shortcodes' );
 		wp_dequeue_style( 'yith-wcan-frontend');
 	}
+
+	// wp_dequeue_style('the-neverending-homepage');
+	// wp_enqueue_style('the-neverending-homepage');
 }
 add_action( 'wp_enqueue_scripts', 'oax_remove_wc_styles', PHP_INT_MAX - 1 );
 
-function oax_remove_wc_scripts(){
+function oax_dequeue_script() {
+	// wp_dequeue_script( 'the-neverending-homepage' );
+	// wp_enqueue_script( 'the-neverending-homepage' );
+}
+add_action( 'wp_print_scripts', 'oax_dequeue_script', PHP_INT_MAX - 2 );
+
+function oax_remove_and_add_wc_scripts(){
 	// Remove VariationFormJs and enable again
 	//
 	if ( class_exists( 'Woo_Variation_Swatches' ) ){
@@ -37,8 +48,11 @@ function oax_remove_wc_scripts(){
 		wp_dequeue_script( 'yith-wcan-script' );
 		wp_dequeue_script( 'yith-wcan-shortcodes' );
 	}
+
+	// wp_dequeue_script( 'the-neverending-homepage' );
+	// wp_enqueue_script( 'the-neverending-homepage' );
 }
-add_action( 'wp_enqueue_scripts', 'oax_remove_wc_scripts', PHP_INT_MAX );
+add_action( 'wp_enqueue_scripts', 'oax_remove_and_add_wc_scripts', PHP_INT_MAX );
 
 /* 
  * Remove Functions and Templates 
@@ -87,25 +101,38 @@ if ( ! function_exists( 'woocommerce_get_product_thumbnail' ) ) {
  */ 
 add_filter( 'woocommerce_output_related_products_args', 'oax_related_products_args', 20 );
 function oax_related_products_args( $args ) {
-	$args['posts_per_page'] = 3; // 4 related products
+	$args['posts_per_page'] = 3; // for related products
 	return $args;
 }
 
-add_filter('wvs_variable_item', function( $args ){
-	$variable_items_string = $args;		
-	
-	$dom = new DOMDocument;
-	@$dom->loadHTML($args);
-	$imgTags = $dom->getElementsByTagName('img');
-	$imgObjArr = iterator_to_array($imgTags);
+if($OAX_INFINITESCROLL_SUPPORT){
 
-	if(count($imgObjArr) > 0){
-		return $args;
+	function oax_infinite_scroll_archive_supported(){
+		return true;
 	}
+	add_filter( 'infinite_scroll_archive_supported', 'oax_infinite_scroll_archive_supported');
+	
+	add_theme_support( 'infinite-scroll', array(
+		'type' => 'click',
+		'container' => 'infinite-list',
+		'footer' => false,
+		'wrapper' => true,
+		'render' => 'oax_product_infinite_scroll_render',
+		'posts_per_page' => 6,
+	) );
 
-	return $args;
+	function oax_product_infinite_scroll_render() {
+		while ( have_posts() ) {
+			the_post();
+			/**
+			 * Hook: woocommerce_shop_loop.
+			 */
+			do_action( 'woocommerce_shop_loop' );
 
-}, 20);
+			wc_get_template_part( 'content', 'product' );
+		}
+	}
+}
 
 add_action( 'before_woocommerce_init', function() {
 	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 );
@@ -115,29 +142,6 @@ add_action( 'before_woocommerce_init', function() {
 
 add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 add_filter( 'woocommerce_show_page_title', '__return_false' );
-
-/**
- * RETURNS MINIMUM PRICE AND HIDES MAXIMUM PRICE FOR VARIABLE PRODUCTS
- **/
-// add_filter( 'woocommerce_variable_sale_price_html', 'oax_variation_price_format', 10, 2 );
-// add_filter( 'woocommerce_variable_price_html', 'oax_variation_price_format', 10, 2 );
-function oax_variation_price_format( $price, $product ) {
-	// Main Price
-	$prices = array( $product->get_variation_price( 'min', true ), $product->get_variation_price( 'max', true ) );
-	$price = $prices[0] !== $prices[1] ? sprintf( __( 'Starting at %1$s', 'woocommerce' ), wc_price( $prices[0] ) ) : wc_price( $prices[0] );
-	
-	// Sale Price
-	$prices = array( $product->get_variation_regular_price( 'min', true ), $product->get_variation_regular_price( 'max', true ) );
-	sort( $prices );
-	
-	$saleprice = $prices[0] !== $prices[1] ? sprintf( __( 'Starting at %1$s', 'woocommerce' ), wc_price( $prices[0] ) ) : wc_price( $prices[0] );
-	
-	if ( $price !== $saleprice ) {
-		$price = '' . $saleprice . ' ' . $price . '';
-	}
-
-	return $price;
-}
 
 function woocommerce_template_loop_product_title() {
 	echo '<span class="sr-only">' . get_the_title() . '</span>'; 

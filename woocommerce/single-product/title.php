@@ -25,8 +25,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 // get an array of the WP_Term objects for a defined product ID
 //
 $terms = wp_get_post_terms( $product->get_id(), 'product_tag' );
-$first_term = $terms[0];
 
-echo '<h1 class="product_title entry-title">';
-	echo $first_term->name;
-echo '</h1>';
+if(!empty($terms)){
+	$first_term = $terms[0];
+	echo '<h1 class="product_title entry-title">';
+		echo $first_term->name;
+	echo '</h1>';
+} else {
+	the_title( '<h1 class="product_title entry-title">', '</h1>' );
+}

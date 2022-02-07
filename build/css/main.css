@@ -8095,6 +8095,10 @@ form[role=search] .is-search-icon > svg {
 }
 
 /*---------------------------
+## WooCommerce
+---------------------------*/
+
+/*---------------------------
 ## WooCommerce Cart
 ---------------------------*/
 
@@ -8106,10 +8110,31 @@ form[role=search] .is-search-icon > svg {
   transition: transform 0.5s cubic-bezier(0.55, 0, 0.1, 1), -webkit-transform 0.5s cubic-bezier(0.55, 0, 0.1, 1), -o-transform 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
+.c-cart::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.75);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+  -o-transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: 800;
+}
+
 .c-cart.is-open {
   -webkit-transform: translateX(0) !important;
        -o-transform: translateX(0) !important;
           transform: translateX(0) !important;
+}
+
+.c-cart.is-loading::before {
+  opacity: 1;
+  visibility: visible;
 }
 
 .woocommerce-mini-cart {
@@ -8126,7 +8151,6 @@ form[role=search] .is-search-icon > svg {
 
 .woocommerce-mini-cart-item {
   position: relative;
-  padding-bottom: 1rem;
 }
 
 .woocommerce-mini-cart-item a.remove {
@@ -8186,6 +8210,68 @@ form[role=search] .is-search-icon > svg {
   background-color: black;
   color: white;
   text-decoration: none;
+}
+
+/*---------------------------
+## WooCommerce Checkout
+---------------------------*/
+
+.woocommerce-billing-fields__field-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-top: 1rem;
+  margin: 0 -0.5rem;
+}
+
+.woocommerce-billing-fields__field-wrapper p.form-row {
+  padding: 0 0.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .woocommerce-billing-fields__field-wrapper p.form-row {
+    width: 50%;
+  }
+}
+
+.woocommerce-billing-fields__field-wrapper p.form-row > label,
+.woocommerce-billing-fields__field-wrapper p.form-row > .woocommerce-input-wrapper {
+  display: block;
+}
+
+.woocommerce-billing-fields__field-wrapper p.form-row > label {
+  width: 100%;
+  font-size: 0.75rem;
+}
+
+.woocommerce-billing-fields__field-wrapper p.form-row > label:not([for=billing_country]) {
+  margin-bottom: -1.35rem;
+  position: relative;
+  margin-top: 0;
+  padding-left: 0.5rem;
+}
+
+.woocommerce-billing-fields__field-wrapper p.form-row > .woocommerce-input-wrapper {
+  width: 100%;
+}
+
+.woocommerce-billing-fields__field-wrapper p.form-row > .woocommerce-input-wrapper input,
+.woocommerce-billing-fields__field-wrapper p.form-row > .woocommerce-input-wrapper textarea {
+  width: 100%;
+  font-size: 0.75rem;
+  border: 1px solid var(--color__grey);
+  padding-top: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.3rem;
+}
+
+.woocommerce-billing-fields__field-wrapper p.form-row > .woocommerce-input-wrapper input.input-text {
+  font-weight: bold;
 }
 
 /*--------------------------------------------------------------

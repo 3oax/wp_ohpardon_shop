@@ -201,14 +201,14 @@ const APP = {
 		/**
 		 * Floating Inputs Labels
 		 */	
-		$( document ).on( 'input.oax::floating', '.c-form__floating input', ( event ) => {
+		$( document ).on( 'input.oax::floating', 'p.form-row .input-text', ( event ) => {
 			const $target = $( event.target );
 			if ( $target.val().length && $.trim( $target.val() ) !== '' ){
-				$target.closest( '.c-form__floating' ).addClass( 'has-value' );
+				$target.closest( 'p.form-row' ).addClass( 'has-value' );
 			} else {
-				$target.closest( '.c-form__floating' ).removeClass( 'has-value' );
+				$target.closest( 'p.form-row' ).removeClass( 'has-value' );
 			}
-		} );
+		} );		
 
 		/**
 		 * Contact Form 7

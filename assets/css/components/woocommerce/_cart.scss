@@ -1,8 +1,29 @@
+// Off Canvas Cart
+//
 .c-cart {
   transition: transform .5s $cubic__default;
-  &.is-open {
+	&::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		background-color: rgba(255,255,255,0.75);
+		opacity: 0;
+		visibility: hidden;
+		transition: all .3s $cubic__default;
+		z-index: 800;
+	}
+	&.is-open {
     transform: translateX(0) !important;
   }
+	&.is-loading {
+		&::before {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
 }
 
 .woocommerce-mini-cart {
@@ -21,7 +42,6 @@
 
 .woocommerce-mini-cart-item {
 	position: relative;
-	padding-bottom: 1rem;
 }
 
 .woocommerce-mini-cart-item a.remove {
@@ -81,3 +101,6 @@
 		text-decoration: none;
 	}
 }
+
+// Warenkorb Seite
+//

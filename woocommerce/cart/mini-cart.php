@@ -23,7 +23,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
 <?php if ( ! WC()->cart->is_empty() ) : ?>
 
-	<ul class="woocommerce-mini-cart cart_list product_list_widget <?php echo esc_attr( $args['list_class'] ); ?>">
+	<ul class="woocommerce-mini-cart cart_list product_list_widget <?php echo esc_attr( $args['list_class'] ); ?>" data-cart-product-count="<?= WC()->cart->get_cart_contents_count(); ?>">
 		<?php
 		do_action( 'woocommerce_before_mini_cart_contents' );
 
@@ -46,7 +46,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 				$price_with_qty = $raw_price * $cart_item['quantity'];
 				$product_price = wc_price($price_with_qty);
 				?>
-				<li class="woocommerce-mini-cart-item <?php echo esc_attr( apply_filters( 'woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key ) ); ?>" data-product-id="<?= esc_attr( $product_id ); ?>" data-cart-item-key="<?= esc_attr( $cart_item_key ); ?>">
+				<li class="woocommerce-mini-cart-item mb-1 <?php echo esc_attr( apply_filters( 'woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key ) ); ?>" data-product-id="<?= esc_attr( $product_id ); ?>" data-cart-item-key="<?= esc_attr( $cart_item_key ); ?>">
 					<?php
 					echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						'woocommerce_cart_item_remove_link',
@@ -93,7 +93,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 	</ul>
   
   <div>
-    <p class="woocommerce-mini-cart__total total mb-0">
+    <p class="woocommerce-mini-cart__total total mb-0 flex flex-wrap justify-between">
       <?php
       /**
        * Hook: woocommerce_widget_shopping_cart_total.

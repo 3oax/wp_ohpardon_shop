@@ -136,9 +136,18 @@ if ( is_home() && ! is_front_page() ){
 					</a>
 				</li>
 				<li class="ml-1">
-					<a href="<?= wc_get_cart_url(); ?>" class="js--cart-trigger">
-						Cart
-					</a>
+					<a href="<?= wc_get_cart_url(); ?>" class="js--cart-trigger relative block no-underline">
+						<span class="js--cart-trigger__desc absolute bottom-0 w-full text-center" id="js--cart-trigger__desc">
+							<span class="js--cart-trigger__desc-text sr-only"><?= __('Produkte im Warenkorb', 'oax-ohpardon'); ?>:</span>
+							<span class="js--cart-trigger__desc-count relative" style="font-size: 0.6em; top: -0.3rem;">								
+								<?php echo WC()->cart->get_cart_contents_count() > 0 ? WC()->cart->get_cart_contents_count() : ''; ?>
+							</span>
+						</span>
+						<svg aria-labelledby="js--cart-trigger__desc" class="js--cart-trigger__icon" fill="none" class="w-1 h-1" viewBox="0 0 24 29" xmlns="http://www.w3.org/2000/svg" width="23">
+							<rect x="1" y="6" width="22" height="22" rx="3" stroke="#000" stroke-width="2"></rect>							
+							<path d="M16.5 5s-.5-4-5-4S6 5 6 5" stroke="#000" stroke-linecap="round" stroke-width="2"></path>
+						</svg>
+					</a>					
 				</li>
 			</ul>
 
@@ -156,6 +165,10 @@ if ( is_home() && ! is_front_page() ){
 </header><!-- #site__header -->
 
 <aside class="c-cart bg-white fixed right-0 h-screen bg-white overflow-hidden" style="transform: translateX(100%); width: 100%; min-width: 300px; max-width: 30rem; z-index: 999999; box-shadow: 0 0 10px -4px rgb(0 0 0 / 40%);">
+	<span class="c-cart__close absolute top-0 right-0 h-2 w-2 text-center bg-grey-light flex items-center justify-center cursor-pointer">&times;</span>
+	<div class="c-cart__header w-full pt-1 lg:pt-2 px-1 lg:px-2">
+		<span class="h2 c-cart__title"><?= __( 'Cart', 'woocommerce' ); ?></span>
+	</div>
 	<div class="c-cart__scroll h-full w-full p-1 lg:p-2 overflow-scroll">
 		<div class="widget_shopping_cart_content">
 			<?php woocommerce_mini_cart(); ?>
@@ -270,7 +283,7 @@ if ( is_home() && ! is_front_page() ){
 */ ?>
 
 <div id="site" class="site relative w-screen">
-	<a class="skip-link screen-reader-text" href="#site__body"><?php esc_html_e( 'Skip to content', 'oax-ohpardon' ); ?></a>
+	<a class="skip-link sr-only" href="#site__body"><?php esc_html_e( 'Skip to content', 'oax-ohpardon' ); ?></a>
 
 	<main id="site__body" class="site__body" data-barba="wrapper">
 		<div class="site__inner w-screen" data-barba="container" data-barba-namespace="<?= $namespace ?>">

@@ -3765,7 +3765,10 @@ function () {
       cart: {
         open: 'is-open',
         trigger: '.js--cart-trigger',
-        selector: '.c-cart'
+        trigger_product_count: '.js--cart-trigger__desc-count',
+        selector: '.c-cart',
+        close: '.c-cart__close',
+        data_product_count: 'data-cart-product-count'
       }
     };
     this._defaults = defaults;
@@ -3876,6 +3879,7 @@ function () {
       if (container === null) {
         $(document).on('click.oax::add-to-cart', "".concat(this.options.product.buyBtn, ":not(.disabled)"), this.onVariationAddToCart);
         $(document.body).on('added_to_cart', $.proxy(this.onAddedToCard, this));
+        $(document.body).on('wc_fragments_loaded', $.proxy(this.onFragmentsLoaded, this));
         $(document).on('click.oax::open-cart', this.options.cart.trigger, $.proxy(this.onToggleCart, this));
         $(document).on('click.oax::change-cart-qty', '.js--cart-qty-change-btn', this.onItemQtyChange);
         $(document).on('focusout.oax::change-cart-qty', '.js--cart-qty-change-input', this.onItemQtyChange);
@@ -3901,6 +3905,21 @@ function () {
       }
 
       this.openCart();
+    }
+  }, {
+    key: "onFragmentsLoaded",
+    value: function onFragmentsLoaded(event) {
+      if (OAX.debug) {
+        console.log('onFragmentsLoaded', event);
+      }
+
+      var productCount = $(this.options.cart.selector).find("[".concat(this.options.cart.data_product_count, "]")).attr(this.options.cart.data_product_count);
+
+      if (typeof productCount !== 'undefined') {
+        $(this.options.cart.trigger_product_count).text(productCount);
+      } else {
+        $(this.options.cart.trigger_product_count).text('');
+      }
     }
   }, {
     key: "onShowVariation",
@@ -3978,7 +3997,7 @@ function () {
     value: function onOutsideCartClick(event) {
       var $target = $(event.target);
 
-      if (!$target.closest(this.options.cart.selector).length) {
+      if ($target.is(this.options.cart.close) || !$target.closest(this.options.cart.selector).length) {
         this.closeCart();
       }
     }
@@ -4012,6 +4031,8 @@ function () {
     value: function onItemQtyChange(event) {
       var $target = $(event.target);
       var $item = $target.closest('.woocommerce-mini-cart-item');
+      var $items = $item.siblings('.woocommerce-mini-cart-item');
+      var $cart = $('.c-cart');
       var $siblingTargets = $item.find('.js--cart-qty-change-btn, .js--cart-qty-change-input');
       var cartItemKey = $item.data('cartItemKey');
       var cartItemQty = parseInt($item.find('.js--cart-qty-change-input').val(), 10);
@@ -4024,6 +4045,13 @@ function () {
         }
       }
 
+      $cart.addClass('is-loading');
+      var $loader = $(OAX.template.loader.html);
+      $cart.append($loader.css({
+        position: 'absolute',
+        left: '50%',
+        top: '50%'
+      }));
       $siblingTargets.prop('disabled', true);
       var data = {
         action: 'oax_ajax_cart_update_qty',
@@ -4033,8 +4061,11 @@ function () {
 
       };
       $.post(OAX.config.url_ajax, data, function (response) {
-        jQuery(document.body).one('wc_fragments_loaded', function () {
+        jQuery(document.body).one('wc_fragments_refreshed', function () {
           $siblingTargets.prop('disabled', false);
+          $cart.find(OAX.template.loader.selector).remove();
+          $cart.removeClass('is-loading');
+          jQuery(document.body).trigger('wc_fragments_loaded');
         });
         jQuery(document.body).trigger('wc_fragment_refresh');
       });
@@ -5001,13 +5032,13 @@ var APP = {
      * Floating Inputs Labels
      */
 
-    $(document).on('input.oax::floating', '.c-form__floating input', function (event) {
+    $(document).on('input.oax::floating', 'p.form-row .input-text', function (event) {
       var $target = $(event.target);
 
       if ($target.val().length && $.trim($target.val()) !== '') {
-        $target.closest('.c-form__floating').addClass('has-value');
+        $target.closest('p.form-row').addClass('has-value');
       } else {
-        $target.closest('.c-form__floating').removeClass('has-value');
+        $target.closest('p.form-row').removeClass('has-value');
       }
     });
     /**

@@ -23,8 +23,17 @@
   }  
 
   p.form-row {
+
     padding: 0 0.5rem;
     margin-bottom: 1rem;
+    &.notes {
+      @media(min-width: $break__medium){
+        width: 100%;
+      }
+      padding: 0;
+      margin-bottom: 0;
+    }
+
     width: 100%;
 
     @media(min-width: $break__medium){
@@ -40,7 +49,8 @@
       width: 100%;
       font-size: 0.75rem; 
     }
-    > label:not([for="billing_country"]):not([for="shipping_country"]) {
+
+    > label:not([for="billing_country"]):not([for="shipping_country"]):not([for="order_comments"]) {
       margin-bottom: -1.35rem;
       position: relative;
       margin-top: 0;
@@ -58,6 +68,9 @@
         padding-right: 0.5rem;    
         padding-bottom: 0.3rem;    
       }
+      textarea {
+        padding-top: 0.5rem;
+      }
       input.input-text {
         font-weight: bold;
       }
@@ -66,10 +79,28 @@
 
   #billing_country_field label,
   #shipping_country_field label,
+  #order_comments_field label,
   p.form-row > label[for="billing_state"],
-  p.form-row > label[for="shipping_state"]{
+  p.form-row > label[for="shipping_state"],
+  p.form-row > label[for="order_comments"]{
     margin-bottom: 0.2rem;
     margin-top: -0.2rem;
+  }
+}
+
+.woocommerce-checkout-payment {
+  .wc_payment_methods {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    .wc_payment_method {
+      label {
+        font-weight: bold;
+      }
+      .payment_box {
+        font-size: 0.75rem;
+      }
+    }
   }
 }
 

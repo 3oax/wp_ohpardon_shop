@@ -8244,6 +8244,17 @@ form[role=search] .is-search-icon > svg {
   width: 100%;
 }
 
+.woocommerce-checkout p.form-row.notes {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+@media (min-width: 992px) {
+  .woocommerce-checkout p.form-row.notes {
+    width: 100%;
+  }
+}
+
 @media (min-width: 992px) {
   .woocommerce-checkout p.form-row {
     width: 50%;
@@ -8260,7 +8271,7 @@ form[role=search] .is-search-icon > svg {
   font-size: 0.75rem;
 }
 
-.woocommerce-checkout p.form-row > label:not([for=billing_country]):not([for=shipping_country]) {
+.woocommerce-checkout p.form-row > label:not([for=billing_country]):not([for=shipping_country]):not([for=order_comments]) {
   margin-bottom: -1.35rem;
   position: relative;
   margin-top: 0;
@@ -8282,16 +8293,36 @@ form[role=search] .is-search-icon > svg {
   padding-bottom: 0.3rem;
 }
 
+.woocommerce-checkout p.form-row > .woocommerce-input-wrapper textarea {
+  padding-top: 0.5rem;
+}
+
 .woocommerce-checkout p.form-row > .woocommerce-input-wrapper input.input-text {
   font-weight: bold;
 }
 
 .woocommerce-checkout #billing_country_field label,
 .woocommerce-checkout #shipping_country_field label,
+.woocommerce-checkout #order_comments_field label,
 .woocommerce-checkout p.form-row > label[for=billing_state],
-.woocommerce-checkout p.form-row > label[for=shipping_state] {
+.woocommerce-checkout p.form-row > label[for=shipping_state],
+.woocommerce-checkout p.form-row > label[for=order_comments] {
   margin-bottom: 0.2rem;
   margin-top: -0.2rem;
+}
+
+.woocommerce-checkout-payment .wc_payment_methods {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.woocommerce-checkout-payment .wc_payment_methods .wc_payment_method label {
+  font-weight: bold;
+}
+
+.woocommerce-checkout-payment .wc_payment_methods .wc_payment_method .payment_box {
+  font-size: 0.75rem;
 }
 
 .wc-gzd-checkbox-placeholder > p {

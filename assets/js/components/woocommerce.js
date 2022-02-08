@@ -37,7 +37,8 @@ export default class WooCommerce {
 			},
 			scripts: {
 				base_path: 'wp-content/plugins/woocommerce/assets/js/frontend/',
-				checkout: 'checkout.min.js'
+				checkout: 'checkout.min.js',
+				countrySelect: 'country-select.min.js', 
 			}
 		};
     
@@ -167,6 +168,8 @@ export default class WooCommerce {
 					germanized.checkout.init();
 				}	
 			} );
+
+			$( document.body ).trigger( 'wc_address_i18n_ready' );
 		}
 	}
 

@@ -35,29 +35,30 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 		?>
         <tr class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
             <td class="product-name pt-1">
+							<div class="flex flex-wrap items-center">
+							
+								<?php if ( get_option( 'woocommerce_gzd_display_checkout_thumbnails' ) == 'yes' ) : ?>
 
-				<?php if ( get_option( 'woocommerce_gzd_display_checkout_thumbnails' ) == 'yes' ) : ?>
+									<div class="wc-gzd-product-name-left w-1/4 mr-0" style="margin-right: 0; max-width: 100%;">
+										<?php echo apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key ); ?>
+									</div>
 
-                <div class="wc-gzd-product-name-left">
-					<?php echo apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key ); ?>
-                </div>
+									<div class="wc-gzd-product-name-right w-3/4 pl-1">
 
-                <div class="wc-gzd-product-name-right">
+								<?php endif; ?>
 
-					<?php endif; ?>
+									<?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;'; ?>
+									<?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times; %s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?>
 
-					<?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;'; ?>
-					<?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times; %s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?>
+									<?php echo wc_get_formatted_cart_item_data( $cart_item ); ?>
 
-					<?php echo wc_get_formatted_cart_item_data( $cart_item ); ?>
+								<?php if ( get_option( 'woocommerce_gzd_display_checkout_thumbnails' ) == 'yes' ) : ?>
 
-					<?php if ( get_option( 'woocommerce_gzd_display_checkout_thumbnails' ) == 'yes' ) : ?>
+									</div>
 
-                </div>
-                <div class="clear"></div>
+								<?php endif; ?>
 
-			<?php endif; ?>
-
+							</div>
             </td>
             <td class="product-total text-right pr-1 pt-1">
 				<?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); ?>

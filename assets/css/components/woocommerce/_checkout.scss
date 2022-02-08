@@ -12,15 +12,21 @@
   }
 }
 
-.woocommerce-billing-fields__field-wrapper {
-  display: flex; 
-  flex-wrap: wrap;
-  padding-top: 1rem;
-  margin: 0 -0.5rem;
-  p.form-row{
+.woocommerce-checkout {
+  
+  .woocommerce-billing-fields__field-wrapper,
+  .woocommerce-shipping-fields__field-wrapper {
+    display: flex; 
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    margin: 0 -0.5rem;
+  }  
+
+  p.form-row {
     padding: 0 0.5rem;
     margin-bottom: 1rem;
     width: 100%;
+
     @media(min-width: $break__medium){
       width: 50%;
     }
@@ -32,14 +38,15 @@
 
     > label {
       width: 100%;
-      font-size: 0.75rem;    
+      font-size: 0.75rem; 
     }
-    > label:not([for="billing_country"]) {
+    > label:not([for="billing_country"]):not([for="shipping_country"]) {
       margin-bottom: -1.35rem;
       position: relative;
       margin-top: 0;
       padding-left: 0.5rem;  
     }
+    
     > .woocommerce-input-wrapper {
       width: 100%;
       input, textarea {
@@ -56,7 +63,15 @@
       }
     }
   }
-} 
+
+  #billing_country_field label,
+  #shipping_country_field label,
+  p.form-row > label[for="billing_state"],
+  p.form-row > label[for="shipping_state"]{
+    margin-bottom: 0.2rem;
+    margin-top: -0.2rem;
+  }
+}
 
 .wc-gzd-checkbox-placeholder {
   > p {
@@ -86,4 +101,37 @@
       }
     }
   }
+}
+
+// Select 2
+// 
+.woocommerce-input-wrapper select {
+	width: 100%;
+	border: 1px solid var(--color__grey);
+	padding: 0.2rem;
+}
+
+
+.woocommerce-billing-fields__field-wrapper p.form-row > label[for="billing_state"],
+.woocommerce-billing-fields__field-wrapper p.form-row > label[for="shipping_state"] {
+	padding-left: 0;
+}
+
+.woocommerce-billing-fields__field-wrapper p.form-row > label.screen-reader-text + .woocommerce-input-wrapper {
+	margin-top: -0.2rem;
+}
+
+.select2-container .select2-selection--single,
+.select2-search--dropdown .select2-search__field {
+	height: 1.5rem;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+	line-height: 1.75;
+}
+
+.select2-container .select2-selection--single,
+.select2-results,
+.woocommerce-input-wrapper select {
+	font-size: 0.75rem;	
 }

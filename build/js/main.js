@@ -3900,7 +3900,11 @@ function () {
 
 
         $(document.body).off('init_checkout');
-        $(document.body).off('update_checkout'); // Get Checkout Script and init
+        $(document.body).off('update_checkout');
+        $(document.body).off('click', 'a.showcoupon');
+        $(document.body).off('click', '.woocommerce-remove-coupon');
+        $(document.body).off('click', 'a.showlogin');
+        $(document.body).off('click', 'a.woocommerce-terms-and-conditions-link'); // Get Checkout Script and init
 
         jQuery.getScript("".concat(OAX.config.url_base).concat(self.options.scripts.base_path).concat(self.options.scripts.checkout), function () {
           wc_checkout_params.is_ajax_init = 1;

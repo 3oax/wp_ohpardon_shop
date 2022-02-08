@@ -1,0 +1,40 @@
+
+.yith-wcan-filter .filter-item.text a {
+	display: inline-flex;
+	align-items: center;
+}
+
+.yith-wcan-filter .filter-item.text a::before {
+	content: '';
+	height: 1em;
+	width: 1em;
+	margin-right: 0.5em;
+	box-shadow: inset 0px 0px 0px 0.1em #000000;
+	display: inline-block;
+}
+
+.yith-wcan-filter .filter-item.text.active a::before {
+	box-shadow: inset 0px 0px 0px 0.1em #000000, inset 0px 0px 0px 0.3em white,
+	inset 0px 0px 0px 0.5em #000000;
+}
+
+.yith-wcan-filter .filter-item.text a {
+	text-decoration: none;
+	position: relative;
+}
+
+.yith-wcan-filter .filter-item.text a::after {
+	content: '';
+	bottom: -4px;
+	height: 2px;
+	left: 0;
+	right: 0;
+	position: absolute;
+	background-color: black;
+	transform: scaleX(0);
+	transition: transform .2s ease-in-out;
+}
+
+.yith-wcan-filter .filter-item.text.active a::after {
+		transform: scaleX(1);
+}

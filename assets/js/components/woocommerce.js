@@ -155,6 +155,10 @@ export default class WooCommerce {
 			 */
 			$( document.body ).off( 'init_checkout' );
 			$( document.body ).off( 'update_checkout' );
+			$( document.body ).off( 'click', 'a.showcoupon' );
+			$( document.body ).off( 'click', '.woocommerce-remove-coupon' );
+			$( document.body ).off( 'click', 'a.showlogin' );
+			$( document.body ).off( 'click', 'a.woocommerce-terms-and-conditions-link' );
 			
 			// Get Checkout Script and init
 			jQuery.getScript( `${OAX.config.url_base}${self.options.scripts.base_path}${self.options.scripts.checkout}`, () => {

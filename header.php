@@ -32,6 +32,9 @@ if( is_author() ){
 if ( is_home() && ! is_front_page() ){
 	$namespace = 'blog';
 }
+if ( is_checkout() ) {
+	$namespace = 'checkout';
+}
 ?><!doctype html>
 <?php get_template_part( 'template-parts/site-html-ascii-brand' ); ?>
 <!--[if IE 9]>

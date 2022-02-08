@@ -30,6 +30,15 @@ function oax_dequeue_script() {
 add_action( 'wp_print_scripts', 'oax_dequeue_script', PHP_INT_MAX - 2 );
 
 function oax_remove_and_add_wc_scripts(){
+	wp_dequeue_script( 'wc-checkout' );
+	wp_enqueue_script( 'wc-checkout' );
+
+	wp_dequeue_script( 'wc-country-select' );
+	wp_enqueue_script( 'wc-country-select' );
+
+	wp_dequeue_script( 'wc-address-i18n' );
+	wp_enqueue_script( 'wc-address-i18n' );
+
 	// Remove VariationFormJs and enable again
 	//
 	if ( class_exists( 'Woo_Variation_Swatches' ) ){
@@ -42,6 +51,9 @@ function oax_remove_and_add_wc_scripts(){
 	if ( class_exists( 'WooCommerce_Germanized' ) ){
 		wp_dequeue_script( 'wc-gzd-add-to-cart-variation' );
 		wp_enqueue_script( 'wc-gzd-add-to-cart-variation' );
+	
+		wp_dequeue_script( 'wc-gzd-checkout' );
+		wp_enqueue_script( 'wc-gzd-checkout' );
 	}
 
 	if( defined( 'YITH_WCAN' ) ) {

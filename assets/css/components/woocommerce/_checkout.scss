@@ -1,3 +1,17 @@
+.woocommerce-NoticeGroup {
+  .woocommerce-error {
+    list-style: none;
+    padding: 2rem;
+    background-color: transparent;
+    border: 1px solid var(--color__error, #e53232);
+  }
+  &.woocommerce-NoticeGroup-checkout {
+    .woocommerce-error {
+      margin-top: 1rem;
+    }
+  }
+}
+
 .woocommerce-billing-fields__field-wrapper {
   display: flex; 
   flex-wrap: wrap;
@@ -43,3 +57,33 @@
     }
   }
 } 
+
+.wc-gzd-checkbox-placeholder {
+  > p {
+    padding: 1rem !important;
+    border: 1px solid var(--color__grey);
+  }
+  + .wc-gzd-checkbox-placeholder {
+    > p { margin-top: 0.5rem; }
+  }
+}
+
+.woocommerce-checkout-review-order-table {
+  tfoot {
+    tr {
+      > th,
+      > td  {
+        text-align: right;
+      }
+      > th + td {
+        padding-right: 1rem;
+      }
+    }
+    tr:last-child {
+      > th,
+      > td  {
+        padding-bottom: 1rem;
+      }
+    }
+  }
+}

@@ -3769,6 +3769,10 @@ function () {
         selector: '.c-cart',
         close: '.c-cart__close',
         data_product_count: 'data-cart-product-count'
+      },
+      scripts: {
+        base_path: 'wp-content/plugins/woocommerce/assets/js/frontend/',
+        checkout: 'checkout.min.js'
       }
     };
     this._defaults = defaults;
@@ -3797,6 +3801,12 @@ function () {
         if (namespace === 'archive') {
           this.initJetpackInfiniteScroll();
         }
+
+        if (namespace === 'checkout') {
+          this.initCheckout();
+        } else {
+          wc_checkout_params.is_checkout = '0';
+        }
       } else {
         // only first init
         $container = $container.find(OAX.APP.options.selector.siteInner);
@@ -3805,6 +3815,10 @@ function () {
 
         if (namespace === 'product') {
           this.addEventListener(container);
+        }
+
+        if (namespace === 'checkout') {
+          wc_checkout_params.is_ajax_init = 1;
         }
         /*
          * if ( Utils.isset( wpNotesIsJetpackClient ) && Utils.isset( wpNotesIsJetpackClientV2 ) ){
@@ -3863,6 +3877,39 @@ function () {
        * $.fn.wc_set_content
        * $.fn.wc_variations_image_update
        */
+    }
+  }, {
+    key: "initCheckout",
+    value: function initCheckout() {
+      var self = this;
+
+      if (_app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset(wc_checkout_params)) {
+        wc_checkout_params.is_checkout = '1';
+        /*
+         * Init Selectboxes
+         */
+
+        if ($().selectWoo) {
+          setTimeout(function () {
+            $(document.body).trigger('country_to_state_changed');
+          }, 200);
+        }
+        /*
+         * Remove Eventlistener on Body if already declared
+         */
+
+
+        $(document.body).off('init_checkout');
+        $(document.body).off('update_checkout'); // Get Checkout Script and init
+
+        jQuery.getScript("".concat(OAX.config.url_base).concat(self.options.scripts.base_path).concat(self.options.scripts.checkout), function () {
+          wc_checkout_params.is_ajax_init = 1;
+
+          if (self.options.features.Germanized) {
+            germanized.checkout.init();
+          }
+        });
+      }
     }
   }, {
     key: "initJetpackInfiniteScroll",

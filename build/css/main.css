@@ -8216,6 +8216,17 @@ form[role=search] .is-search-icon > svg {
 ## WooCommerce Checkout
 ---------------------------*/
 
+.woocommerce-NoticeGroup .woocommerce-error {
+  list-style: none;
+  padding: 2rem;
+  background-color: transparent;
+  border: 1px solid var(--color__error, #e53232);
+}
+
+.woocommerce-NoticeGroup.woocommerce-NoticeGroup-checkout .woocommerce-error {
+  margin-top: 1rem;
+}
+
 .woocommerce-billing-fields__field-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -8272,6 +8283,29 @@ form[role=search] .is-search-icon > svg {
 
 .woocommerce-billing-fields__field-wrapper p.form-row > .woocommerce-input-wrapper input.input-text {
   font-weight: bold;
+}
+
+.wc-gzd-checkbox-placeholder > p {
+  padding: 1rem !important;
+  border: 1px solid var(--color__grey);
+}
+
+.wc-gzd-checkbox-placeholder + .wc-gzd-checkbox-placeholder > p {
+  margin-top: 0.5rem;
+}
+
+.woocommerce-checkout-review-order-table tfoot tr > th,
+.woocommerce-checkout-review-order-table tfoot tr > td {
+  text-align: right;
+}
+
+.woocommerce-checkout-review-order-table tfoot tr > th + td {
+  padding-right: 1rem;
+}
+
+.woocommerce-checkout-review-order-table tfoot tr:last-child > th,
+.woocommerce-checkout-review-order-table tfoot tr:last-child > td {
+  padding-bottom: 1rem;
 }
 
 /*--------------------------------------------------------------

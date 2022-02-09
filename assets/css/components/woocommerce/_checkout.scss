@@ -50,7 +50,7 @@
       font-size: 0.75rem; 
     }
 
-    > label:not([for="billing_country"]):not([for="shipping_country"]):not([for="order_comments"]) {
+    > label:not([for="billing_country"]):not([for="shipping_country"]):not([for="order_comments"]):not([for="billing_state"]) {
       margin-bottom: -1.35rem;
       position: relative;
       margin-top: 0;

@@ -11,7 +11,7 @@
 	<div class="c-section__bg inset<?php echo substr($page_header_bg_color, 0, 1) !== '#' ? ' ' . $page_header_bg_color : ''; ?>"<?php if(substr($page_header_bg_color, 0, 1) === '#'): ?> style="background-color: <?= $page_header_bg_color; ?>"<?php endif; ?>>
   </div>
   <div class="c-section__content <?= isset($xclass_content) ? $xclass_content : ''; ?>">
-    <div class="container text-center text-white-full pt-1 pb-2">
+    <div class="container text-center text-white-full py-1">
       
       <?php 
         $page_header_title_char_count = strlen(trim(str_replace('&shy;', '', $page_header_title))); 

@@ -35,6 +35,9 @@ if ( is_home() && ! is_front_page() ){
 if ( is_checkout() ) {
 	$namespace = 'checkout';
 }
+if ( is_cart() ) {
+	$namespace = 'cart';
+}
 ?><!doctype html>
 <?php get_template_part( 'template-parts/site-html-ascii-brand' ); ?>
 <!--[if IE 9]>

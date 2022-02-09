@@ -8271,7 +8271,7 @@ form[role=search] .is-search-icon > svg {
   font-size: 0.75rem;
 }
 
-.woocommerce-checkout p.form-row > label:not([for=billing_country]):not([for=shipping_country]):not([for=order_comments]) {
+.woocommerce-checkout p.form-row > label:not([for=billing_country]):not([for=shipping_country]):not([for=order_comments]):not([for=billing_state]) {
   margin-bottom: -1.35rem;
   position: relative;
   margin-top: 0;

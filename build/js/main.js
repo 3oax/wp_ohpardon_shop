@@ -3773,7 +3773,8 @@ function () {
       scripts: {
         base_path: 'wp-content/plugins/woocommerce/assets/js/frontend/',
         checkout: 'checkout.min.js',
-        countrySelect: 'country-select.min.js'
+        countrySelect: 'country-select.min.js',
+        cart: 'cart.min.js'
       }
     };
     this._defaults = defaults;
@@ -3807,6 +3808,10 @@ function () {
           this.initCheckout();
         } else {
           wc_checkout_params.is_checkout = '0';
+        }
+
+        if (namespace === 'cart') {
+          this.initCart();
         }
       } else {
         // only first init
@@ -3916,6 +3921,11 @@ function () {
         });
         $(document.body).trigger('wc_address_i18n_ready');
       }
+    }
+  }, {
+    key: "initCart",
+    value: function initCart() {
+      var self = this;
     }
   }, {
     key: "initJetpackInfiniteScroll",
@@ -4119,6 +4129,10 @@ function () {
           $cart.find(OAX.template.loader.selector).remove();
           $cart.removeClass('is-loading');
           jQuery(document.body).trigger('wc_fragments_loaded');
+
+          if ($('form.woocommerce-checkout').length) {
+            jQuery(document.body).trigger('update_checkout');
+          }
         });
         jQuery(document.body).trigger('wc_fragment_refresh');
       });

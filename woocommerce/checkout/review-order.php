@@ -21,6 +21,7 @@ defined( 'ABSPATH' ) || exit;
 	<thead>
 		<tr>
 			<th class="product-name text-left pl-1 pt-1"><?php esc_html_e( 'Product', 'woocommerce' ); ?></th>
+			<th class="product-sub text-right pr-1 pt-1">Einzelpreis</th>
 			<th class="product-total text-right pr-1 pt-1"><?php esc_html_e( 'Subtotal', 'woocommerce' ); ?></th>
 		</tr>
 	</thead>
@@ -39,6 +40,9 @@ defined( 'ABSPATH' ) || exit;
 						<?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times;&nbsp;%s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						<?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</td>
+					<td class="product-sub text-right pr-1 pt-1">
+						<?php echo WC()->cart->get_product_subtotal( $_product, 1 ); ?>
+					</td>
 					<td class="product-total text-right pr-1 pt-1">
 						<?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</td>
@@ -53,13 +57,13 @@ defined( 'ABSPATH' ) || exit;
 	<tfoot>
 
 		<tr class="cart-subtotal text-right">
-			<th><?php esc_html_e( 'Subtotal', 'woocommerce' ); ?></th>
-			<td class="pr-1"><?php wc_cart_totals_subtotal_html(); ?></td>
+			<th class="pt-1" colspan="2"><?php esc_html_e( 'Subtotal', 'woocommerce' ); ?></th>
+			<td class="pt-1 pr-1"><?php wc_cart_totals_subtotal_html(); ?></td>
 		</tr>
 
 		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
 			<tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
-				<th><?php wc_cart_totals_coupon_label( $coupon ); ?></th>
+				<th colspan="2"><?php wc_cart_totals_coupon_label( $coupon ); ?></th>
 				<td class="pr-1"><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
 			</tr>
 		<?php endforeach; ?>
@@ -76,7 +80,7 @@ defined( 'ABSPATH' ) || exit;
 
 		<?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
 			<tr class="fee text-right">
-				<th><?php echo esc_html( $fee->name ); ?></th>
+				<th colspan="2"><?php echo esc_html( $fee->name ); ?></th>
 				<td class="pr-1"><?php wc_cart_totals_fee_html( $fee ); ?></td>
 			</tr>
 		<?php endforeach; ?>
@@ -85,13 +89,13 @@ defined( 'ABSPATH' ) || exit;
 			<?php if ( 'itemized' === get_option( 'woocommerce_tax_total_display' ) ) : ?>
 				<?php foreach ( WC()->cart->get_tax_totals() as $code => $tax ) : // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited ?>
 					<tr class="text-right tax-rate tax-rate-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
-						<th><?php echo esc_html( $tax->label ); ?></th>
+						<th colspan="2"><?php echo esc_html( $tax->label ); ?></th>
 						<td class="pr-1"><?php echo wp_kses_post( $tax->formatted_amount ); ?></td>
 					</tr>
 				<?php endforeach; ?>
 			<?php else : ?>
 				<tr class="tax-total text-right">
-					<th><?php echo esc_html( WC()->countries->tax_or_vat() ); ?></th>
+					<th colspan="2"><?php echo esc_html( WC()->countries->tax_or_vat() ); ?></th>
 					<td class="pr-1"><?php wc_cart_totals_taxes_total_html(); ?></td>
 				</tr>
 			<?php endif; ?>
@@ -100,7 +104,7 @@ defined( 'ABSPATH' ) || exit;
 		<?php do_action( 'woocommerce_review_order_before_order_total' ); ?>
 
 		<tr class="order-total text-right">
-			<th><?php esc_html_e( 'Total', 'woocommerce' ); ?></th>
+			<th colspan="2"><?php esc_html_e( 'Total', 'woocommerce' ); ?></th>
 			<td class="pr-1"><?php wc_cart_totals_order_total_html(); ?></td>
 		</tr>
 

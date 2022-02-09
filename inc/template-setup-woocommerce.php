@@ -30,6 +30,9 @@ function oax_dequeue_script() {
 add_action( 'wp_print_scripts', 'oax_dequeue_script', PHP_INT_MAX - 2 );
 
 function oax_remove_and_add_wc_scripts(){
+	wp_dequeue_script( 'wc-cart' );
+	wp_enqueue_script( 'wc-cart' );
+
 	wp_dequeue_script( 'wc-checkout' );
 	wp_enqueue_script( 'wc-checkout' );
 
@@ -186,6 +189,17 @@ if( defined( 'YITH_WCWL' ) && ! function_exists( 'yith_wcwl_move_wishlist_button
 		echo do_shortcode( '[yith_wcwl_add_to_wishlist]' );
 	}
 	add_action( 'woocommerce_after_add_to_cart_button', 'yith_wcwl_move_wishlist_button' );
+}
+
+// remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+// add_action(  'woocommerce_review_order_before_payment', 'woocommerce_checkout_coupon_form', 10 );
+
+add_action( 'init', 'oax_child_move_legal_checkboxes', 50 );
+function oax_child_move_legal_checkboxes() {
+	// Remove
+	remove_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_render_checkout_checkboxes', 10 );
+	// Readd before submit button
+	add_action( 'woocommerce_gzd_review_order_before_submit', 'woocommerce_gzd_template_render_checkout_checkboxes', 10 );
 }
 
 function oax_yith_wcan_content_selector( $selector ){

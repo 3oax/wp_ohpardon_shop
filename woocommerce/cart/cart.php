@@ -91,11 +91,12 @@ do_action( 'woocommerce_before_cart' ); ?>
 								printf( '<a href="%s" class="relative block">%s</a>', esc_url( $product_permalink ), $thumbnail ); // PHPCS: XSS ok.
 							}
 							?>
+							<span class="product-remove">
 							<?php
 								echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 									'woocommerce_cart_item_remove_link',
 									sprintf(
-										'<a href="%s" class="remove no-underline absolute left-0 top-0 w-2 h-2 flex items-center justify-center cursor-pointer bg-grey-light" aria-label="%s" data-product_id="%s" data-product_sku="%s">&times;</a>',
+										'<a href="%s" class="remove no-underline absolute left-0 top-0 w-2 h-2 flex items-center justify-center cursor-pointer bg-grey-light no-barba" aria-label="%s" data-product_id="%s" data-product_sku="%s">&times;</a>',
 										esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
 										esc_html__( 'Remove this item', 'woocommerce' ),
 										esc_attr( $product_id ),
@@ -104,6 +105,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 									$cart_item_key
 								);
 							?>
+							</span>
 						</td>
 
 						<td class="product-name md:pr-1" data-title="<?php esc_attr_e( 'Product', 'woocommerce' ); ?>">

@@ -4039,6 +4039,7 @@ function () {
             return;
           }
 
+          console.log(response);
           $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, $thisbutton]);
         }
       });

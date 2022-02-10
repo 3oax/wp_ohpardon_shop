@@ -4034,6 +4034,7 @@ function () {
         },
         success: function success(response) {
           if (response.error && response.product_url) {
+            console.log(response.error, response.product_url, response);
             window.location = response.product_url;
             return;
           }

@@ -22,13 +22,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 <div class="flex flex-wrap justify-center">
-	<div class="w-full md:w-1/2">
+	<div class="w-full<?php if ( 'yes' === get_option( 'woocommerce_enable_myaccount_registration' ) ) : ?><?php else: ?> md:w-1/2<?php endif; ?>">
 
 	<?php if ( 'yes' === get_option( 'woocommerce_enable_myaccount_registration' ) ) : ?>
 
-	<div class="u-columns col2-set" id="customer_login">
+	<div class="u-columns col2-set flex flex-wrap" id="customer_login">
 
-		<div class="u-column1 col-1">
+		<div class="u-column1 col-1 w-full md:w-1/2 md:pr-2 lg:pr-2">
 
 	<?php endif; ?>
 
@@ -77,9 +77,9 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 		</div>
 
-		<div class="u-column2 col-2">
+		<div class="u-column2 col-2 mt-2 md:mt-0 w-full md:w-1/2 md:pl-2 lg:pl-2">
 
-			<h2><?php esc_html_e( 'Register', 'woocommerce' ); ?></h2>
+			<h2 class="mb-1"><?php esc_html_e( 'Register', 'woocommerce' ); ?></h2>
 
 			<form method="post" class="woocommerce-form woocommerce-form-register register" <?php do_action( 'woocommerce_register_form_tag' ); ?> >
 
@@ -108,7 +108,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 				<?php else : ?>
 
-					<p><?php esc_html_e( 'A link to set a new password will be sent to your email address.', 'woocommerce' ); ?></p>
+					<p class="text-sm md:text-xs -mt-025"><?php esc_html_e( 'A link to set a new password will be sent to your email address.', 'woocommerce' ); ?></p>
 
 				<?php endif; ?>
 

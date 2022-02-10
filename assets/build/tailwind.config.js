@@ -255,6 +255,12 @@ module.exports = {
     borderStyle: false,
     boxShadow: false,
 
+    // Devide
+    divideWidth: false,
+    divideColor: false,
+    divideOpacity: false,
+    divideStyle: false,
+
     // Backdrop
     backdropBlur: false,
     backdropFilter: false,

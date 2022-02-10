@@ -9,35 +9,7 @@
  * @package oax_ohpardon
  */
 session_start();
-
-global $post;
-$namespace = 'page';
-$current_template = str_replace('.php', '', basename(get_page_template()));
-if($namespace === $current_template){
-	if($namespace != get_post_type()){
-		$namespace = get_post_type();
-	}
-} else {
-	$namespace = $current_template;
-}
-if( is_tax() ){
-	$namespace = str_replace('_', '-', get_queried_object()->taxonomy);
-}
-if( is_archive() ){
-	$namespace = 'archive';
-}
-if( is_author() ){
-	$namespace = 'author';
-}
-if ( is_home() && ! is_front_page() ){
-	$namespace = 'blog';
-}
-if ( is_checkout() ) {
-	$namespace = 'checkout';
-}
-if ( is_cart() ) {
-	$namespace = 'cart';
-}
+$namespace = oax_get_current_namespace();
 ?><!doctype html>
 <?php get_template_part( 'template-parts/site-html-ascii-brand' ); ?>
 <!--[if IE 9]>
@@ -171,11 +143,11 @@ if ( is_cart() ) {
 </header><!-- #site__header -->
 
 <aside class="c-cart bg-white fixed right-0 h-screen bg-white overflow-hidden" style="transform: translateX(100%); width: 100%; min-width: 300px; max-width: 30rem; z-index: 999999; box-shadow: 0 0 10px -4px rgb(0 0 0 / 40%);">
-	<span class="c-cart__close absolute top-0 right-0 h-2 w-2 text-center bg-grey-light flex items-center justify-center cursor-pointer">&times;</span>
-	<div class="c-cart__header w-full pt-1 lg:pt-2 px-1 lg:px-2">
+	<span class="c-cart__close absolute top-0 right-0 w-3 h-3 md:h-2 md:w-2 text-center bg-grey-light flex items-center justify-center cursor-pointer">&times;</span>
+	<div class="c-cart__header w-full pt-15 lg:pt-2 px-15 lg:px-2">
 		<span class="h2 c-cart__title"><?= __( 'Cart', 'woocommerce' ); ?></span>
 	</div>
-	<div class="c-cart__scroll h-full w-full p-1 lg:p-2 overflow-scroll">
+	<div class="c-cart__scroll h-full w-full p-15 lg:p-2 overflow-scroll">
 		<div class="widget_shopping_cart_content">
 			<?php woocommerce_mini_cart(); ?>
 		</div>	

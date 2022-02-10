@@ -31,6 +31,11 @@
 	padding: 0;
 	margin: 0;
 
+	.js--cart-qty-change-btn {
+		padding: 0 !important;
+		color: black;
+	}
+
 	.js--cart-qty-change-btn,
 	.js--cart-qty-change-input {
 		&[disabled] {

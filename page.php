@@ -17,7 +17,7 @@ get_header(); ?>
 	<?php
 	$load_template_part = 'page';
 	if ( class_exists( 'woocommerce' ) ) {
-		$load_template_part = (is_checkout() || is_cart()) ? 'woocommerce' : 'page';
+		$load_template_part = ( is_account_page() || is_checkout() || is_cart() ) ? 'woocommerce' : 'page';
 	}
 
 	while ( have_posts() ) : the_post();

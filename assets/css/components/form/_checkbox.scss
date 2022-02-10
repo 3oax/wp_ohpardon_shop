@@ -1,108 +1,54 @@
-.c-input {
-  &--checkbox {
-    line-height: 2;
-    > label {
-      position: relative;
-    }
-  }
+/**
+ * Checkout | Checkbox
+ */
+input[type="checkbox"] {
+  --color__checkbox: var(--color__black);
+
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: var(--color__form-background, transparent);
+  /* Not removed via appearance */
+  margin: 0;
+
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+
+  display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.c-input__val {
-  
-  &[type="checkbox"] {
-  
-    position: absolute;
-    left: 0;
-    opacity: 0;
-    width: 1rem;
-    height: 1rem;
-    top: 0.15rem;
-  
-    + .c-input__box {
-      position: relative;
-      top: 0.45rem;      
-      display: inline-block;
-      width: 1rem;
-      height: 1rem;
-      margin-right: 0.5rem;
-      background-color: rgba(255,255,255,0.75);
-      border: 1px solid;
-      border-color: rgba(0, 0, 0, .08627);      
-      vertical-align: -0.25rem;
-      vertical-align: calc(1rem / 2 - 1rem / 4);
-      transition: background-color .1s ease;
-      transition-delay: .05s; 
-      opacity: .9;  
-      &:before,
-      &:after {
-        content: "";
-        position: absolute;
-        -webkit-transform-origin: 0 100%;
-        transform-origin: 0 100%;
-        width: 0;
-        border-bottom-color: var(--color__black);
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-      }         
-      &:before {
-        transition: width .05s linear;
-        transition-delay: .1s;      
-        transform: rotate(45deg) translateX(0.15rem) translateY(0.55rem);
-      }
-      &:after {
-        transform: rotate(-50deg) translateX(-0.55rem) translateY(.35rem);
-        transition: width .1s linear;
-        transition-delay: 0s;       
-      }      
-    }
-
-    &:checked + .c-input__box {
-      background-color: #fff;
-      transition-delay: 0s;
-      animation-name: checkbox-wobble;
-      animation-duration: .3s;
-      animation-timing-function: ease;  
-      &:before {
-        width: 0.25rem;
-      }    
-      &:after {
-        width: 0.55rem;
-        transition-delay: .05s;       
-      }
-    }
-
-    ~ .c-input__label {
-      display: inline-block;
-      font-size: 0.75rem;
-    }
-  }
+input[type="checkbox"]::before {
+  content: "";
+  width: 60%;
+  height: 50%;
+  transform: scale(0);
+  transform-origin: center center;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--color__checkbox);
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
 }
 
-.c-input--checkbox .wpcf7-form-control-wrap {
-  margin-right: 0.75rem;
-  position: relative;
-  top: -0.1rem;
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
 }
 
-@keyframes checkbox-wobble {
-  0% {
-    -webkit-transform: scale(1) rotate(0deg);
-    transform: scale(1) rotate(0deg)
-  }
-  40% {
-    -webkit-transform: scale(1.1, .9) rotate(5deg);
-    transform: scale(1.1, .9) rotate(5deg)
-  }
-  70% {
-    -webkit-transform: scale(.9, 1.1) rotate(-3deg);
-    transform: scale(.9, 1.1) rotate(-3deg)
-  }
-  80% {
-    -webkit-transform: scale(1.05, .95) rotate(1deg);
-    transform: scale(1.05, .95) rotate(1deg)
-  }
-  to {
-    -webkit-transform: scale(1) rotate(0deg);
-    transform: scale(1) rotate(0deg)
-  }
+input[type="checkbox"]:focus {
+  // outline: max(2px, 0.15em) solid currentColor;
+  // outline-offset: max(2px, 0.15em);
+}
+
+input[type="checkbox"]:disabled {
+  --color__checkbox: var(--color__grey-light);
+  color: var(--color__checkbox);
+  cursor: not-allowed;
 }

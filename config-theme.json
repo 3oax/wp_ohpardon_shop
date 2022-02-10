@@ -4,6 +4,9 @@
   "colors" : {
     "black-light" : "#212121",
     "grey"        : "#8e8e8e",
-    "grey-light"  : "#eeeeee"
+    "grey-light"  : "#eeeeee",
+    "danger"      : "#e53232",
+    "success"     : "#1dc617",
+    "warning"     : "#fca207"
   } 
 }

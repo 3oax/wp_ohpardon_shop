@@ -29,15 +29,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 ?>
 
-<style>
-	.woocommerce-checkout-payment li + li { margin-top: 1rem; }
-	.woocommerce-checkout-review-order-table .cart_item + .cart_item td,
-	.woocommerce-checkout-review-order-table tfoot .cart-subtotal th,
-	.woocommerce-checkout-review-order-table tfoot .cart-subtotal td {
-		border-top: 1px solid var(--color__grey);
-	}
-</style>
-
 <form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
 	<?php if ( $checkout->get_checkout_fields() ) : ?>

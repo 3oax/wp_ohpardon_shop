@@ -1,0 +1,16 @@
+.woocommerce-EditAccountForm {
+  [name="save_account_details"] {
+    margin-top: 1rem;
+  }
+  .woocommerce-form-row {
+    > span > em {
+      font-size: 0.75em;
+    }
+  }
+
+  fieldset {
+    .woocommerce-form-row:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

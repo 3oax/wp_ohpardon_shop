@@ -7,7 +7,7 @@
   $headline_split = true;
 ?>
 
-<header class="c-section c-section--header flex items-center justify-center<?php if(isset($xclass_section_padding) && !empty($xclass_section_padding)): ?> <?= $xclass_section_padding; ?><?php else: ?> pt-75 pb-4 <?php endif; ?><?= isset($xclass_section) ? $xclass_section : ''; ?>">
+<header class="c-section c-section--header flex items-center justify-center<?php if(isset($xclass_section_padding) && !empty($xclass_section_padding)): ?> <?= $xclass_section_padding; ?><?php else: ?> pt-75 pb-2 md:pb-4 <?php endif; ?><?= isset($xclass_section) ? $xclass_section : ''; ?>">
 	<div class="c-section__bg inset<?php echo substr($page_header_bg_color, 0, 1) !== '#' ? ' ' . $page_header_bg_color : ''; ?>"<?php if(substr($page_header_bg_color, 0, 1) === '#'): ?> style="background-color: <?= $page_header_bg_color; ?>"<?php endif; ?>>
   </div>
   <div class="c-section__content <?= isset($xclass_content) ? $xclass_content : ''; ?>">

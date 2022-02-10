@@ -1,155 +1,16 @@
-.c-form {
-  position: relative;
+/*---------------------------
+## Checkbox
+---------------------------*/
+@import "form/_checkbox";
 
-  input[type="text"],
-  input[type="number"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="password"],
-  select,
-  textarea {
-    border: none;
-    background-color: rgba(255,255,255,0.7);
-    border-color: #dbdcdd;
-    padding: 1rem 1rem 0.5rem 1rem;
-    width: 100%;
-    border-radius: 0 0 0 0;
-    font-size: 0.85rem;
-    outline: none;
+/*---------------------------
+## Select
+---------------------------*/
+@import "form/_select";
 
-    &.wpcf7-not-valid,
-    &.not-valid {
-      border-color: #dc3232;
-    }
-  }
-
-  
-  input[type="text"],
-  input[type="number"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="password"] {
-    color: black;
-
-    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-      color: rgba(0,0,0,0.85); 
-      opacity: 1; /* Firefox */
-      transform: translateY(-0.2rem);
-    }
-    
-    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
-      color: rgba(0,0,0,0.85);
-      transform: translateY(-0.2rem);
-    }
-    
-    &::-ms-input-placeholder { /* Microsoft Edge */
-      color: rgba(0,0,0,0.85);
-      transform: translateY(-0.2rem);
-    }    
-  }
-
-  select {
-    appearance: none;
-    color: black;
-    font-weight: bold;
-  }
-
-  button[type="submit"]{
-    padding-top: 0.8rem;
-    padding-bottom: 0.8rem;
-    font-size: 1rem;
-    display: inline-block;
-  }
-}
-
-.c-form__floating {
-  position: relative;
-  
-  label { 
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    transform-origin: 50% 50%;
-    font-size: 0.5rem;
-    line-height: 1;
-    opacity: 0;
-    transform: translateY(5px);
-    background-color: transparent;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;    
-    transition: transform .3s $cubic__default, opacity 0.2s $cubic__default, visibility 0.2s $cubic__default;
-    will-change: opacity, transform, visibility;
-    text-transform: uppercase;
-    z-index: 1;
-  }
-
-  input[type="text"],
-  input[type="number"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="password"] {
-    
-  }  
-
-  &.has-value {
-    label {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    input[type="email"].wpcf7-not-valid + span.wpcf7-not-valid-tip,
-    input[type="tel"].wpcf7-not-valid + span.wpcf7-not-valid-tip { z-index: 2; }
-
-    input.wpcf7-not-valid:not(.wpcf7-validates-as-email) + span.wpcf7-not-valid-tip,
-    input[type="email"]:valid + span.wpcf7-not-valid-tip,
-    input.wpcf7-not-valid:not(.wpcf7-validates-as-tel) + span.wpcf7-not-valid-tip,
-    input[type="tel"]:valid + span.wpcf7-not-valid-tip {
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-5px);
-    }
-    input[type="text"],
-    input[type="number"],
-    input[type="tel"]:valid,
-    input[type="password"],
-    textarea,
-    input[type="email"]:valid {
-      border-color: #dbdcdd;      
-    }
-
-  }
-}
-
-.c-select {
-  position: relative;
-  &::after,
-  &::before {
-    content: "";
-    width: 0.5rem;
-    height: 0.3rem;
-    background-color: black;
-    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-    position: absolute;
-    top: calc(50% - 0.4rem);
-    right: 1rem;
-    z-index: 1;
-    transform-origin: 50% 50%;
-  }
-  &::before {
-    transform: rotate(180deg);    
-  }
-  &::after {
-    top: calc(50% + 0.25rem);     
-  }
-  select {
-
-  }
-  .wpcf7-not-valid-tip {
-    position: absolute;
-  }
-}
-
-// CF7
+/*
+ * Contact Form 7
+ */
 .wpcf7-form {
   display: flex;
   flex-direction: column-reverse;
@@ -227,12 +88,9 @@ span.wpcf7-not-valid-tip {
   color: var(--color__beige);
 }
 
-// @import "form/_checkbox.scss";
-
 /**
- * SEARCH FORM
+ * Global Search Form
  */
-
 form[role="search"]{
   --search__bg: white;
   --search__height: 4rem; 
@@ -265,13 +123,7 @@ form[role="search"]{
   }
 }
 
-.is-ajax-search-posts {
-  * {
-    font-size: 0.85rem !important;
-    line-height: 1.5 !important;
-  }
-}
-
+//
 // Inline Login Form Header
 //
 .xoo-el-form-inline {

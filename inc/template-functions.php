@@ -100,7 +100,7 @@ function oax_get_current_namespace(){
 	if ( class_exists( 'woocommerce' ) && is_account_page() ){
 		$namespace = 'account';
 	}
-	
+
 	return $namespace;
 }
 
@@ -940,7 +940,8 @@ function oax_show_preloader(){
 		return true;
 	} else if( $isNotFirstSession ){
 		return 'TRANSITION';
-	} else */if( is_admin_bar_showing() ){
+	} else */
+	if( is_admin_bar_showing() ){
 		return false;
 	} else if( isset($_GET) && isset($_GET['nopreloader']) ){
 		return false;
@@ -948,7 +949,7 @@ function oax_show_preloader(){
 		return false;
 	}
 	
-	return true;
+	return false;
 }
 
 function oax_get_client_ip(){

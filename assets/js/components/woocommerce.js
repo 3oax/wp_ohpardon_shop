@@ -212,6 +212,10 @@ export default class WooCommerce {
 			}
 		}
 	}
+
+	removeEventListener(){
+		
+	}
 	
 	onAddedToCard( event, fragments, cartHash, $button ){
 		if ( OAX.debug ) {
@@ -279,14 +283,10 @@ export default class WooCommerce {
 			},
 			success ( response ) {
 				if ( response.error && response.product_url ) {
-					console.log( response.error, response.product_url, response );
-
 					window.location = response.product_url;
 
 					return;
 				}
-
-				console.log( 'success', response );
 
 				$( document.body ).trigger( 'added_to_cart', [response.fragments, response.cart_hash, $thisbutton] );
 			},

@@ -30,8 +30,6 @@ function oax_dequeue_script() {
 add_action( 'wp_print_scripts', 'oax_dequeue_script', PHP_INT_MAX - 2 );
 
 function oax_remove_and_add_wc_scripts(){
-	wp_dequeue_script( 'wc-cart' );
-	wp_enqueue_script( 'wc-cart' );
 
 	wp_dequeue_script( 'wc-checkout' );
 	wp_enqueue_script( 'wc-checkout' );
@@ -41,6 +39,9 @@ function oax_remove_and_add_wc_scripts(){
 
 	wp_dequeue_script( 'wc-address-i18n' );
 	wp_enqueue_script( 'wc-address-i18n' );
+
+	wp_dequeue_script( 'wc-cart' );	
+	// wp_enqueue_script( 'wc-cart' );	
 
 	// Remove VariationFormJs and enable again
 	//

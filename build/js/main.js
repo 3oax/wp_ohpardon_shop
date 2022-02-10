@@ -3961,6 +3961,9 @@ function () {
       }
     }
   }, {
+    key: "removeEventListener",
+    value: function removeEventListener() {}
+  }, {
     key: "onAddedToCard",
     value: function onAddedToCard(event, fragments, cartHash, $button) {
       if (OAX.debug) {
@@ -4034,12 +4037,10 @@ function () {
         },
         success: function success(response) {
           if (response.error && response.product_url) {
-            console.log(response.error, response.product_url, response);
             window.location = response.product_url;
             return;
           }
 
-          console.log('success', response);
           $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, $thisbutton]);
         }
       });

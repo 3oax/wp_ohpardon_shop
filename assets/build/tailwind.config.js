@@ -245,6 +245,7 @@ module.exports = {
     backgroundRepeat: false,    
     backgroundPosition: false,
     backgroundOpacity: false,
+    backgroundImage: false,
     
     // Border
     borderCollapse: false,
@@ -309,6 +310,8 @@ module.exports = {
     mixBlendMode: false,
 
     overscrollBehavior: false,
+
+    space: false,
 
     outline: false,
     maxHeight: false,

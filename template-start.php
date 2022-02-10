@@ -18,8 +18,8 @@ get_header(); ?>
       <div class="v-start__slider<?php if(count($hero_slider_items) > 1): ?> js--slider<?php endif; ?>"<?php if(count($hero_slider_items) > 1): ?> data-init-by="start"<?php endif; ?>>
         <?php $hero_slider = 0; foreach($hero_slider_items as $hero_slider_item): ?>
         <div class="v-start__slider-item">
-          <div class="flex items-center">
-            <div class="w-2/3">              
+          <div class="flex flex-wrap items-center">
+            <div class="w-full md:w-2/3">              
               <?= oax_image([
                 'img' => $hero_slider_item['img'],
                 'wrapper' => true,
@@ -28,8 +28,10 @@ get_header(); ?>
                 'xclass_wrapper' => 'bg-black-light'
               ]); ?>
             </div>
-            <div class="w-1/3 px-4">
-              <h1 class="mb-1 entry-title"><?= $hero_slider_item['headline']; ?></h1>
+            <div class="w-full md:w-1/3 px-15 md:px-4">
+              <h1 class="mb-1 entry-title mt-15 md:mt-0">
+                <?= $hero_slider_item['headline']; ?>
+              </h1>
               <div>
                 <?= $hero_slider_item['content']; ?>              
               </div>

@@ -52,7 +52,7 @@ $wrapper_classes   = apply_filters(
 					$img_dim = oax_get_image_dimensions(wp_get_attachment_image_src($product->get_image_id(), 'large')[0]);
 
 					echo '<div class="relative overflow-hidden" style="padding-bottom: ' . $img_dim['padding'] . ' ">';
-						echo '<div class="inset overflow-scroll">';
+						echo '<div class="inset overflow-x-scroll overflow-y-hidden">';
 						echo '<div class="js--slider woocommerce-product-gallery__main-slider flex flex-wrap h-full" data-init-by="product" data-slick=\'{"arrows": false, "infinite": false, "slidesToShow": 1}\' style="width: '. ( count($thumbnails) + 1 ) * 100 .'%;">';
 							echo '<div class="woocommerce-product-gallery__main-slider-item relative" style="width: '. ( 100 / (count($thumbnails) + 1) ) .'%;">';
 								echo oax_image([

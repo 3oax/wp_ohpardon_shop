@@ -85,7 +85,7 @@ if ( post_password_required() ) {
 							<?php $pimp_slider = $section_pimp['slider']; if(!empty($pimp_slider)): ?>
 								<?php $img_dim = oax_get_image_dimensions($pimp_slider[0]['url']); ?>
 								<div class="relative overflow-hidden" style="padding-bottom: <?= $img_dim['padding']; ?>">
-									<div class="inset overflow-scroll">
+									<div class="inset overflow-x-scroll overflow-y-hidden">
 										<div class="js--slider flex flex-wrap h-full" data-init-by="product" style="width: <?= ( count($pimp_slider) ) * 100 ?>%">
 											<?php foreach($pimp_slider as $pimp_slider_img): ?>
 												<div class="js--slider-item relative" style="width: <?= ( 100 / (count($pimp_slider)) ); ?>%">

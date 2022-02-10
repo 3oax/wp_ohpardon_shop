@@ -29,7 +29,7 @@ $product_img_id = $product->get_image_id();
 
 if ( $attachment_ids && $product->get_image_id() ) {
 	echo '<div class="woocommerce-product-gallery__thumbs">';
-		echo '<div data-init-by="product" class="woocommerce-product-gallery__thumbs-slider js--slider overflow-scroll h-full w-full flex flex-wrap pr-1 flex-control-nav" style="max-height: 30rem;" data-slick=\'{"vertical": true, "verticalSwiping": true, "arrows": false, "slidesToShow": 4, "infinite": true, "focusOnSelect": true}\'>';
+		echo '<div data-init-by="product" class="woocommerce-product-gallery__thumbs-slider js--slider overflow-x-scroll overflow-y-hidden h-full w-full flex flex-wrap pr-1 flex-control-nav" style="max-height: 30rem;" data-slick=\'{"vertical": true, "verticalSwiping": true, "arrows": false, "slidesToShow": 4, "infinite": true, "focusOnSelect": true}\'>';
 			
 			echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html( $product_img_id ), $product_img_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
 			foreach ( $attachment_ids as $attachment_id ) {

@@ -31,7 +31,7 @@ import Scrollbar from 'smooth-scrollbar'; window.Scrollbar = Scrollbar;
 /**
  * Paper.js
  */
-import paper from 'paper/dist/paper-full.js'; window.paper = paper;
+// import paper from 'paper/dist/paper-full.js'; window.paper = paper;
 
 /**
  * Load GSAP & Plugins
@@ -62,7 +62,7 @@ if ( OAX.config.is_preloader === 'Y' ) {
 /**
  * Particles JS
  */
-require( 'particles.js/particles.js' );
+// require( 'particles.js/particles.js' );
 
 /**
  * Load Instafeed
@@ -82,8 +82,10 @@ import SVGInjector from 'svg-injector-2'; window.SVGInjector = SVGInjector;
 /**
  * Load Plyr
  */
-// import Plyr from 'plyr'; window.Plyr = Plyr;
-require( '../lib/plyr.polyfilled.js' );
+/*
+ * import Plyr from 'plyr'; window.Plyr = Plyr;
+ * require( '../lib/plyr.polyfilled.js' );
+ */
 
 if ( OAX.config.is_preloader === 'Y' ) {
 	OAX.preloader_bar.go( 50 ); 

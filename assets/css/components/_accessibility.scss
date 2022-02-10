@@ -1,6 +1,5 @@
 /* Text meant only for screen readers. */
-.screen-reader-text,
-.sr-only {
+.screen-reader-text {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
@@ -37,5 +36,3 @@
 #content[tabindex="-1"]:focus {
   outline: 0;
 }
-
-

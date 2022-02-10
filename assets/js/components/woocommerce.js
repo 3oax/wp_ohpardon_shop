@@ -315,12 +315,14 @@ export default class WooCommerce {
 	openCart(){
 		const $cart = $( this.options.cart.selector );
 		$( document ).on( 'click.oax::cart-outside', $.proxy( this.onOutsideCartClick, this ) );
+		$cart.on( 'click.oax::link-inside', 'a:not(.remove_from_cart_button)', $.proxy( this.closeCart, this ) );
 		$cart.addClass( this.options.cart.open );
 	}
 
 	closeCart(){
 		const $cart = $( this.options.cart.selector );
 		$( document ).off( 'click.oax::cart-outside', $.proxy( this.onOutsideCartClick, this ) );
+		$cart.off( 'click.oax::link-inside', 'a:not(.remove_from_cart_button)', $.proxy( this.closeCart, this ) );
 		$cart.removeClass( this.options.cart.open );
 	}
 

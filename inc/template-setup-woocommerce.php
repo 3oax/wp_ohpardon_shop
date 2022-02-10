@@ -160,8 +160,44 @@ add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 add_filter( 'woocommerce_show_page_title', '__return_false' );
 
 function woocommerce_template_loop_product_title() {
-	echo '<span class="sr-only">' . get_the_title() . '</span>'; 
+	global $product;
+	
+	$title = get_the_title();
+	$title_sr = false;
+
+	$terms = wp_get_post_terms( $product->get_id(), 'product_tag' );
+	if( isset($terms) && !empty($terms) ) {
+		$first_term = $terms[0];
+		$title_st = $title;
+		$title = $first_term->name;
+	}
+	
+	echo '<span>'. $title .'</span>';
+
+	if($title_sr !== false){
+		echo '<span class="sr-only">' . $title_sr . '</span>'; 
+	}
 }
+
+// Cart Items
+//
+function oax_woocommerce_cart_item_name( $title, $item, $item_key ) {
+	// (maybe) modify $string.
+	// return $string;
+	$terms = wp_get_post_terms( $item['product_id'], 'product_tag' );
+	if( isset($terms) && !empty($terms) ) {
+		$first_term = $terms[0];
+		$title_sr = $title;
+		$title = $first_term->name;
+	}
+
+	if( isset($title_sr) ){
+		return '<span class="block"><span class="block">'. $title .'</span><span class="block text-xs font-normal">'. $title_sr.'</span></span>';
+	}
+
+	return $title;
+}
+add_filter( 'woocommerce_cart_item_name', 'oax_woocommerce_cart_item_name', 10, 3 );
 
 /*
  * Move Templates 

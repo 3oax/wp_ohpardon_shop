@@ -45,10 +45,11 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 
 	// get an array of the WP_Term objects for a defined product ID
 	//
-	$terms = wp_get_post_terms( $product->get_id(), 'product_tag' );
-	$first_term = $terms[0];
+	// $terms = wp_get_post_terms( $product->get_id(), 'product_tag' );
+	// if( isset($terms) && !empty($terms) )
+	// $first_term = $terms[0];
 	echo '<h3 class="h6 no-underline md:pb-0">';
-		echo $first_term->name;
+		// echo $first_term->name;
 		/**
 		 * Hook: woocommerce_shop_loop_item_title.
 		 *

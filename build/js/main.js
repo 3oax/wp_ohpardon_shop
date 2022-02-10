@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -4072,6 +4072,7 @@ function () {
     value: function openCart() {
       var $cart = $(this.options.cart.selector);
       $(document).on('click.oax::cart-outside', $.proxy(this.onOutsideCartClick, this));
+      $cart.on('click.oax::link-inside', 'a:not(.remove_from_cart_button)', $.proxy(this.closeCart, this));
       $cart.addClass(this.options.cart.open);
     }
   }, {
@@ -4079,6 +4080,7 @@ function () {
     value: function closeCart() {
       var $cart = $(this.options.cart.selector);
       $(document).off('click.oax::cart-outside', $.proxy(this.onOutsideCartClick, this));
+      $cart.off('click.oax::link-inside', 'a:not(.remove_from_cart_button)', $.proxy(this.closeCart, this));
       $cart.removeClass(this.options.cart.open);
     }
   }, {
@@ -5873,7 +5875,7 @@ var ViewProduct = {
 
 /***/ }),
 
-/***/ 3:
+/***/ 1:
 /*!*******************************************!*\
   !*** multi ./js/main.js ./css/style.scss ***!
   \*******************************************/

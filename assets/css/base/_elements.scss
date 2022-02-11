@@ -66,8 +66,14 @@ ul, ol {
   margin: 0 0 0 0;
 }
 
-ul {
+ul:not(.nav-menu) {
   list-style: disc;
+}
+
+ul.nav-menu {
+  list-style: none;
+  padding: 0;
+  display: flex;
 }
 
 ol {

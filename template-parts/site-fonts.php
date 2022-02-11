@@ -3,8 +3,9 @@
   	custom: {
       families: ['Roboto Mono', 'Raisonne Pro'],
 			urls: [
-				'<?= oax_asset('fonts/RobotoMono/stylesheet.css'); ?>',
-				'<?= oax_asset('fonts/RaisonnePro/stylesheet.css'); ?>'			]
+				'<?= oax_asset('fonts/RobotoMono/stylesheet.min.css'); ?>',
+				'<?= oax_asset('fonts/RaisonnePro/stylesheet.min.css'); ?>'
+			]
     },
   };
 

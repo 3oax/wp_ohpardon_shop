@@ -10,7 +10,7 @@
 import Transitions from './transitions.js';
 import Views from '../views';
 import Utils from './utils.js';
-import barbaPrefetch from '@barba/prefetch';
+// import barbaPrefetch from '@barba/prefetch';
 
 export default class Router {
 	constructor( settings ) {
@@ -51,7 +51,7 @@ export default class Router {
 		} );
 
 		this.initHooks();
-		barba.use( barbaPrefetch );
+		// barba.use( barbaPrefetch );
 		barba.init( {
 			debug: this.options.debug,
 			prevent: this.preventLinks.bind( this ),

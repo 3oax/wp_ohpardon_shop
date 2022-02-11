@@ -11,4 +11,4 @@
   <?php endif; ?>
 </style>
 
-<?php get_template_part( 'template-parts/site-styles-critical' ); ?>
+<?php // get_template_part( 'template-parts/site-styles-critical' ); ?>

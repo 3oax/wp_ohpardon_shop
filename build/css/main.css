@@ -3546,11 +3546,16 @@ big {
     width: 6.5rem;
     top: 1rem;
     padding-top: 0;
-    mix-blend-mode: difference;
   }
 
-  .site__brand svg path[fill="#000000"] {
-    fill: white;
+  @supports (mix-blend-mode: multiply) {
+    .site__brand {
+      mix-blend-mode: difference;
+    }
+
+    .site__brand svg path[fill="#000000"] {
+      fill: white;
+    }
   }
 }
 
@@ -3684,11 +3689,16 @@ big {
     height: auto;
     left: 4rem;
     top: 2rem;
-    mix-blend-mode: difference;
-    color: white;
     -webkit-transform: unset;
          -o-transform: unset;
             transform: unset;
+  }
+
+  @supports (mix-blend-mode: multiply) {
+    .site__navigation-main {
+      mix-blend-mode: difference;
+      color: white;
+    }
   }
 
   .site__navigation-main > ul.nav-menu {
@@ -3756,17 +3766,22 @@ big {
   .site__navigation-user {
     right: 4rem;
     top: 2rem;
-    mix-blend-mode: difference;
-    color: white;
   }
 
-  .site__navigation-user svg [stroke=black],
-  .site__navigation-user svg [stroke="#000"] {
-    stroke: #FFF;
-  }
+  @supports (mix-blend-mode: multiply) {
+    .site__navigation-user {
+      mix-blend-mode: difference;
+      color: white;
+    }
 
-  .site__navigation-user svg path[fill-rule=evenodd] {
-    fill: white;
+    .site__navigation-user svg [stroke=black],
+    .site__navigation-user svg [stroke="#000"] {
+      stroke: #FFF;
+    }
+
+    .site__navigation-user svg path[fill-rule=evenodd] {
+      fill: white;
+    }
   }
 }
 
@@ -3824,8 +3839,6 @@ big {
 .site__navigation-main ul.nav-menu {
   opacity: 0;
   visibility: hidden;
-  -webkit-backdrop-filter: blur(0px);
-          backdrop-filter: blur(0px);
   -webkit-transition: opacity 0.05s 0.5s, visibility 0.05s 0.5s;
   -o-transition: opacity 0.05s 0.5s, visibility 0.05s 0.5s;
   transition: opacity 0.05s 0.5s, visibility 0.05s 0.5s;

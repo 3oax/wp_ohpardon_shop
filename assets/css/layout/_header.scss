@@ -41,9 +41,11 @@
     width: 6.5rem;
     top: 1rem;
     padding-top: 0;
-    mix-blend-mode: difference;
-    svg {      
-      path[fill="#000000"]{ fill: white; }
+    @supports(mix-blend-mode:multiply) {
+      mix-blend-mode: difference;
+      svg {      
+        path[fill="#000000"]{ fill: white; }
+      }
     }
   }
   .o-logo {

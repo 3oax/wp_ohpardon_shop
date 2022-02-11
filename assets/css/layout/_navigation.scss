@@ -60,8 +60,10 @@
     height: auto;
     left: 4rem;
     top: 2rem;  
-    mix-blend-mode: difference;
-    color: white;
+    @supports(mix-blend-mode:multiply) {
+      mix-blend-mode: difference;
+      color: white;
+    }
     transform: unset;
 
     > ul.nav-menu {
@@ -113,14 +115,15 @@
   @media (min-width: $break__medium) {
     right: 4rem;
     top: 2rem;
-
-    mix-blend-mode: difference;
-    color: white;
-    svg {
-      [stroke="black"],
-      [stroke="#000"]{ stroke: #FFF }
-      path[fill-rule="evenodd"]{ fill: white; }
-    }    
+    @supports(mix-blend-mode:multiply) {
+      mix-blend-mode: difference;
+      color: white;
+      svg {
+        [stroke="black"],
+        [stroke="#000"]{ stroke: #FFF }
+        path[fill-rule="evenodd"]{ fill: white; }
+      }    
+    }
   }
 }
 
@@ -186,7 +189,6 @@
 .site__navigation-main ul.nav-menu {
   opacity: 0;
   visibility: hidden;
-  backdrop-filter: blur(0px); 
   // transition: backdrop-filter .75s .05s $animation-easing, opacity .05s .75s, visibility .05s .75s;
   transition: opacity .05s .5s, visibility .05s .5s;
 

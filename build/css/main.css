@@ -3175,16 +3175,8 @@ ol {
   margin: 0 0 0 0;
 }
 
-ul:not(.nav-menu) {
+ul {
   list-style: disc;
-}
-
-ul.nav-menu {
-  list-style: none;
-  padding: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 ol {

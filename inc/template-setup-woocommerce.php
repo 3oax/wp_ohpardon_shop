@@ -11,6 +11,8 @@ $OAX_INFINITESCROLL_SUPPORT = false;
 function oax_remove_wc_styles(){
 	wp_dequeue_style( 'wc-blocks-style' );
 	
+	wp_dequeue_style( 'woocommerce-gzd-layout' );
+
 	// Remove Filter CSS
 	//
 	if ( defined( 'YITH_WCAN' ) ){

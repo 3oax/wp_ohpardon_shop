@@ -315,7 +315,7 @@ const APP = {
 			onInitStateChange: this.onInitStateChange,
 			onTransitionCompleted: this.onTransitionCompleted,
 			onBrowserNav: this.onBrowserNav,
-			preventLinks( el ){
+			preventLinks( el, event, href ){
 				const selectorList = [
 					'.remove_from_wishlist',
 					'.remove[data-product_id]',

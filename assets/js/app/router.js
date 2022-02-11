@@ -266,7 +266,7 @@ export default class Router {
 		}
 	}	
 
-	preventLinks( { el } ){
+	preventLinks( { el, event, href } ){
 		let check = false;
 
 		if ( el.classList && el.classList.contains( 'no-barba' ) ){
@@ -293,8 +293,12 @@ export default class Router {
 			check = true;
 		}
 
+		if ( Utils.isset( event ) && event.type === 'click' && window.location.href.includes( href ) ){
+			event.preventDefault();
+		}
+
 		if ( check === false && this.options.preventLinks !== null ){
-			check = this.options.preventLinks( el );
+			check = this.options.preventLinks( el, event, href );
 		}
 
 		return check;

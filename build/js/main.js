@@ -2105,7 +2105,9 @@ function () {
   }, {
     key: "preventLinks",
     value: function preventLinks(_ref) {
-      var el = _ref.el;
+      var el = _ref.el,
+          event = _ref.event,
+          href = _ref.href;
       var check = false;
 
       if (el.classList && el.classList.contains('no-barba')) {
@@ -2132,8 +2134,12 @@ function () {
         check = true;
       }
 
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isset(event) && event.type === 'click' && window.location.href.includes(href)) {
+        event.preventDefault();
+      }
+
       if (check === false && this.options.preventLinks !== null) {
-        check = this.options.preventLinks(el);
+        check = this.options.preventLinks(el, event, href);
       }
 
       return check;
@@ -5214,7 +5220,7 @@ var APP = {
       onInitStateChange: this.onInitStateChange,
       onTransitionCompleted: this.onTransitionCompleted,
       onBrowserNav: this.onBrowserNav,
-      preventLinks: function preventLinks(el) {
+      preventLinks: function preventLinks(el, event, href) {
         var selectorList = ['.remove_from_wishlist', '.remove[data-product_id]', '.restore-item', WC.options.cart.trigger];
 
         if ($(el).closest('.js--pagination').length !== 0) {

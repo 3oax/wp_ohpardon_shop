@@ -68,7 +68,7 @@ $namespace = oax_get_current_namespace();
 		<ul class="site__navigation-user flex items-center list-none m-0 p-0 nav-menu">
 			<li>
 				<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>">
-					<svg class="w-1 h-1" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 22 21" fill="none">
+					<svg class="w-1 h-1 md:w-1 md:h-1" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 22 21" fill="none">
 						<circle cx="10.5" cy="5.5" r="4.5" stroke="black" stroke-width="2"/>
 						<path fill-rule="evenodd" clip-rule="evenodd" d="M10.893 13.0007C13.0901 12.9771 15.2567 13.5163 17.1865 14.5668C19.1163 15.6174 20.745 17.1445 21.9177 19.0026L20.2263 20.07C19.2359 18.5006 17.8602 17.2108 16.2302 16.3234C14.6002 15.436 12.7703 14.9807 10.9145 15.0006C9.05879 15.0206 7.23904 15.5152 5.62854 16.4374C4.01804 17.3596 2.6704 18.6787 1.71392 20.2691L0 19.2383C1.13242 17.3554 2.72796 15.7937 4.6347 14.7018C6.54144 13.61 8.69593 13.0244 10.893 13.0007Z" fill="black"/>
 					</svg>
@@ -78,11 +78,11 @@ $namespace = oax_get_current_namespace();
 				<a href="<?= wc_get_cart_url(); ?>" class="js--cart-trigger relative block no-underline">
 					<span class="js--cart-trigger__desc absolute bottom-0 w-full text-center" id="js--cart-trigger__desc">
 						<span class="js--cart-trigger__desc-text sr-only"><?= __('Produkte im Warenkorb', 'oax-ohpardon'); ?>:</span>
-						<span class="js--cart-trigger__desc-count relative" style="font-size: 0.6em; top: -0.3rem;">								
+						<span class="js--cart-trigger__desc-count relative" style="font-size: 0.6em; top: -0.4rem;">								
 							<?php echo WC()->cart->get_cart_contents_count() > 0 ? WC()->cart->get_cart_contents_count() : ''; ?>
 						</span>
 					</span>
-					<svg aria-labelledby="js--cart-trigger__desc" class="js--cart-trigger__icon" fill="none" class="w-1 h-1" viewBox="0 0 24 29" xmlns="http://www.w3.org/2000/svg" width="23">
+					<svg aria-labelledby="js--cart-trigger__desc" class="js--cart-trigger__icon w-15 h-15" fill="none" class="w-1 h-1" viewBox="0 0 24 29" xmlns="http://www.w3.org/2000/svg" width="23">
 						<rect x="1" y="6" width="22" height="22" rx="3" stroke="#000" stroke-width="2"></rect>							
 						<path d="M16.5 5s-.5-4-5-4S6 5 6 5" stroke="#000" stroke-linecap="round" stroke-width="2"></path>
 					</svg>

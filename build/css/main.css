@@ -2746,13 +2746,13 @@
   --color__link-visited: inherit;
   --color__link-hover: inherit;
   /* TYPOGRAPHY */
-  --font__main: "Roboto Mono", "monospace";
-  --font__serif: "Raisonne Pro", "Lucida Bright", "Lucidabright", "Lucida Serif", "Lucida", "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", "Georgia", "serif";
+  --font__main: "Roboto Mono", monospace, monospace;
+  --font__serif: "Raisonne Pro", "Lucida Bright", "Lucidabright", "Lucida Serif", "Lucida", "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", "Georgia", serif;
   --font__line-height-body: 1.5;
   --font__line-height-pre: 1.6;
   --font__letter-spacing: normal;
   --font__letter-spacing--xl: 0.15rem;
-  --font__size-root-small: 3.7vw;
+  --font__size-root-small: 3.8vw;
   --font__size-root-medium: 1.4vw;
   --font__size-root-large: 1.25vw;
   /* STRUCTURE */

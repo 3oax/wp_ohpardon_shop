@@ -30,7 +30,7 @@ do_action( 'woocommerce_before_main_content' );
 
 ?>
 <?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
-	<header class="woocommerce-products-header c-section c-section--header pt-75">
+	<header class="woocommerce-products-header c-section c-section--header md:pt-75">
 		<div class="container container-lg">
 			
 			<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
@@ -50,7 +50,7 @@ do_action( 'woocommerce_before_main_content' );
 	</header>
 <?php endif; ?>
 
-<section class="c-section c-section--products pt-75">
+<section class="c-section c-section--products pt-5 md:pt-75">
 	<div class="c-section__content">
 
 		<?php 
@@ -62,12 +62,61 @@ do_action( 'woocommerce_before_main_content' );
 			do_action( 'woocommerce_sidebar' );
 		?>
 		
+		<style>
+			.c-filters {
+				transform: translateX(-100%);
+				transition: transform .4s ease-in-out;
+				left: 0;
+				top: 0;
+			}
+			.c-filters.is-open {
+				transform: translateX(0%);
+			}
+			@media (max-width: 991.9px){
+				.c-filters {
+					z-index: 999999;
+					background-color: white;
+					padding: 5rem 1.5rem 3rem 1.5rem;
+				}
+			}
+			@media (min-width: 992px){
+				.c-filters {
+					transition: unset;
+					transform: unset;	
+				}
+			}
+		</style>
+
 		<div class="container container-lg">
-			<div class="pb-1">
-				<?php 
-					echo do_shortcode('[yith_wcan_filters slug="default-preset"]');
-					// echo do_shortcode('[woof sid="auto_shortcode" autohide=0]');
-				?>			
+			<div class="pb-1 flex">
+				
+				<button class="btn c-filters__toggle md:hidden" aria-expanded="false" aria-controls="c-filters" onclick="document.getElementById('c-filters').classList.toggle('is-open');">
+					Filter
+				</button>
+
+				<div id="c-filters" class="c-filters w-full h-screen md:w-auto md:h-auto fixed md:relative md:pt-0">					
+					<span class="pb-1 flex flex-wrap justify-between md:hidden">
+						<span class="inline-block h2">Filter:</span>
+						<span class="c-filters__close w-2 h-2 bg-black text-white flex items-center justify-center cursor-pointer" onclick="document.getElementById('c-filters').classList.remove('is-open');">&times;</span>
+					</span>
+					<?php 
+						echo do_shortcode('[yith_wcan_filters slug="default-preset"]');
+						// echo do_shortcode('[woof sid="auto_shortcode" autohide=0]');
+					?>			
+					<?php 
+						/**
+						 * Hook: woocommerce_before_shop_loop.
+						 *
+						 * @hooked woocommerce_output_all_notices - 10
+						 * @hooked woocommerce_result_count - 20
+						 * @hooked woocommerce_catalog_ordering - 30
+						 */
+						echo '<div class="pb-2 text-right">';					
+							do_action( 'woocommerce_before_shop_loop' );
+							// echo do_shortcode('')
+						echo '</div>';					
+					?>
+				</div>
 			</div>
 		</div>
 
@@ -75,18 +124,6 @@ do_action( 'woocommerce_before_main_content' );
 			<?php
 			if ( woocommerce_product_loop() ) {
 				
-				/**
-				 * Hook: woocommerce_before_shop_loop.
-				 *
-				 * @hooked woocommerce_output_all_notices - 10
-				 * @hooked woocommerce_result_count - 20
-				 * @hooked woocommerce_catalog_ordering - 30
-				 */
-				echo '<div class="pb-2 text-right">';					
-					do_action( 'woocommerce_before_shop_loop' );
-					// echo do_shortcode('')
-				echo '</div>';
-
 				woocommerce_product_loop_start();
 
 				if ( wc_get_loop_prop( 'total' ) ) {

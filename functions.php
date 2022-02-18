@@ -222,7 +222,13 @@ function oax_template_setup_scripts() {
 	//
 	// wp_enqueue_script( 'oax-polyfills', '//cdn.polyfill.io/v2/polyfill.min.js', array(), '2', false);
 
+	// Vendor Scripts
+	//
 	wp_enqueue_script( 'oax-ohpardon-vendor', get_template_directory_uri() . '/build/js/vendor.js', array(), '', true );
+	wp_enqueue_script( 'oax-ohpardon-vendor-swiper', get_template_directory_uri() . '/assets/js/lib/swiper-bundle.min.js', array(), '', true );
+	
+	// Main Script
+	//
 	wp_enqueue_script( 'oax-ohpardon-app', get_template_directory_uri() . '/build/js/main.js', array(), '', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

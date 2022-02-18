@@ -286,12 +286,8 @@ function oax_image($args){
 		if(!$is_post && !$is_img){
 			if(!$is_lazy){
 				$img .= ' src="'. $url .'"';
-			} else {
-				if(!$is_lazy_slider){
-					$img .= ' data-src="'. $url .'"';
-				} else {
-					$img .= ' data-lazy="'. $url .'"';
-				}
+			} else {				
+				$img .= ' data-src="'. $url .'"';
 			}
 		} else {
 			
@@ -337,8 +333,12 @@ function oax_image($args){
 
 		$img .= ' class="c-image';
 		
-		if($is_lazy && !$is_lazy_slider){
-			$img .= ' js--lazy';
+		if($is_lazy){
+			if(!$is_lazy_slider){
+				$img .= ' js--lazy';
+			} else {
+				$img .= ' swiper-lazy';
+			}
 			if($has_placeholder){
 				$img .= ' has-placeholder';
 			}
@@ -374,6 +374,10 @@ function oax_image($args){
 
 		$img .= '>';
 
+		if($is_lazy_slider){
+			$img .= '<div class="swiper-lazy-preloader"></div>';
+		}
+
 		if($has_wrapper && $has_holder && $has_caption){
 			$img .= '</div>';
 		}
@@ -387,7 +391,7 @@ function oax_image($args){
 				$img .= $has_caption;
 			$img .= '</figcaption>';
 		}
-
+		
 		if($has_wrapper){
 			$img .= '</figure>';
 		}

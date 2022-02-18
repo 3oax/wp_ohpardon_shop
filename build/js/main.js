@@ -2415,7 +2415,8 @@ var Utils = {
     /**
      * Slick Slider
      */
-    _components_slider_js__WEBPACK_IMPORTED_MODULE_0__["default"].slick.init(container);
+    // Slider.slick.init( container );	
+    _components_slider_js__WEBPACK_IMPORTED_MODULE_0__["default"].swiper.init(container);
   },
   scrollTo: function scrollTo(_x, _y, _animation, _duration) {
     var x = this.isset(_x) ? _x : 0;
@@ -3264,6 +3265,73 @@ var Slider = {
     },
     prevSlide: function prevSlide() {},
     nextSlide: function nextSlide() {}
+  },
+  swiper: {
+    options: {
+      selector_slider: '.js--slider:not([data-init-by])',
+      selector_slider_inner: '.c-slider__inner',
+      selector_slider_track: '.c-slider__track',
+      selector_slider_item: '.c-slider__item',
+      selector_pagination: '.c-pagination',
+      selector_pagination_next: '.c-pagination__next',
+      selector_pagination_prev: '.c-pagination__prev',
+      selector_pagination_nums: '.c-pagination__nums'
+    },
+    init: function init(container) {
+      this.options.container = container;
+      this.initSlider();
+    },
+    initSlider: function initSlider() {
+      var _this = this;
+
+      var self = this;
+
+      if ($(this.options.container).find(this.options.selector_slider).length) {
+        $(this.options.container).find(this.options.selector_slider).each(function (i, el) {
+          self.prepareClasses($(el));
+          var $slideInner = $(el).find(_this.options.selector_slider_inner);
+          var slidesPerViewLg = getComputedStyle(el).getPropertyValue('--slider-items-show__lg');
+          var slidesPerViewSm = getComputedStyle(el).getPropertyValue('--slider-items-show__sm');
+          var slider = new Swiper($slideInner[0], {
+            // Optional parameters
+            direction: 'horizontal',
+            loop: false,
+            slidesPerView: Math.round(slidesPerViewSm),
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev'
+            },
+            breakpoints: {
+              992: {
+                slidesPerView: Math.round(slidesPerViewLg)
+              }
+            },
+            watchSlidesProgress: true,
+            preloadImages: false,
+            lazy: {
+              checkInView: true,
+              enabled: true,
+              loadPrevNext: true
+            }
+          });
+        });
+      }
+    },
+    prepareClasses: function prepareClasses($slider) {
+      $slider.addClass('is-init');
+      $slider.addClass('overflow-hidden');
+      var $sliderTrack = $slider.find(this.options.selector_slider_track);
+      var $sliderInner = $slider.find(this.options.selector_slider_inner);
+      var $sliderItems = $slider.find(this.options.selector_slider_item);
+      $sliderInner.removeClass('overflow-x-scroll').removeClass('overflow-y-hidden');
+      $sliderTrack.addClass('swiper-wrapper');
+      $sliderTrack.removeClass('flex-wrap');
+      $sliderItems.addClass('swiper-slide');
+      $sliderTrack.removeAttr('style');
+      $sliderItems.removeAttr('style');
+      $sliderInner.append('<div class="c-slider__button c-slider__button--prev swiper-button-prev"></div>');
+      $sliderInner.append('<div class="c-slider__button c-slider__button--next swiper-button-next"></div>');
+    }
   },
   initPagination: function initPagination(ctx, $slider, fnNextName, fnPrevName) {
     var $pagination = $slider.hasClass('c-pagination') ? $slider : $slider.find('.c-pagination');

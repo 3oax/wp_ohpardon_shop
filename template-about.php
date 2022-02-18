@@ -38,7 +38,8 @@ get_header(); ?>
               'xclass' => 'inset',
               'xclass_wrapper' => 'mx-05',
               'wrapper' => true,
-              'holder' => true
+              'holder' => true,
+              'lazy' => 'slider'
             ];
           }
           echo oax_get_component('slider/slide-track', [
@@ -87,7 +88,8 @@ Vorbesitzer:innen.</p>
                       'xclass' => 'inset',
                       'xclass_wrapper' => 'mx-05',
                       'wrapper' => true,
-                      'holder' => true
+                      'holder' => true,
+                      'lazy' => 'slider'
                     ];
                   }
                   echo oax_get_component('slider/slide-track', [
@@ -135,7 +137,8 @@ Vorbesitzer:innen. </p>
               'xclass' => 'inset',
               'xclass_wrapper' => 'mx-05',
               'wrapper' => true,
-              'holder' => true
+              'holder' => true,
+              'lazy' => 'slider'
             ];
           }
           echo oax_get_component('slider/slide-track', [
@@ -176,7 +179,8 @@ Vorbesitzer:innen. </p>
                       'xclass' => 'inset',
                       'xclass_wrapper' => '',
                       'wrapper' => true,
-                      'holder' => true
+                      'holder' => true,
+                      'lazy' => 'slider'
                     ];
                   }
                   echo oax_get_component('slider/slide-track', [
@@ -228,7 +232,8 @@ Vorbesitzer:innen. </p>
                       'xclass' => 'inset',
                       'xclass_wrapper' => '',
                       'wrapper' => true,
-                      'holder' => true
+                      'holder' => true,
+                      'lazy' => 'slider'
                     ];
                   }
                   echo oax_get_component('slider/slide-track', [
@@ -281,7 +286,8 @@ Vorbesitzer:innen.</p>
               'xclass' => 'inset',
               'xclass_wrapper' => 'mx-05',
               'wrapper' => true,
-              'holder' => true
+              'holder' => true,
+              'lazy' => 'slider'
             ];
           }
           echo oax_get_component('slider/slide-track', [

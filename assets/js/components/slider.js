@@ -135,6 +135,87 @@ const Slider = {
 		},
 	},
 
+	swiper: {
+		options: {
+			selector_slider: '.js--slider:not([data-init-by])',
+			selector_slider_inner: '.c-slider__inner',
+			selector_slider_track: '.c-slider__track',
+			selector_slider_item: '.c-slider__item',
+			selector_pagination: '.c-pagination',
+			selector_pagination_next: '.c-pagination__next',
+			selector_pagination_prev: '.c-pagination__prev',
+			selector_pagination_nums: '.c-pagination__nums',
+		},
+
+		init( container ){
+			this.options.container = container;
+			this.initSlider();
+		},
+
+		initSlider(){
+			const self = this;
+
+			if ( 
+				$( this.options.container ).find( this.options.selector_slider ).length
+			){
+				$( this.options.container ).find( this.options.selector_slider ).each( ( i, el ) => {
+					self.prepareClasses( $( el ) );
+					
+					const $slideInner = $( el ).find( this.options.selector_slider_inner );
+					const slidesPerViewLg = getComputedStyle( el ).getPropertyValue( '--slider-items-show__lg' );
+					const slidesPerViewSm = getComputedStyle( el ).getPropertyValue( '--slider-items-show__sm' );
+
+					const slider = new Swiper( $slideInner[0], {
+						// Optional parameters
+						direction: 'horizontal',
+						loop: false,
+						slidesPerView: Math.round( slidesPerViewSm ),
+						navigation: {
+							nextEl: '.swiper-button-next',
+							prevEl: '.swiper-button-prev',
+						},						
+						breakpoints: {
+							992: {
+								slidesPerView: Math.round( slidesPerViewLg )							
+							}
+						},
+						watchSlidesProgress: true,
+						preloadImages: false,
+						lazy: {
+							checkInView: true,
+							enabled: true,
+							loadPrevNext: true,
+						},
+					} );
+				} );
+			}			
+		},
+
+		prepareClasses( $slider ){
+			$slider.addClass( 'is-init' );
+			$slider.addClass( 'overflow-hidden' );
+
+			const $sliderTrack = $slider.find( this.options.selector_slider_track );
+			const $sliderInner = $slider.find( this.options.selector_slider_inner );
+			const $sliderItems = $slider.find( this.options.selector_slider_item );
+
+			$sliderInner
+				.removeClass( 'overflow-x-scroll' )
+				.removeClass( 'overflow-y-hidden' );
+			
+			$sliderTrack.addClass( 'swiper-wrapper' );
+			$sliderTrack.removeClass( 'flex-wrap' );
+			
+			$sliderItems.addClass( 'swiper-slide' );
+			
+			$sliderTrack.removeAttr( 'style' );
+			$sliderItems.removeAttr( 'style' );			
+
+			$sliderInner.append( '<div class="c-slider__button c-slider__button--prev swiper-button-prev"></div>' );
+			$sliderInner.append( '<div class="c-slider__button c-slider__button--next swiper-button-next"></div>' );
+		}
+	},
+
 	initPagination( ctx, $slider, fnNextName, fnPrevName ){
 		const $pagination = $slider.hasClass( 'c-pagination' ) ? $slider : $slider.find( '.c-pagination' );
 		$pagination.on( 'click.oax::slider:next', '.c-pagination__next', $.proxy( ctx[fnNextName], ctx ) );    

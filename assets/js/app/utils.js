@@ -34,7 +34,9 @@ const Utils = {
 		/**
 		 * Slick Slider
 		 */
-		Slider.slick.init( container );	
+		// Slider.slick.init( container );	
+
+		Slider.swiper.init( container );
 	},
 
 	scrollTo( _x, _y, _animation, _duration ){

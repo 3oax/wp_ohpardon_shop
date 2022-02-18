@@ -77,7 +77,7 @@ if ( OAX.config.is_preloader === 'Y' ) {
 /**
  * Load Swiper
  */
-require( '../lib/swiper-bundle.min.js' );
+// require( '../lib/swiper-bundle.min.js' );
 
 /**
  * Load SVGInjector

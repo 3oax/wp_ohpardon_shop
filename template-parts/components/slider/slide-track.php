@@ -10,7 +10,7 @@
   $random_int = rand(pow(10, 4-1), pow(10, 4)-1);
   // $IS_MOBILE = oax_is_mobile();
 ?>
-<div class="c-slider c-slider--slide-track c-slider--slide-track--<?= $random_int ?> w-full relative<?php if(isset($xclass) && isset($xclass['main'])): ?> <?= $xclass['main']; ?><?php endif; ?>" style="--slider-items-count: <?= count($items); ?>; --slider-items-show__sm: <?= $ITEMS_SHOW_SM; ?>; --slider-items-show__lg: <?= $ITEMS_SHOW_LG; ?>;" data-items-count="<?= count($items); ?>" data-items-show-lg="<?= $ITEMS_SHOW_LG; ?>">
+<div class="c-slider c-slider--slide-track c-slider--slide-track--<?= $random_int ?> w-full relative<?php if(isset($xclass) && isset($xclass['main'])): ?> <?= $xclass['main']; ?><?php endif; ?> js--slider" style="--slider-items-count: <?= count($items); ?>; --slider-items-show__sm: <?= $ITEMS_SHOW_SM; ?>; --slider-items-show__lg: <?= $ITEMS_SHOW_LG; ?>;" data-items-count="<?= count($items); ?>" data-items-show-lg="<?= $ITEMS_SHOW_LG; ?>">
   <div class="c-slider__inner<?php if(isset($xclass) && isset($xclass['inner'])): ?> <?= $xclass['inner']; ?><?php else: ?> pb-1<?php endif; ?><?= count($items) > 1 ? ' overflow-x-scroll overflow-y-hidden' : ''; ?>">
     <div class="c-slider__track flex flex-wrap<?php if(isset($xclass) && isset($xclass['track'])): ?> <?= $xclass['track']; ?><?php else: ?> items-end pl-05<?php if($ITEMS_STYLE === 'img'): ?> md:pl-05 md:pr-05<?php else: ?> md:pl-2 md:pr-2<?php endif; ?><?php endif; ?>" style="width: <?= 100 * count($items) / $ITEMS_SHOW_SM; ?>%">
       <?php $item_i = 0; foreach($items as $item): ?>

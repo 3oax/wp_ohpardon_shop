@@ -17,6 +17,13 @@
   .swiper-initialized {
     position: relative;
     --swiper-preloader-color: #000;
+    
+    padding-bottom: 0 !important;
+    
+    .c-slider__track {
+      padding: 0 !important;
+    }  
+
     .c-slider__button {
       position: absolute;
       top: 50%;
@@ -33,7 +40,6 @@
       will-change: opacity;
       &[aria-disabled="true"]{
         opacity: 0;
-        
       }
 
       &::before,
@@ -81,6 +87,12 @@
           transform: rotate(50deg);
         }        
       }
+    }
+  }
+
+  &.is-space-between {
+    .c-slider__item {
+      .c-image__figure { margin: 0; }
     }
   }
 }

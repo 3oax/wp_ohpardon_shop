@@ -4616,6 +4616,11 @@ big {
 .c-slider .swiper-initialized {
   position: relative;
   --swiper-preloader-color: #000;
+  padding-bottom: 0 !important;
+}
+
+.c-slider .swiper-initialized .c-slider__track {
+  padding: 0 !important;
 }
 
 .c-slider .swiper-initialized .c-slider__button {
@@ -4703,6 +4708,10 @@ big {
   -webkit-transform: rotate(50deg);
        -o-transform: rotate(50deg);
           transform: rotate(50deg);
+}
+
+.c-slider.is-space-between .c-slider__item .c-image__figure {
+  margin: 0;
 }
 
 /*---------------------------

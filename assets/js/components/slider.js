@@ -164,12 +164,16 @@ const Slider = {
 					const $slideInner = $( el ).find( this.options.selector_slider_inner );
 					const slidesPerViewLg = getComputedStyle( el ).getPropertyValue( '--slider-items-show__lg' );
 					const slidesPerViewSm = getComputedStyle( el ).getPropertyValue( '--slider-items-show__sm' );
+					const $sliderItems = $( el ).find( this.options.selector_slider_item );
+
+					const spaceBetweenSlides = this.getSpaceBetween( el );
 
 					const slider = new Swiper( $slideInner[0], {
 						// Optional parameters
 						direction: 'horizontal',
 						loop: false,
 						slidesPerView: Math.round( slidesPerViewSm ),
+						spaceBetween: spaceBetweenSlides,
 						navigation: {
 							nextEl: '.swiper-button-next',
 							prevEl: '.swiper-button-prev',
@@ -189,6 +193,23 @@ const Slider = {
 					} );
 				} );
 			}			
+		},
+
+		getSpaceBetween( slider ){
+			const $slider = $( slider );
+			const $sliderItems = $slider.find( this.options.selector_slider_item );
+			const sliderItem = $sliderItems[0];
+			const sliderItemFigure = $( sliderItem ).find( '.c-image__figure' )[0];
+			const sliderItemStyle = sliderItemFigure.currentStyle || window.getComputedStyle( sliderItemFigure );			
+			
+			const sliderItemMarginLeft = Math.round( sliderItemStyle.marginLeft.replace( 'px', '' ) );
+			const sliderItemMarginRight = Math.round( sliderItemStyle.marginRight.replace( 'px', '' ) );
+
+			if ( sliderItemMarginLeft > 0 || sliderItemMarginRight > 0 ){
+				$slider.addClass( 'is-space-between' );
+			}
+
+			return parseInt( sliderItemMarginLeft + sliderItemMarginRight, 10 );
 		},
 
 		prepareClasses( $slider ){

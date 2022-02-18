@@ -42,7 +42,7 @@ export default class ViewportAnimations {
 		this.$items = $( this.options.container ).find( this.options.selector + this.options.selector_not );
 		this.tweenItems = [];
 
-		// this.initSliderAutoplay();
+		this.initSliderAutoplay();
 		this.initEvents();
 		this.initInViewClass();	
 
@@ -333,7 +333,16 @@ export default class ViewportAnimations {
 
 		if ( $swiperSliders.length ){
 			$swiperSliders.each( ( i, el ) => {
-				const $slider = $( el );
+				const swiper = $( el ).find( '.swiper-initialized' )[0].swiper;
+				ScrollTrigger.create( {					
+					trigger: el,
+					start: 'top center',
+					onToggle: ( _self ) => {
+						if ( _self.isActive && _self.direction === 1 ) {
+							swiper.slideNext(); 
+						}			
+					},
+				} );
 			} );
 		}
 	}

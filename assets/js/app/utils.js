@@ -32,10 +32,8 @@ const Utils = {
 
 	initSliders( container ) {
 		/**
-		 * Slick Slider
+		 * Swiper
 		 */
-		// Slider.slick.init( container );	
-
 		Slider.swiper.init( container );
 	},
 

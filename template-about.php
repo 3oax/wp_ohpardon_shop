@@ -36,7 +36,7 @@ get_header(); ?>
             $section_intro_slider_items[] = [
               'img' => $slide_img,
               'xclass' => 'inset',
-              'xclass_wrapper' => 'mx-05',
+              'xclass_wrapper' => 'mx-05 bg-black',
               'wrapper' => true,
               'holder' => true,
               'lazy' => 'slider'
@@ -46,6 +46,7 @@ get_header(); ?>
             'items' => $section_intro_slider_items,
             'ITEMS_SHOW_LG' => 3.2,
             'xclass' => [
+              'main' => 'js--viewport',
               'track' => 'pl-05 pr-05 items-end'
             ]
           ]);
@@ -86,14 +87,17 @@ Vorbesitzer:innen.</p>
                     $section_gentrification_slider_items[] = [
                       'img' => $slide_img,
                       'xclass' => 'inset',
-                      'xclass_wrapper' => 'mx-05',
+                      'xclass_wrapper' => 'mx-05 bg-black',
                       'wrapper' => true,
                       'holder' => true,
                       'lazy' => 'slider'
                     ];
                   }
                   echo oax_get_component('slider/slide-track', [
-                    'items' => $section_gentrification_slider_items
+                    'items' => $section_gentrification_slider_items,
+                    'xclass' => [
+                      'main' => 'js--viewport',
+                    ]                    
                   ]);
                 } else {
                   echo oax_image([
@@ -135,7 +139,7 @@ Vorbesitzer:innen. </p>
             $section_reclaim_slider_items[] = [
               'img' => $slide_img,
               'xclass' => 'inset',
-              'xclass_wrapper' => 'mx-05',
+              'xclass_wrapper' => 'mx-05 bg-black',
               'wrapper' => true,
               'holder' => true,
               'lazy' => 'slider'
@@ -145,7 +149,8 @@ Vorbesitzer:innen. </p>
             'items' => $section_reclaim_slider_items,
             'ITEMS_SHOW_LG' => 2.1,
             'xclass' => [
-              'track' => 'items-end pl-05 pr-05'
+              'track' => 'items-end pl-05 pr-05',
+              'main' => 'js--viewport',
             ]
           ]);
         ?>
@@ -177,7 +182,7 @@ Vorbesitzer:innen. </p>
                     $section_leerstand_slider_items[] = [
                       'img' => $slide_img,
                       'xclass' => 'inset',
-                      'xclass_wrapper' => '',
+                      'xclass_wrapper' => 'bg-black',
                       'wrapper' => true,
                       'holder' => true,
                       'lazy' => 'slider'
@@ -188,7 +193,8 @@ Vorbesitzer:innen. </p>
                     'ITEMS_SHOW_LG' => 1,
                     'xclass' => [
                       'inner' => 'pb-0',
-                      'track' => 'px-0 mx-0 flex-end'
+                      'track' => 'px-0 mx-0 flex-end',
+                      'main' => 'js--viewport',
                     ]
                   ]);
                 } else {
@@ -230,7 +236,7 @@ Vorbesitzer:innen. </p>
                     $section_parasite_slider_items[] = [
                       'img' => $slide_img,
                       'xclass' => 'inset',
-                      'xclass_wrapper' => '',
+                      'xclass_wrapper' => 'bg-black',
                       'wrapper' => true,
                       'holder' => true,
                       'lazy' => 'slider'
@@ -241,7 +247,8 @@ Vorbesitzer:innen. </p>
                     'ITEMS_SHOW_LG' => 1,
                     'xclass' => [
                       'inner' => 'pb-0',
-                      'track' => 'px-0 mx-0 flex-end'
+                      'track' => 'px-0 mx-0 flex-end',
+                      'main' => 'js--viewport',
                     ]
                   ]);
                 } else {
@@ -284,7 +291,7 @@ Vorbesitzer:innen.</p>
             $section_recycling_slider_items[] = [
               'img' => $slide_img,
               'xclass' => 'inset',
-              'xclass_wrapper' => 'mx-05',
+              'xclass_wrapper' => 'mx-05 bg-black',
               'wrapper' => true,
               'holder' => true,
               'lazy' => 'slider'
@@ -294,7 +301,8 @@ Vorbesitzer:innen.</p>
             'items' => $section_recycling_slider_items,
             'ITEMS_SHOW_LG' => 1.5,
             'xclass' => [
-              'track' => 'pl-1 pr-05'
+              'track' => 'pl-1 pr-05',
+              'main' => 'js--viewport',
             ]            
           ]);
         ?>

@@ -91,7 +91,7 @@ export default class Router {
 				}
 			}
 
-			self.onInitStateChange( data.next.url );		
+			self.onInitStateChange( data.next.url );	
 		} );
 
 		// 2.

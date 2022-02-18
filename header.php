@@ -53,7 +53,17 @@ $namespace = oax_get_current_namespace();
 	</a>
 
 	<nav id="site__navigation" class="site__navigation flex items-center">
-		
+
+		<button class="site__navigation-toggle md:none" aria-expanded="false" aria-controls="l-navigation-main">
+			<svg class="o-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 82" width="82" height="82">
+				<path class="o-menu__line o-menu__line--1" d="M25.5 47h31v2h-31z" fill="#000000"/>
+				<path class="o-menu__line o-menu__line--2" d="M25.5 40h31v2h-31z" fill="#000000"/>
+				<path class="o-menu__line o-menu__line--3" d="M25.5 33h31v2h-31z" fill="#000000"/>
+				<circle class="o-menu__line o-menu__outline" cx="41" cy="41" r="29.5" stroke="#000000" fill="none" stroke-width="2"/>
+			</svg>
+			<span class="sr-only">Menu</span>
+		</button>
+
 		<div class="site__navigation-main">
 			<?php
 				wp_nav_menu( array(
@@ -90,15 +100,6 @@ $namespace = oax_get_current_namespace();
 			</li>
 		</ul>
 
-		<button class="site__navigation-toggle md:none" aria-expanded="false" aria-controls="l-navigation-main">
-			<svg class="o-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 82" width="82" height="82">
-				<path class="o-menu__line o-menu__line--1" d="M25.5 47h31v2h-31z" fill="#000000"/>
-				<path class="o-menu__line o-menu__line--2" d="M25.5 40h31v2h-31z" fill="#000000"/>
-				<path class="o-menu__line o-menu__line--3" d="M25.5 33h31v2h-31z" fill="#000000"/>
-				<circle class="o-menu__line o-menu__outline" cx="41" cy="41" r="29.5" stroke="#000000" fill="none" stroke-width="2"/>
-			</svg>
-			<span class="sr-only">Menu</span>
-		</button>
 	</div><!-- #site__navigation -->
 </header><!-- #site__header -->
 

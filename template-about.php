@@ -45,7 +45,7 @@ get_header(); ?>
             'items' => $section_intro_slider_items,
             'ITEMS_SHOW_LG' => 3.2,
             'xclass' => [
-              'track' => 'pl-05 pr-05'
+              'track' => 'pl-05 pr-05 items-end'
             ]
           ]);
         ?>
@@ -257,7 +257,7 @@ Vorbesitzer:innen. </p>
     
     <?php $section_recycling = get_field('section_recycling'); ?>
     <?php if(!empty($section_recycling)): ?>        
-    <section class="v-about__recycling c-section pt-75 md:pt-10">
+    <section class="v-about__recycling c-section pt-75 md:pt-10 pb-75 md:pb-10">
       <div class="container">
         <h3 class="entry-title text-center">Wiederverwendung</h3>
         <div class="row flex flex-wrap justify-center">

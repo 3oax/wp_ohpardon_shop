@@ -3455,8 +3455,9 @@ big {
   transition: all 0.4s ease-in-out;
   margin-top: 0rem;
   z-index: 999999;
-  left: 1rem;
-  top: 1rem;
+  left: 50%;
+  margin-left: -3rem;
+  top: 1.1rem;
 }
 
 @media (min-width: 992px) {
@@ -3540,9 +3541,12 @@ big {
 }
 
 .site__navigation-main,
-.site__navigation-user,
-.site__navigation-toggle {
+.site__navigation-user {
   z-index: 999998;
+}
+
+.site__navigation-toggle {
+  z-index: 999999;
 }
 
 .site__navigation-main {
@@ -3552,9 +3556,9 @@ big {
   height: 100vh;
   width: 100vw;
   background-color: white;
-  -webkit-transform: translateX(100%);
-       -o-transform: translateX(100%);
-          transform: translateX(100%);
+  -webkit-transform: translateX(-100%);
+       -o-transform: translateX(-100%);
+          transform: translateX(-100%);
   -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.55, 0, 0.1, 1);
   transition: -webkit-transform 0.4s cubic-bezier(0.55, 0, 0.1, 1);
   -o-transition: -o-transform 0.4s cubic-bezier(0.55, 0, 0.1, 1);
@@ -3678,8 +3682,8 @@ big {
 
 .site__navigation-user {
   position: fixed;
-  top: 1.5rem;
-  right: 4rem;
+  top: 1.6rem;
+  right: 1.25rem;
 }
 
 @media (min-width: 992px) {
@@ -3715,8 +3719,8 @@ big {
   padding: 0rem;
   overflow: hidden;
   position: fixed;
-  right: 0.75rem;
-  top: 0.9rem;
+  left: 0.45rem;
+  top: 1rem;
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
@@ -3762,6 +3766,7 @@ big {
   -webkit-transition: opacity 0.05s 0.5s, visibility 0.05s 0.5s;
   -o-transition: opacity 0.05s 0.5s, visibility 0.05s 0.5s;
   transition: opacity 0.05s 0.5s, visibility 0.05s 0.5s;
+  margin-top: -1rem;
 }
 
 .site__navigation-main ul.nav-menu::before {
@@ -3815,6 +3820,7 @@ big {
 
 @media (min-width: 992px) {
   .site__navigation-main ul.nav-menu {
+    margin-top: 0;
     -webkit-transition: none;
     -o-transition: none;
     transition: none;

@@ -26,7 +26,7 @@ import barba from '@barba/core'; window.barba = barba;
 /**
  * Import Smooth Scroll
  */
-import Scrollbar from 'smooth-scrollbar'; window.Scrollbar = Scrollbar;
+// import Scrollbar from 'smooth-scrollbar'; window.Scrollbar = Scrollbar;
 
 /**
  * Paper.js
@@ -67,17 +67,22 @@ if ( OAX.config.is_preloader === 'Y' ) {
 /**
  * Load Instafeed
  */
-require( '../lib/jquery.instagramFeed.js' );
+// require( '../lib/jquery.instagramFeed.js' );
 
 /**
  * Load Slick Slider
  */
-require( 'slick-carousel/slick/slick.js' );
+// require( 'slick-carousel/slick/slick.js' );
+
+/**
+ * Load Swiper
+ */
+require( '../lib/swiper-bundle.min.js' );
 
 /**
  * Load SVGInjector
  */
-import SVGInjector from 'svg-injector-2'; window.SVGInjector = SVGInjector;
+// import SVGInjector from 'svg-injector-2'; window.SVGInjector = SVGInjector;
 
 /**
  * Load Plyr

@@ -199,8 +199,9 @@ function oax_image($args){
 
 	$is_post = isset($args['post']) && !empty($args['post']);
 	$is_img = isset($args['img']) && !empty($args['img']);
-	$is_lazy = isset($args['lazy']) && $args['lazy'] != false;
-	$is_lazy_slider = $is_lazy && $args['lazy'] === 'slick';
+	// $is_lazy = isset($args['lazy']) && $args['lazy'] != false; // deprecated
+	$is_lazy = isset($args['lazy']) && $args['lazy'] !== true ? $args['lazy'] : true; 
+	$is_lazy_slider = $is_lazy && isset($args['lazy']) && $args['lazy'] === 'slider';
 	$is_sizes = isset($args['sizes']) ? $args['sizes'] : false;
 	$is_srcset = isset($args['srcset']) ? $args['srcset'] : false;
 

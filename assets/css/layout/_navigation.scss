@@ -7,9 +7,12 @@
 }
 
 .site__navigation-main,
-.site__navigation-user,
-.site__navigation-toggle {
+.site__navigation-user {
   z-index: 999998;
+}
+
+.site__navigation-toggle {
+  z-index: 999999;
 }
 
 .site__navigation-main {
@@ -21,7 +24,7 @@
   width: 100vw;
   background-color: white;
 
-  transform: translateX(100%);
+  transform: translateX(-100%);
   transition: transform .4s $cubic__default;
 
   display: flex;
@@ -110,8 +113,8 @@
 
 .site__navigation-user {
   position: fixed;
-  top: 1.5rem;
-  right: 4rem;
+  top: 1.6rem;
+  right: 1.25rem;
   @media (min-width: $break__medium) {
     right: 4rem;
     top: 2rem;
@@ -138,8 +141,8 @@
   overflow: hidden;
   position: fixed;
 
-  right: 0.75rem;
-  top: 0.9rem;
+  left: 0.45rem;
+  top: 1rem;
 
   display: flex !important;
   flex-wrap: wrap;
@@ -179,10 +182,6 @@
   width: var(--nav__contact-size--lg);
 }
 
-.site__navigation-user {
-  
-}
-
 /**
  * Animations
  */
@@ -191,6 +190,7 @@
   visibility: hidden;
   // transition: backdrop-filter .75s .05s $animation-easing, opacity .05s .75s, visibility .05s .75s;
   transition: opacity .05s .5s, visibility .05s .5s;
+  margin-top: -1rem;
 
   &::before {
     transform: translateX(100%);
@@ -218,6 +218,7 @@
   }
 
   @media (min-width: $break__medium) {
+    margin-top: 0;
     transition: none;
     opacity: 1;
     visibility: visible;

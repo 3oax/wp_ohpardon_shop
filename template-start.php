@@ -12,7 +12,7 @@ get_header(); ?>
     <?php 
       $hero_slider_items = get_field('hero_slider');            
     ?>
-    <header class="c-section c-section--header">
+    <header class="c-section c-section--header pt-5">
       
       <?php if(!empty($hero_slider_items)): ?>
       <div class="v-start__slider<?php if(count($hero_slider_items) > 1): ?> js--slider<?php endif; ?>"<?php if(count($hero_slider_items) > 1): ?> data-init-by="start"<?php endif; ?>>

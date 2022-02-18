@@ -329,13 +329,11 @@ export default class ViewportAnimations {
 	initSliderAutoplay(){
 		const self = this;
 
-		const $slickSliders = $( '.js--viewport.js--slider[data-slick]' );
+		const $swiperSliders = $( '.js--viewport.js--slider' );
 
-		if ( $slickSliders.length ){
-			$slickSliders.each( ( i, el ) => {
-				const $item = $( el );
-				const triggerHook = Utils.isset( $item.data( 'triggerHook' ) ) ? $item.data( 'triggerHook' ) : 0.85;
-				const triggerDelay = Utils.isset( $item.data( 'viewportDelay' ) ) ? $item.data( 'viewportDelay' ) : 1; 
+		if ( $swiperSliders.length ){
+			$swiperSliders.each( ( i, el ) => {
+				const $slider = $( el );
 			} );
 		}
 	}

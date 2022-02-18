@@ -15,6 +15,7 @@
     "test/css/flexbox",
     "test/css/flexboxlegacy",
     "test/css/mask",
+    "test/css/scrollsnappoints",
     "test/img/webp",
     "test/svg/filters",
     "test/network/fetch"

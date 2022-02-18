@@ -3298,6 +3298,7 @@ var Slider = {
 
           var slider = new Swiper($slideInner[0], {
             // Optional parameters
+            cssMode: Modernizr.scrollsnappoints,
             direction: 'horizontal',
             loop: false,
             slidesPerView: Math.round(slidesPerViewSm),
@@ -3725,13 +3726,11 @@ function () {
     key: "initSliderAutoplay",
     value: function initSliderAutoplay() {
       var self = this;
-      var $slickSliders = $('.js--viewport.js--slider[data-slick]');
+      var $swiperSliders = $('.js--viewport.js--slider');
 
-      if ($slickSliders.length) {
-        $slickSliders.each(function (i, el) {
-          var $item = $(el);
-          var triggerHook = _app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset($item.data('triggerHook')) ? $item.data('triggerHook') : 0.85;
-          var triggerDelay = _app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset($item.data('viewportDelay')) ? $item.data('viewportDelay') : 1;
+      if ($swiperSliders.length) {
+        $swiperSliders.each(function (i, el) {
+          var $slider = $(el);
         });
       }
     }

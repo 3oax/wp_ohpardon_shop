@@ -170,6 +170,7 @@ const Slider = {
 
 					const slider = new Swiper( $slideInner[0], {
 						// Optional parameters
+						cssMode: Modernizr.scrollsnappoints,
 						direction: 'horizontal',
 						loop: false,
 						slidesPerView: Math.round( slidesPerViewSm ),

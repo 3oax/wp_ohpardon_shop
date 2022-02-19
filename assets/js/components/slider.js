@@ -39,8 +39,8 @@ const Slider = {
 					const $sliderItems = $( el ).find( this.options.selector_slider_item );
 
 					const spaceBetweenSlides = this.getSpaceBetween( el );
-
-					const slider = new Swiper( $slideInner[0], {
+					const swiperParams = this.getParams( el );
+					const slider = new Swiper( $slideInner[0], Object.assign( {
 						// Optional parameters
 						cssMode: Modernizr.scrollsnappoints,
 						direction: 'horizontal',
@@ -66,9 +66,27 @@ const Slider = {
 							enabled: true,
 							loadPrevNext: true,
 						},
-					} );
+					}, swiperParams ) );
 				} );
 			}			
+		},
+
+		getParams( slider ){
+			const $slider = $( slider );
+			if ( Utils.isset( $slider.attr( 'data-swiper' ) ) ) {
+				const params = $slider.data( 'swiper' );
+				if ( $slider.hasClass( 'js--slider--smooth-auto' ) ) {
+					params.on = {
+						init () {
+							// this.autoplay.stop();
+						},
+					};
+				}
+
+				return params;
+			}
+ 
+			return {};
 		},
 
 		getSpaceBetween( slider ){
@@ -108,8 +126,10 @@ const Slider = {
 			$sliderTrack.removeAttr( 'style' );
 			$sliderItems.removeAttr( 'style' );			
 
-			$sliderInner.append( '<div class="c-slider__button c-slider__button--prev swiper-button-prev"></div>' );
-			$sliderInner.append( '<div class="c-slider__button c-slider__button--next swiper-button-next"></div>' );
+			if ( ! $slider.hasClass( 'js--slider--smooth-auto' ) ){
+				$sliderInner.append( '<div class="c-slider__button c-slider__button--prev swiper-button-prev"></div>' );
+				$sliderInner.append( '<div class="c-slider__button c-slider__button--next swiper-button-next"></div>' );
+			}
 		}
 	},
 

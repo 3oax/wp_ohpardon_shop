@@ -3191,7 +3191,9 @@ var Slider = {
 
           var spaceBetweenSlides = _this.getSpaceBetween(el);
 
-          var slider = new Swiper($slideInner[0], {
+          var swiperParams = _this.getParams(el);
+
+          var slider = new Swiper($slideInner[0], Object.assign({
             // Optional parameters
             cssMode: Modernizr.scrollsnappoints,
             direction: 'horizontal',
@@ -3215,9 +3217,27 @@ var Slider = {
               enabled: true,
               loadPrevNext: true
             }
-          });
+          }, swiperParams));
         });
       }
+    },
+    getParams: function getParams(slider) {
+      var $slider = $(slider);
+
+      if (_app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset($slider.attr('data-swiper'))) {
+        var params = $slider.data('swiper');
+
+        if ($slider.hasClass('js--slider--smooth-auto')) {
+          params.on = {
+            init: function init() {// this.autoplay.stop();
+            }
+          };
+        }
+
+        return params;
+      }
+
+      return {};
     },
     getSpaceBetween: function getSpaceBetween(slider) {
       var $slider = $(slider);
@@ -3246,8 +3266,11 @@ var Slider = {
       $sliderItems.addClass('swiper-slide');
       $sliderTrack.removeAttr('style');
       $sliderItems.removeAttr('style');
-      $sliderInner.append('<div class="c-slider__button c-slider__button--prev swiper-button-prev"></div>');
-      $sliderInner.append('<div class="c-slider__button c-slider__button--next swiper-button-next"></div>');
+
+      if (!$slider.hasClass('js--slider--smooth-auto')) {
+        $sliderInner.append('<div class="c-slider__button c-slider__button--prev swiper-button-prev"></div>');
+        $sliderInner.append('<div class="c-slider__button c-slider__button--next swiper-button-next"></div>');
+      }
     }
   },
   initPagination: function initPagination(ctx, $slider, fnNextName, fnPrevName) {
@@ -3306,7 +3329,7 @@ function () {
     var defaults = {
       container: 'body',
       selector: '.js--viewport',
-      selector_not: ':not([data-slick])',
+      selector_not: ':not(.js--slider)',
       selector_animation: {
         header: '.js--anim-header',
         body: '.js--anim-body',
@@ -3622,17 +3645,26 @@ function () {
     key: "initSliderAutoplay",
     value: function initSliderAutoplay() {
       var self = this;
+      var classes = {
+        autoplay: 'js--slider--smooth-auto',
+        bottomnav: 'js--slider--bottom-nav'
+      };
       var $swiperSliders = $('.js--viewport.js--slider');
 
       if ($swiperSliders.length) {
         $swiperSliders.each(function (i, el) {
+          var $slider = $(el);
           var swiper = $(el).find('.swiper-initialized')[0].swiper;
           ScrollTrigger.create({
             trigger: el,
-            start: 'top center',
+            start: 'top bottom',
             onToggle: function onToggle(_self) {
-              if (_self.isActive && _self.direction === 1) {
-                swiper.slideNext();
+              if ($slider.hasClass(classes.autoplay)) {
+                if (_self.isActive) {
+                  swiper.autoplay.run();
+                } else {
+                  swiper.autoplay.stop();
+                }
               }
             }
           });

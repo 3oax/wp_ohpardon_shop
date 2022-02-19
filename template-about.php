@@ -46,8 +46,19 @@ get_header(); ?>
             'items' => $section_intro_slider_items,
             'ITEMS_SHOW_LG' => 3.2,
             'xclass' => [
-              'main' => 'js--viewport',
+              'main' => 'js--viewport js--slider--smooth-auto',
               'track' => 'pl-05 pr-05 items-end'
+            ],
+            'xdata' => [
+              'swiper' => [
+                'cssMode' => false,
+                'loop' => true,
+                'speed' => 10000,
+                'autoplay' => [
+                  'delay' => 0,
+                  'disableOnInteraction' => false
+                ]
+              ]
             ]
           ]);
         ?>
@@ -96,7 +107,7 @@ Vorbesitzer:innen.</p>
                   echo oax_get_component('slider/slide-track', [
                     'items' => $section_gentrification_slider_items,
                     'xclass' => [
-                      'main' => 'js--viewport',
+                      'main' => 'js--viewport js--slider--bottom-nav',
                     ]                    
                   ]);
                 } else {
@@ -150,8 +161,18 @@ Vorbesitzer:innen. </p>
             'ITEMS_SHOW_LG' => 2.1,
             'xclass' => [
               'track' => 'items-end pl-05 pr-05',
-              'main' => 'js--viewport',
-            ]
+              'main' => 'js--viewport js--slider--smooth-auto',
+            ],
+            'xdata' => [
+              'swiper' => [
+                'cssMode' => false,
+                'loop' => true,
+                'speed' => 10000,
+                'autoplay' => [
+                  'delay' => 0,
+                ]
+              ]
+            ]            
           ]);
         ?>
       </div>
@@ -194,7 +215,7 @@ Vorbesitzer:innen. </p>
                     'xclass' => [
                       'inner' => 'pb-0',
                       'track' => 'px-0 mx-0 flex-end',
-                      'main' => 'js--viewport',
+                      'main' => 'js--viewport js--slider--bottom-nav',
                     ]
                   ]);
                 } else {
@@ -248,7 +269,7 @@ Vorbesitzer:innen. </p>
                     'xclass' => [
                       'inner' => 'pb-0',
                       'track' => 'px-0 mx-0 flex-end',
-                      'main' => 'js--viewport',
+                      'main' => 'js--viewport js--slider--bottom-nav',
                     ]
                   ]);
                 } else {
@@ -302,8 +323,18 @@ Vorbesitzer:innen.</p>
             'ITEMS_SHOW_LG' => 1.5,
             'xclass' => [
               'track' => 'pl-1 pr-05',
-              'main' => 'js--viewport',
-            ]            
+              'main' => 'js--viewport js--slider--smooth-auto',
+            ],
+            'xdata' => [
+              'swiper' => [
+                'cssMode' => false,
+                'loop' => true,
+                'speed' => 10000,
+                'autoplay' => [
+                  'delay' => 0,
+                ]
+              ]
+            ]                  
           ]);
         ?>
       </div>

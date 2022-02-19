@@ -106,3 +106,35 @@
     }
   }
 }
+
+.js--slider--smooth-auto {
+  .swiper-wrapper {
+    transition-timing-function: linear;
+  }  
+}
+
+.c-slider.js--slider--bottom-nav {
+  .swiper-initialized {
+    .c-slider__button {
+      top: auto;
+      left: auto;
+      bottom: 0;
+      right: 0;
+      width: 2rem;
+      height: 2rem;
+      margin: 0;
+      background-color: black;
+      &[aria-disabled="true"]{
+        opacity: 0.4;
+        visibility: visible;        
+      }      
+      &--prev {
+        right: 2rem;
+      }
+      &::before,
+      &::after {
+        width: 33%;
+      }
+    }
+  }
+}

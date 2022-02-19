@@ -8,7 +8,7 @@ export default class ViewportAnimations {
 		const defaults = {
 			container: 'body',
 			selector: '.js--viewport',
-			selector_not: ':not([data-slick])',
+			selector_not: ':not(.js--slider)',
 			selector_animation: {
 				header: '.js--anim-header',
 				body: '.js--anim-body',
@@ -328,19 +328,27 @@ export default class ViewportAnimations {
 
 	initSliderAutoplay(){
 		const self = this;
-
+		const classes = {
+			autoplay: 'js--slider--smooth-auto',
+			bottomnav: 'js--slider--bottom-nav'
+		};
 		const $swiperSliders = $( '.js--viewport.js--slider' );
 
 		if ( $swiperSliders.length ){
 			$swiperSliders.each( ( i, el ) => {
+				const $slider = $( el );
 				const swiper = $( el ).find( '.swiper-initialized' )[0].swiper;
 				ScrollTrigger.create( {					
 					trigger: el,
-					start: 'top center',
-					onToggle: ( _self ) => {
-						if ( _self.isActive && _self.direction === 1 ) {
-							swiper.slideNext(); 
-						}			
+					start: 'top bottom',
+					onToggle: ( _self ) => {		
+						if ( $slider.hasClass( classes.autoplay ) ){
+							if ( _self.isActive ){
+								swiper.autoplay.run();
+							} else {
+								swiper.autoplay.stop();
+							}
+						}
 					},
 				} );
 			} );

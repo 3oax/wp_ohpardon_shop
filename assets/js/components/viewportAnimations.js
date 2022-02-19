@@ -329,7 +329,7 @@ export default class ViewportAnimations {
 	initSliderAutoplay(){
 		const self = this;
 		const classes = {
-			autoplay: 'js--slider--smooth-auto',
+			autoplay: 'js--slider--carousel',
 			bottomnav: 'js--slider--bottom-nav'
 		};
 		const $swiperSliders = $( '.js--viewport.js--slider' );

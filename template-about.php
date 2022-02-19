@@ -46,7 +46,7 @@ get_header(); ?>
             'items' => $section_intro_slider_items,
             'ITEMS_SHOW_LG' => 3,
             'xclass' => [
-              'main' => 'js--viewport js--slider--smooth-auto',
+              'main' => 'js--viewport js--slider--carousel',
               'track' => 'px-0 items-end'
             ],
             'xdata' => [
@@ -159,7 +159,7 @@ get_header(); ?>
             'ITEMS_SHOW_LG' => 2,
             'xclass' => [
               'track' => 'px-0 items-end',
-              'main' => 'js--viewport js--slider--smooth-auto',
+              'main' => 'js--viewport js--slider--carousel',
             ],
             'xdata' => [
               'swiper' => [
@@ -168,6 +168,7 @@ get_header(); ?>
                 'speed' => 10000,
                 'autoplay' => [
                   'delay' => 0,
+                  'disableOnInteraction' => false
                 ]
               ]
             ]            
@@ -318,7 +319,7 @@ get_header(); ?>
             'ITEMS_SHOW_LG' => 2,
             'xclass' => [
               'track' => 'px-0 items-end',
-              'main' => 'js--viewport js--slider--smooth-auto',
+              'main' => 'js--viewport js--slider--carousel',
             ],
             'xdata' => [
               'swiper' => [
@@ -327,6 +328,7 @@ get_header(); ?>
                 'speed' => 10000,
                 'autoplay' => [
                   'delay' => 0,
+                  'disableOnInteraction' => false
                 ]
               ]
             ]                  

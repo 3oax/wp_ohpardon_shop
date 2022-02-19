@@ -75,7 +75,7 @@ const Slider = {
 			const $slider = $( slider );
 			if ( Utils.isset( $slider.attr( 'data-swiper' ) ) ) {
 				const params = $slider.data( 'swiper' );
-				if ( $slider.hasClass( 'js--slider--smooth-auto' ) ) {
+				if ( $slider.hasClass( 'js--slider--carousel' ) ) {
 					params.on = {
 						init () {
 							// this.autoplay.stop();
@@ -128,7 +128,7 @@ const Slider = {
 			$sliderTrack.removeAttr( 'style' );
 			$sliderItems.removeAttr( 'style' );			
 
-			if ( ! $slider.hasClass( 'js--slider--smooth-auto' ) ){
+			if ( ! $slider.hasClass( 'js--slider--carousel' ) ){
 				$sliderInner.append( '<div class="c-slider__button c-slider__button--prev swiper-button-prev"></div>' );
 				$sliderInner.append( '<div class="c-slider__button c-slider__button--next swiper-button-next"></div>' );
 			}

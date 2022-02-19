@@ -3268,7 +3268,7 @@ var Slider = {
       if (_app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset($slider.attr('data-swiper'))) {
         var params = $slider.data('swiper');
 
-        if ($slider.hasClass('js--slider--smooth-auto')) {
+        if ($slider.hasClass('js--slider--carousel')) {
           params.on = {
             init: function init() {// this.autoplay.stop();
             }
@@ -3307,7 +3307,7 @@ var Slider = {
       $sliderTrack.removeAttr('style');
       $sliderItems.removeAttr('style');
 
-      if (!$slider.hasClass('js--slider--smooth-auto')) {
+      if (!$slider.hasClass('js--slider--carousel')) {
         $sliderInner.append('<div class="c-slider__button c-slider__button--prev swiper-button-prev"></div>');
         $sliderInner.append('<div class="c-slider__button c-slider__button--next swiper-button-next"></div>');
       }
@@ -3686,7 +3686,7 @@ function () {
     value: function initSliderAutoplay() {
       var self = this;
       var classes = {
-        autoplay: 'js--slider--smooth-auto',
+        autoplay: 'js--slider--carousel',
         bottomnav: 'js--slider--bottom-nav'
       };
       var $swiperSliders = $('.js--viewport.js--slider');

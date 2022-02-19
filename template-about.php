@@ -21,9 +21,9 @@ get_header(); ?>
             <figure class="block mb-2 md:w-1/4">
               <?php get_template_part( 'template-parts/site-logo' ); ?>
             </figure>
-            <p>We came from painting houses and trains at night to upcycle
-      furniture and objects thrown-away by society to fight
-      boring uniformity in your home.</p>
+            <div>
+              <?= $section_intro['content']; ?>
+            </div>
           </div>
         </div>
       </div>
@@ -44,10 +44,10 @@ get_header(); ?>
           }
           echo oax_get_component('slider/slide-track', [
             'items' => $section_intro_slider_items,
-            'ITEMS_SHOW_LG' => 3.2,
+            'ITEMS_SHOW_LG' => 3,
             'xclass' => [
               'main' => 'js--viewport js--slider--smooth-auto',
-              'track' => 'pl-05 pr-05 items-end'
+              'track' => 'px-0 items-end'
             ],
             'xdata' => [
               'swiper' => [
@@ -81,12 +81,11 @@ get_header(); ?>
                 'xclass' => 'inset'
               ]); ?>
             </div>
-            <h2 class="entry-title">G-Spot</h2>
+            <h2 class="entry-title">
+              <?= $section_gentrification['headline']; ?>
+            </h2>
             <div class="mt-2">
-              <p>Unsere Kunst ist eine Ode an 
-Handgemalte Kunstwerke auf alternden 
-sind beeinflusst von den Leben der 
-Vorbesitzer:innen.</p>
+              <?= $section_gentrification['content']; ?>
             </div>
           </div>
           <div class="w-full md:w-1/2 md:pr-2">
@@ -132,12 +131,11 @@ Vorbesitzer:innen.</p>
       <div class="container">
         <div class="row flex flex-wrap justify-center">
           <div class="w-full md:w-1/2 text-center">
-            <h3 class="entry-title">Reclaim Heritage</h3>
+            <h3 class="entry-title">
+              <?= $section_reclaim['headline']; ?>
+            </h3>
             <div class="mt-2">
-              <p>Unsere Kunst ist eine Ode an 
-Handgemalte Kunstwerke auf alternden 
-sind beeinflusst von den Leben der 
-Vorbesitzer:innen. </p>
+              <?= $section_reclaim['content']; ?>
             </div>
           </div>
         </div>
@@ -158,9 +156,9 @@ Vorbesitzer:innen. </p>
           }
           echo oax_get_component('slider/slide-track', [
             'items' => $section_reclaim_slider_items,
-            'ITEMS_SHOW_LG' => 2.1,
+            'ITEMS_SHOW_LG' => 2,
             'xclass' => [
-              'track' => 'items-end pl-05 pr-05',
+              'track' => 'px-0 items-end',
               'main' => 'js--viewport js--slider--smooth-auto',
             ],
             'xdata' => [
@@ -186,12 +184,11 @@ Vorbesitzer:innen. </p>
       <div class="md:px-4">
         <div class="row flex flex-wrap items-center">
           <div class="w-full md:w-1/2 md:pl-5 md:pr-5">      
-            <h3 class="entry-title">Leer_____<br>____stand</h3>
+            <h3 class="entry-title">
+              <?= $section_leerstand['headline']; ?>              
+            </h3>
             <div class="mt-2">
-              <p>Unsere Kunst ist eine Ode an 
-Handgemalte Kunstwerke auf alternden 
-sind beeinflusst von den Leben der 
-Vorbesitzer:innen. </p>
+              <?= $section_leerstand['content']; ?>
             </div>
           </div>
           <div class="w-full md:w-1/2">      
@@ -240,12 +237,11 @@ Vorbesitzer:innen. </p>
       <div class="container">
         <div class="row flex flex-wrap items-center md:flex-row-reverse">
           <div class="w-full md:w-1/2 md:pl-4">      
-            <h3 class="entry-title">Parasite Profitability</h3>
+            <h3 class="entry-title">
+              <?= $section_parasite['headline']; ?>
+            </h3>
             <div class="mt-2">
-              <p>Unsere Kunst ist eine Ode an 
-Handgemalte Kunstwerke auf alternden 
-sind beeinflusst von den Leben der 
-Vorbesitzer:innen. </p>
+              <?= $section_parasite['content']; ?>
             </div>
           </div>
           <div class="w-full md:w-1/2 md:pr-4">      
@@ -292,14 +288,13 @@ Vorbesitzer:innen. </p>
     <?php if(!empty($section_recycling)): ?>        
     <section class="v-about__recycling c-section pt-75 md:pt-10 pb-75 md:pb-10">
       <div class="container">
-        <h3 class="entry-title text-center">Wiederverwendung</h3>
+        <h3 class="entry-title text-center">
+          <?= $section_recycling['headline']; ?>
+        </h3>
         <div class="row flex flex-wrap justify-center">
           <div class="w-full md:w-1/2 text-center">
             <div class="mt-2">
-              <p>Unsere Kunst ist eine Ode an 
-Handgemalte Kunstwerke auf alternden 
-sind beeinflusst von den Leben der 
-Vorbesitzer:innen.</p>
+              <?= $section_recycling['content']; ?>
             </div>
           </div>
         </div>
@@ -320,9 +315,9 @@ Vorbesitzer:innen.</p>
           }
           echo oax_get_component('slider/slide-track', [
             'items' => $section_recycling_slider_items,
-            'ITEMS_SHOW_LG' => 1.5,
+            'ITEMS_SHOW_LG' => 2,
             'xclass' => [
-              'track' => 'pl-1 pr-05',
+              'track' => 'px-0 items-end',
               'main' => 'js--viewport js--slider--smooth-auto',
             ],
             'xdata' => [

@@ -100,10 +100,12 @@ const Slider = {
 			const sliderItemMarginRight = Math.round( sliderItemStyle.marginRight.replace( 'px', '' ) );
 
 			if ( sliderItemMarginLeft > 0 || sliderItemMarginRight > 0 ){
-				$slider.addClass( 'is-space-between' );
+				// $slider.addClass( 'is-space-between' );
 			}
 
-			return parseInt( sliderItemMarginLeft + sliderItemMarginRight, 10 );
+			return 0;
+
+			// return parseInt( sliderItemMarginLeft + sliderItemMarginRight, 10 );
 		},
 
 		prepareClasses( $slider ){

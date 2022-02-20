@@ -57,7 +57,9 @@ get_header(); ?>
                 'autoplay' => [
                   'delay' => 0,
                   'disableOnInteraction' => false
-                ]
+                ],
+                'noSwiping' => true,
+                'noSwipingClass' => 'swiper-slide'
               ]
             ]
           ]);

@@ -3270,9 +3270,10 @@ var Slider = {
 
         if ($slider.hasClass('js--slider--carousel')) {
           params.on = {
-            init: function init() {// this.autoplay.stop();
+            init: function init() {
+              this.autoplay.stop();
             }
-          };
+          }; // params.centeredSlides = true;
         }
 
         return params;
@@ -3694,17 +3695,22 @@ function () {
       if ($swiperSliders.length) {
         $swiperSliders.each(function (i, el) {
           var $slider = $(el);
-          var swiper = $(el).find('.swiper-initialized')[0].swiper;
           ScrollTrigger.create({
             trigger: el,
             start: 'top bottom',
             onToggle: function onToggle(_self) {
+              var swiper = $(el).find('.swiper-initialized')[0].swiper;
+
               if ($slider.hasClass(classes.autoplay)) {
                 if (_self.isActive) {
-                  swiper.autoplay.run();
+                  swiper.autoplay.start();
+                  $slider.addClass('is-autoplay');
                 } else {
                   swiper.autoplay.stop();
+                  $slider.removeClass('is-autoplay');
                 }
+
+                console.log(swiper.autoplay);
               }
             }
           });

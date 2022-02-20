@@ -337,17 +337,20 @@ export default class ViewportAnimations {
 		if ( $swiperSliders.length ){
 			$swiperSliders.each( ( i, el ) => {
 				const $slider = $( el );
-				const swiper = $( el ).find( '.swiper-initialized' )[0].swiper;
 				ScrollTrigger.create( {					
 					trigger: el,
 					start: 'top bottom',
-					onToggle: ( _self ) => {		
+					onToggle: ( _self ) => {
+						const swiper = $( el ).find( '.swiper-initialized' )[0].swiper;								
 						if ( $slider.hasClass( classes.autoplay ) ){
 							if ( _self.isActive ){
-								swiper.autoplay.run();
+								swiper.autoplay.start();								
+								$slider.addClass( 'is-autoplay' );
 							} else {
 								swiper.autoplay.stop();
+								$slider.removeClass( 'is-autoplay' );
 							}
+							console.log( swiper.autoplay );
 						}
 					},
 				} );

@@ -78,9 +78,10 @@ const Slider = {
 				if ( $slider.hasClass( 'js--slider--carousel' ) ) {
 					params.on = {
 						init () {
-							// this.autoplay.stop();
+							this.autoplay.stop();
 						},
 					};
+					// params.centeredSlides = true;
 				}
 
 				return params;

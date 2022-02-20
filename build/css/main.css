@@ -4730,7 +4730,7 @@ big {
   margin: 0;
 }
 
-.js--slider--smooth-auto .swiper-wrapper {
+.js--slider--carousel .swiper-wrapper {
   -webkit-transition-timing-function: linear;
        -o-transition-timing-function: linear;
           transition-timing-function: linear;

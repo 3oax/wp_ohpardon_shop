@@ -36,7 +36,7 @@ get_header(); ?>
             $section_intro_slider_items[] = [
               'img' => $slide_img,
               'xclass' => 'inset',
-              'xclass_wrapper' => 'mx-05 bg-black',
+              'xclass_wrapper' => 'mx-05 bg-grey-light',
               'wrapper' => true,
               'holder' => true,
               'lazy' => 'slider'
@@ -99,7 +99,7 @@ get_header(); ?>
                     $section_gentrification_slider_items[] = [
                       'img' => $slide_img,
                       'xclass' => 'inset',
-                      'xclass_wrapper' => 'mx-05 bg-black',
+                      'xclass_wrapper' => 'mx-05 bg-grey-light',
                       'wrapper' => true,
                       'holder' => true,
                       'lazy' => 'slider'
@@ -150,7 +150,7 @@ get_header(); ?>
             $section_reclaim_slider_items[] = [
               'img' => $slide_img,
               'xclass' => 'inset',
-              'xclass_wrapper' => 'mx-05 bg-black',
+              'xclass_wrapper' => 'mx-05 bg-grey-light',
               'wrapper' => true,
               'holder' => true,
               'lazy' => 'slider'
@@ -203,7 +203,7 @@ get_header(); ?>
                     $section_leerstand_slider_items[] = [
                       'img' => $slide_img,
                       'xclass' => 'inset',
-                      'xclass_wrapper' => 'bg-black',
+                      'xclass_wrapper' => 'bg-grey-light',
                       'wrapper' => true,
                       'holder' => true,
                       'lazy' => 'slider'
@@ -256,7 +256,7 @@ get_header(); ?>
                     $section_parasite_slider_items[] = [
                       'img' => $slide_img,
                       'xclass' => 'inset',
-                      'xclass_wrapper' => 'bg-black',
+                      'xclass_wrapper' => 'bg-grey-light',
                       'wrapper' => true,
                       'holder' => true,
                       'lazy' => 'slider'
@@ -310,7 +310,7 @@ get_header(); ?>
             $section_recycling_slider_items[] = [
               'img' => $slide_img,
               'xclass' => 'inset',
-              'xclass_wrapper' => 'mx-05 bg-black',
+              'xclass_wrapper' => 'mx-05 bg-grey-light',
               'wrapper' => true,
               'holder' => true,
               'lazy' => 'slider'

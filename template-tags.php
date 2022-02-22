@@ -30,7 +30,7 @@ if ( ! empty( $terms ) ){
 			
 			<ul class="list-none p-0 m-0 flex flex-wrap items-center -mx-05 -mt-1">
 				<?php foreach($term_array as $term): ?>
-					<li class="px-05 w-1/2 md:w-1/3 pt-1">
+					<li class="px-05 w-1/2 md:w-1/4 pt-1">
 						<a href="<?= get_term_link($term['obj']); ?>" class="ratio-square block relative overflow-hidden">
 							<?= oax_image([
 								'img' => $term['img'],

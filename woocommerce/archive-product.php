@@ -94,7 +94,7 @@ do_action( 'woocommerce_before_main_content' );
 					Filter
 				</button>
 
-				<div id="c-filters" class="c-filters w-full h-screen md:w-auto md:h-auto fixed md:relative md:pt-0">					
+				<div id="c-filters" class="c-filters w-full h-screen md:w-full md:h-auto fixed md:relative md:pt-0">					
 					<span class="pb-1 flex flex-wrap justify-between md:hidden">
 						<span class="inline-block h2">Filter:</span>
 						<span class="c-filters__close w-2 h-2 bg-black text-white flex items-center justify-center cursor-pointer" onclick="document.getElementById('c-filters').classList.remove('is-open');">&times;</span>

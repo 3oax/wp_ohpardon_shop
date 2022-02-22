@@ -18,7 +18,7 @@
             $link = '#';
             $title = 'Limitierte Drucke';
           ?>
-          <a href="<?= $link; ?>" class="ratio-square block bg-black-light relative">
+          <a href="<?= $link; ?>" class="ratio-square block bg-grey relative">
             <span class="absolute bottom-0 right-0 mb-1 mr-1">
               <span class="btn"><?= $title; ?></span>
             </span>

@@ -73,7 +73,7 @@ get_header(); ?>
             <div class="w-full md:w-1/4 flex justify-center items-center">
               <div class="text-center pb-2 md:pb-0">
                 <h2 class="h5"><?= $kallax_teaser['headline']; ?></h2>
-                <a href="<?= $kallax_link; ?>" class="btn btn--sm mt-05"><?= $kallax_link_title; ?></a>
+                <a href="<?= $kallax_link; ?>" class="btn mt-05"><?= $kallax_link_title; ?></a>
               </div>
             </div>
             <div class="w-1/2 md:w-2/5">
@@ -182,7 +182,7 @@ get_header(); ?>
             <div class="w-full md:w-1/3 py-2 md:py-0 flex justify-center items-center">
               <div class="text-center">
                 <h3 class="h5"><?= $malm_teaser['headline']; ?></h3>
-                <a href="<?= $malm_link; ?>" class="btn btn--sm mt-05"><?= $malm_link_title; ?></a>
+                <a href="<?= $malm_link; ?>" class="btn mt-05"><?= $malm_link_title; ?></a>
               </div>
             </div>
             <div class="w-1/2 md:w-1/3">
@@ -278,8 +278,16 @@ get_header(); ?>
       /**
        * Get Design Section
        */
-      echo oax_get_component('section-special-editions'); 
-	  ?>       
+      // echo oax_get_component('section-special-editions'); 
+	  ?>   
+
+    <?php 
+      /**
+       * Get About Section
+       */    
+      echo oax_get_component('section-about'); 
+    ?>
+
 
   </div>
 <?php

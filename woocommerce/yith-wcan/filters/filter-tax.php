@@ -22,7 +22,7 @@ if ( ! defined( 'YITH_WCAN' ) ) {
 
 <?php if ( $filter->has_relevant_terms() ) : ?>
 	<div
-		class="flex flex-wrap mb-05 w-full md:w-1/2 yith-wcan-filter <?php echo esc_attr( $filter->get_additional_classes() ); ?>"
+		class="flex flex-wrap mb-05 w-full yith-wcan-filter <?php echo esc_attr( $filter->get_additional_classes() ); ?>"
 		id="filter_<?php echo esc_attr( $preset->get_id() ); ?>_<?php echo esc_attr( $filter->get_id() ); ?>"
 		data-filter-type="<?php echo esc_attr( $filter->get_type() ); ?>"
 		data-filter-id="<?php echo esc_attr( $filter->get_id() ); ?>"
@@ -31,13 +31,13 @@ if ( ! defined( 'YITH_WCAN' ) ) {
 		data-relation="<?php echo esc_attr( $filter->get_relation() ); ?>"
 	>
 		
-		<div class="filter-title md:w-1/4 self-start">
-			<span id="yith-filter-title--<?php echo esc_attr( $preset->get_id() ); ?>_<?php echo esc_attr( $filter->get_id() ); ?>">
+		<div class="filter-title w-full text-center">
+			<span id="yith-filter-title--<?php echo esc_attr( $preset->get_id() ); ?>_<?php echo esc_attr( $filter->get_id() ); ?>" class="font-bold">
 				<?php echo $filter->render_title(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</span>
 		</div>
 
-		<div class="filter-content md:w-3/4 md:pr-1">
+		<div class="filter-content w-full pt-05">
 			<?php echo $filter->render_start(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 			<?php

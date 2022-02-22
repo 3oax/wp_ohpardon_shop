@@ -27,5 +27,5 @@ if ( ! defined( 'YITH_WCAN' ) ) {
 			<option class="filter-item select" value=""><?php echo esc_html( $all_label ); ?></option>
 		<?php endif; ?>
 <?php else : ?>
-	<ul class="filter-items list-none p-0 m-0 flex flex-wrap <?php echo esc_attr( $filter->get_items_container_classes() ); ?> level-<?php echo esc_attr( $level ); ?>" aria-describedby="yith-filter-title--<?php echo esc_attr( $preset->get_id() ); ?>_<?php echo esc_attr( $filter->get_id() ); ?>">
+	<ul class="filter-items list-none p-0 m-0 flex flex-wrap items-center justify-center <?php echo esc_attr( $filter->get_items_container_classes() ); ?> level-<?php echo esc_attr( $level ); ?>" aria-describedby="yith-filter-title--<?php echo esc_attr( $preset->get_id() ); ?>_<?php echo esc_attr( $filter->get_id() ); ?>">
 <?php endif; ?>

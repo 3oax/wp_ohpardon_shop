@@ -478,7 +478,8 @@ function oax_video($args){
 		$is_plyr = isset($args['videojs']) ? $args['videojs'] : false;
 		$is_lazy = isset($args['lazy']) ? $args['lazy'] : false;
 		$mime_type = isset($args['video']) && isset($args['video']['mime_type']) ? $args['video']['mime_type'] : 'video/mp4';
-
+		$mime_type = 'video/mp4';
+		
 		if(!empty($args['src'])){
 			if(is_array($args['src'])){
 
@@ -621,9 +622,11 @@ function oax_get_video_info($src){
 	$getID3 = new getID3;
 
 	$replaceUrl = esc_url( home_url( '/' ));
+	/*
 	if( null !== ICL_LANGUAGE_CODE && ICL_LANGUAGE_CODE !== 'de'){
 		$replaceUrl = str_replace( ICL_LANGUAGE_CODE . '/', '', $replaceUrl);
 	}
+	*/
 	$src = str_replace( $replaceUrl, ABSPATH, $src);
 
 	$video_info = $getID3->analyze($src);

@@ -3709,8 +3709,6 @@ function () {
                   swiper.autoplay.stop();
                   $slider.removeClass('is-autoplay');
                 }
-
-                console.log(swiper.autoplay);
               }
             }
           });

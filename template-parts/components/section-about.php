@@ -2,7 +2,7 @@
   $section_about = get_field('section_about', 'options');
 ?>
 <?php if( !empty($section_about) ): ?>
-<section class="c-section c-section-about pt-3 pb-5">
+<section class="c-section c-section-about pt-5 md:pt-75 pb-5">
   <div class="container pb-3">
     <div class="row flex flex-wrap justify-center">
       <div class="w-full md:w-1/2 text-center flex flex-wrap justify-center">

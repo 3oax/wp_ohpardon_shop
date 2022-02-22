@@ -5,7 +5,7 @@
 import Utils from '../utils';
 
 const loaderTimeoutMS = 650;
-const $loaderWrapper = $( '<div class="c-transition--timeout-loader">' );
+const $loaderWrapper = $( '<div class="c-transition--timeout-loader"></div>' );
 const	$loader = $( OAX.template.loader.html );
 gsap.set( $loaderWrapper, {
 	position: 'fixed',
@@ -21,8 +21,6 @@ gsap.set( $loader, {
 	position: 'absolute',
 	top: '50%',
 	left: '50%',
-	x: '-50%',
-	y: '-50%',
 } );
 $loaderWrapper.append( $loader );
 

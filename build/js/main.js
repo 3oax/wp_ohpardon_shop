@@ -2323,7 +2323,7 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint max-len: [0] */
 
 var loaderTimeoutMS = 650;
-var $loaderWrapper = $('<div class="c-transition--timeout-loader">');
+var $loaderWrapper = $('<div class="c-transition--timeout-loader"></div>');
 var $loader = $(OAX.template.loader.html);
 gsap.set($loaderWrapper, {
   position: 'fixed',
@@ -2338,9 +2338,7 @@ gsap.set($loaderWrapper, {
 gsap.set($loader, {
   position: 'absolute',
   top: '50%',
-  left: '50%',
-  x: '-50%',
-  y: '-50%'
+  left: '50%'
 });
 $loaderWrapper.append($loader);
 var TransitionNone = {

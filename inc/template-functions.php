@@ -480,6 +480,8 @@ function oax_video($args){
 		$mime_type = isset($args['video']) && isset($args['video']['mime_type']) ? $args['video']['mime_type'] : 'video/mp4';
 		$mime_type = 'video/mp4';
 		
+		$use_source_element = false;
+
 		if(!empty($args['src'])){
 			if(is_array($args['src'])){
 
@@ -519,7 +521,7 @@ function oax_video($args){
 		$video .= ' class="c-video ';
 
 		if($has_holder){
-			$video .= 'absolute pin-l pin-t w-full h-full object-fit-cover ';
+			$video .= 'absolute left-0 top-0 w-full h-full object-fit-cover ';
 		}
 
 		if($is_lazy){
@@ -592,19 +594,26 @@ function oax_video($args){
 			$video .= '"';
 		}
 
+		if( !$use_source_element && $is_lazy ) {
+			$video .= ' data-src="';
+				$video .= $src;
+			$video .= '"';
+		}
+
 		$video .= '>';
 
-		$video .= '<source ';
-		if($is_lazy === 'fail'){
-			$video .= 'data-src="';
-		} else {
+		// Source Element
+		//
+		if( $use_source_element ) {
+			$video .= '<source ';
 			$video .= 'src="';
+			$video .= $src;
+			$video .= '" type="';
+			$video .= $mime_type;
+			$video .= '"';
+			$video .= '>';
 		}
-		$video .= $src;
-		$video .= '" type="';
-		$video .= $mime_type;
-		$video .= '">';
-		
+
 		$video .= '</video>';
 
 		if($has_wrapper){

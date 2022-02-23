@@ -22,11 +22,21 @@ $themeConfig = oax_get_theme_config_json();
 		
 		<div class="site__footer-content">
 
+			<?php 
+				$shortcode_newsletter = get_field('shortcode_newsletter_form', 'options');
+				if( !empty($shortcode_newsletter) ):
+			?>
 			<div class="py-5 bg-white">
 				<div class="container">
-					Kontaktformular
+					<div class="row">
+						<div class="md:w-1/2 min-h-1"></div>
+						<div class="md:w-1/2">
+							<?= do_shortcode($shortcode_newsletter); ?>
+						</div>
+					</div>
 				</div>
 			</div>
+			<?php endif; ?>
 
 			<div class="site__footer-links bg-yellow">
 				<div class="container">

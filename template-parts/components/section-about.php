@@ -30,10 +30,11 @@
       <?php else: ?>
         <?= oax_video([
           'video' => $video['file'],
-          'poster' => $video['poster'],
+          'poster' => !empty($video['poster']) ? $video['poster'] : false,
           'xclass_wrapper' => 'bg-grey-light',
           'wrapper' => true,
-          'holder' => true
+          'holder' => true,
+          'lazy' => true
         ]); ?> 
       <?php endif; ?>
       <?php if( !empty($video['button']) ): ?>

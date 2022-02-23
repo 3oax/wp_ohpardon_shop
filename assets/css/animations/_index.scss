@@ -1,5 +1,4 @@
-.js--anim-header *,
-.v-post__header .entry-title .js--text-split--words > * {
+.js--anim-header * {
   will-change: transform;
 }
 .js--anim-content,
@@ -10,7 +9,6 @@
 .js--viewport[data-animation="fadeIn"]{
   will-change: opacity;
 }
-
 .js--viewport[data-animation="fadeInUp"],
 .js--viewport[data-animation="fadeInDown"],
 .js--viewport[data-animation="fadeInLeft"],
@@ -18,150 +16,4 @@
   will-change: opacity, transform;
 }
 
-.js .js--viewport[data-animation="splitWords"] .js--text-split--words {
-  // transform: translateY(100%);
-}
-
-
-/*
- * Section Animations
- */
-
-// Header
-.js .c-section--header:not(.v-post__header):not(.v-event__header) {
-  .entry-title:not(.entry-title--split) {
-    opacity: 0;
-    transform: translateY(20%);
-    transition: all .75s $animation-easing;
-  }
-  .entry-title--split {
-    overflow: hidden;
-    > span {
-      will-change: transform;
-      display: inline-block;
-      transform: translateY(100%);
-      transition: transform 1.2s $animation-easing;
-      &:nth-child(2){ transition-delay: 0.125s; }
-      &:nth-child(3){ transition-delay: 0.25s; }
-      &:nth-child(4){ transition-delay: 0.375s; }
-      &:nth-child(5){ transition-delay: 0.4s; }
-      &:nth-child(6){ transition-delay: 0.525s; }
-      &:nth-child(7){ transition-delay: 0.675s; }
-    }
-  }
-  .c-section__content-copy {
-    will-change: transform;
-    opacity: 0;
-    transform: translateY(20%);
-    transition: all .75s .4s $animation-easing;
-  }
-}
-.is-safari.js .c-section--header:not(.v-post__header):not(.v-event__header) {
-  .entry-title--split {
-    > span {
-      transform: translateY(101%);
-    }
-  }
-}
-
-.js.page--is-ready .c-section--header:not(.v-post__header):not(.v-event__header) {
-  .entry-title:not(.entry-title--split),
-  .c-section__content-copy {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-  .entry-title--split {
-    > span {
-      transform: translateY(0%);
-    }
-  }  
-}
-
-// Start Artikel
-.js .v-start__post-slider {
-  .c-slider {
-    position: relative;
-    z-index: 1;
-    will-change: opacity;
-  }
-  .c-slider__item {
-    opacity: 0;
-    transform: translateY(10%);
-    will-change: transform;
-    transition: all .75s 0.2s $animation-easing;    
-  }
-  .c-slider__item:nth-child(2){
-    transition-delay: 0.3s;
-  }
-  .c-slider__item:nth-child(3){
-    transition-delay: 0.4s;
-  }  
-}
-.js.page--is-ready .v-start__post-slider {
-  .c-slider__item {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-}
-
-// Archiv Seite
-.js .v-blog__search {
-  will-change: opacity, transform;
-  opacity: 0;
-  transform: translateY(20%);
-  transition: all .75s .1s $animation-easing; 
-}
-.js .v-blog__news-list-item {
-  will-change: opacity, transform;
-  opacity: 0;
-  transform: translateY(5%);
-  transition: all .75s .2s $animation-easing; 
-}
-.js.page--is-ready .v-blog__search {
-  opacity: 1;
-  transform: translateY(0%);
-}
-.js.page--is-ready .v-blog__news-list-item {
-  opacity: 1;
-  transform: translateY(0%);
-  &:nth-child(2){
-    transition-delay: 0.3s;
-  }
-}
-
-// Gründungsmap
-.js .v-gruendungsmap__map .c-section__content {
-  opacity: 0;
-  will-change: opacity;
-  transition: all .75s .4s $animation-easing;
-}
-.js.page--is-ready .v-gruendungsmap__map .c-section__content {
-  opacity: 1;
-}
-
-// Veranstaltungen
-.js .tribe-events-header,
-.js .tribe-events-c-subscribe-dropdown,
-.js .tribe-events-calendar-list__month-separator {
-  will-change: opacity, transform;
-  opacity: 0;
-  transform: translateY(20%);
-  transition: all .75s .25s $animation-easing;   
-}
-.js .v-event-list__item {
-  will-change: opacity, transform;
-  opacity: 0;
-  transform: translateY(10%);
-  transition: all .75s .25s $animation-easing;  
-  &:nth-of-type(2){
-    transition-delay: 0.35s;
-  }   
-}
-
-.js.page--is-ready .tribe-events-header,
-.js.page--is-ready .tribe-events-c-subscribe-dropdown,
-.js.page--is-ready .tribe-events-calendar-list__month-separator,
-.js.page--is-ready .v-event-list__item {
-  opacity: 1;
-  transform: translateY(0%);
-}
+@import "_micro-interactions";

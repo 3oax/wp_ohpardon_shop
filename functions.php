@@ -162,7 +162,7 @@ function oax_template_widgets_init() {
 		'name' => 'Footer Bottom',
 		'id' => 'footer-bottom',
 		'description' => 'Appears in the footer area',
-		'before_widget' => '<div id="%1$s" class="w-full md:w-2/5 text-left">',
+		'before_widget' => '<div id="%1$s" class="">',
 		'after_widget' => '</div>',
 		'before_title' => '<h6 class="site__footer-col-title sr-only">',
 		'after_title' => '</h6>',

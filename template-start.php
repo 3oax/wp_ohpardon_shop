@@ -56,11 +56,14 @@ get_header(); ?>
 
     </header>
 
-    <section class="c-section pb-5">
+    <section class="c-section c-section--product-teaser pb-5">
       <div class="c-section__content">
         
         <?php 
           $kallax_teaser = get_field('kallax');
+
+          if( !empty($kallax_teaser) && !empty($kallax_teaser['gallery']) ):
+
           $kallax_link = $kallax_teaser['link']['url'];
           $kallax_link_title = $kallax_teaser['link']['title'];
           $kallax_gallery = [
@@ -87,7 +90,7 @@ get_header(); ?>
                   'img' => $kallax_gallery['hover'][0],
                   'xclass' => 'inset object-cover',
                   'xattr' => [
-                    'style' => 'display: none;'
+                    'style' => 'opacity: 0; visibility: hidden;'
                   ],
                   'lazy' => true
                 ]); ?>                
@@ -105,7 +108,7 @@ get_header(); ?>
                     'img' => $kallax_gallery['hover'][1],
                     'xclass' => 'inset object-cover',
                     'xattr' => [
-                      'style' => 'display: none;'
+                      'style' => 'opacity: 0; visibility: hidden;'
                     ],
                     'lazy' => true
                   ]); ?>                        
@@ -123,7 +126,7 @@ get_header(); ?>
                   'img' => $kallax_gallery['hover'][2],
                   'xclass' => 'inset object-cover',
                   'xattr' => [
-                    'style' => 'display: none;'
+                    'style' => 'opacity: 0; visibility: hidden;'
                   ],
                   'lazy' => true
                 ]); ?>                
@@ -140,7 +143,7 @@ get_header(); ?>
                   'img' => $kallax_gallery['hover'][3],
                   'xclass' => 'inset object-cover',
                   'xattr' => [
-                    'style' => 'display: none;'
+                    'style' => 'opacity: 0; visibility: hidden;'
                   ],
                   'lazy' => true
                 ]); ?>               
@@ -148,9 +151,13 @@ get_header(); ?>
             </div>
           </div>
         </div>
+        <?php endif; ?>
 
         <?php 
           $malm_teaser = get_field('malm');
+          
+          if( !empty($malm_teaser) && !empty($malm_teaser['gallery']) ):
+
           $malm_link = $malm_teaser['link']['url'];
           $malm_link_title = $malm_teaser['link']['title'];
           $malm_gallery = [
@@ -172,7 +179,7 @@ get_header(); ?>
                     'img' => $malm_gallery['hover'][0],
                     'xclass' => 'inset object-cover',
                     'xattr' => [
-                      'style' => 'display: none;'
+                      'style' => 'opacity: 0; visibility: hidden;'
                     ],
                     'lazy' => true
                   ]); ?>                  
@@ -197,7 +204,7 @@ get_header(); ?>
                     'img' => $malm_gallery['hover'][1],
                     'xclass' => 'inset object-cover',
                     'xattr' => [
-                      'style' => 'display: none;'
+                      'style' => 'opacity: 0; visibility: hidden;'
                     ],
                     'lazy' => true
                   ]); ?>                 
@@ -216,7 +223,7 @@ get_header(); ?>
                     'img' => $malm_gallery['hover'][2],
                     'xclass' => 'inset object-cover',
                     'xattr' => [
-                      'style' => 'display: none;'
+                      'style' => 'opacity: 0; visibility: hidden;'
                     ],
                     'lazy' => true
                   ]); ?>                 
@@ -235,7 +242,7 @@ get_header(); ?>
                     'img' => $malm_gallery['hover'][3],
                     'xclass' => 'inset object-cover',
                     'xattr' => [
-                      'style' => 'display: none;'
+                      'style' => 'opacity: 0; visibility: hidden;'
                     ],
                     'lazy' => true
                   ]); ?>              
@@ -254,7 +261,7 @@ get_header(); ?>
                     'img' => $malm_gallery['hover'][4],
                     'xclass' => 'inset object-cover',
                     'xattr' => [
-                      'style' => 'display: none;'
+                      'style' => 'opacity: 0; visibility: hidden;'
                     ],
                     'lazy' => true
                   ]); ?>                 
@@ -263,6 +270,7 @@ get_header(); ?>
             </div>                             
           </div>
         </div>
+        <?php endif; ?>
 
       </div>
     </section>

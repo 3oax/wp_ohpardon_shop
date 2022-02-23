@@ -12,11 +12,33 @@ $themeConfig = oax_get_theme_config_json();
 ?>
 
 			<?php get_template_part( 'template-parts/page-modals' ); ?>	
-			<?php if(isset($themeConfig['is_ajax']) && $themeConfig['is_ajax'] == 1) get_template_part( 'template-parts/page-scripts' ); ?>
+			<?php // if(isset($themeConfig['is_ajax']) && $themeConfig['is_ajax'] == 1) get_template_part( 'template-parts/page-scripts' ); ?>
 
 		</div>	
 		
 	</main>
+
+	<style>
+		#site__footer .site__footer-links--bottom ul {
+			display: block;
+		}
+		#site__footer .site__footer-links--bottom li {
+			display: block;
+			text-align: center;
+		}
+		#site__footer .site__footer-links--bottom a,
+		#site__footer .site__footer-links--bottom a:hover {
+			color: white;
+		}
+		@media (min-width: 992px) {
+			#site__footer .site__footer-links--bottom ul {
+				display: flex;
+			}
+			#site__footer .site__footer-links--bottom li + li {
+				margin-left: 1rem;
+			}			
+		}
+	</style>
 
 	<footer id="site__footer" class="site__footer text-sm relative text-center md:text-left">
 		
@@ -26,11 +48,11 @@ $themeConfig = oax_get_theme_config_json();
 				$shortcode_newsletter = get_field('shortcode_newsletter_form', 'options');
 				if( !empty($shortcode_newsletter) ):
 			?>
-			<div class="py-5 bg-white">
+			<div class="site__footer-newsletter py-5 bg-grey-light">
+
 				<div class="container">
-					<div class="row flex flex-wrap ">
-						<div class="md:w-1/2 min-h-1"></div>
-						<div class="md:w-1/2">
+					<div class="row flex flex-wrap justify-end">
+						<div class="w-full md:w-1/2">
 							<?= do_shortcode($shortcode_newsletter); ?>
 						</div>
 					</div>
@@ -38,15 +60,11 @@ $themeConfig = oax_get_theme_config_json();
 			</div>
 			<?php endif; ?>
 
-			<div class="site__footer-links bg-yellow">
+			<div class="site__footer-links site__footer-links--bottom bg-black">
 				<div class="container">
-					<div class="py-2 md:py-1 row flex flex-wrap w-full md:justify-end">					
-						<div class="w-full md:w-auto text-xs mt-1 md:mt-0">
-							<ul>
-								<li class="inline-block"><a target="_blank" rel="nofollow,noopener" href="#"><?= __( 'Datenschutz', 'oax-ohpardon' ); ?></a></li>
-								<li class="inline-block"><a target="_blank" rel="nofollow,noopener" href="#"><?= __( 'Impressum', 'oax-ohpardon' ); ?></a></li>
-								<li class="inline-block"><a target="_blank" rel="nofollow,noopener" href="#"><?= __( 'AGB', 'oax-ohpardon' ); ?></a></li>
-							</ul>
+					<div class="py-2 md:py-1 row flex flex-wrap w-full justify-center md:justify-end">					
+						<div class="md:w-auto text-xs mt-1 md:mt-0">
+							<?php dynamic_sidebar('footer-bottom'); ?>
 						</div>
 					</div>
 				</div>
@@ -65,8 +83,7 @@ $themeConfig = oax_get_theme_config_json();
 
 <?php get_template_part( 'template-parts/site-modals' ); ?>	
 
-<?php if(!isset($_SESSION['oax_preloader'])) $_SESSION['oax_preloader'] = 'TRANSITION'; ?>
-<?php get_template_part( 'template-parts/site-transition' ); ?>	
+<?php // get_template_part( 'template-parts/site-transition' ); ?>	
 
 <?php wp_footer(); ?>
 

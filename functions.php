@@ -209,7 +209,13 @@ function oax_template_setup_scripts() {
 	//
 	if( class_exists( 'WPCF7' ) ) {
 		wp_dequeue_script( 'contact-form-7' );
+		wp_enqueue_script( 'contact-form-7' );
+		wp_deregister_style( 'contact-form-7' );
+		wp_dequeue_style( 'contact-form-7' );
 	}
+
+	wp_deregister_style( 'jetpack_css' );
+	wp_dequeue_style( 'jetpack_css' );
 
 	wp_dequeue_style( 'wp-block-library' );
 	wp_dequeue_style( 'wp-block-library-theme' );

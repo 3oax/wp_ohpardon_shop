@@ -542,9 +542,6 @@ const APP = {
 			$forms.each( ( i, el ) => {
 				wpcf7.init( el );
 			} );
-			if ( Utils.isset( window.initDragDrop ) && typeof window.initDragDrop === 'function' ){
-				window.initDragDrop();
-			}
 		}
 	},
 

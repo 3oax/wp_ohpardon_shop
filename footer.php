@@ -28,7 +28,7 @@ $themeConfig = oax_get_theme_config_json();
 			?>
 			<div class="py-5 bg-white">
 				<div class="container">
-					<div class="row">
+					<div class="row flex flex-wrap ">
 						<div class="md:w-1/2 min-h-1"></div>
 						<div class="md:w-1/2">
 							<?= do_shortcode($shortcode_newsletter); ?>

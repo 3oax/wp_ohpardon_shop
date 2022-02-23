@@ -5482,10 +5482,6 @@ var APP = {
       $forms.each(function (i, el) {
         wpcf7.init(el);
       });
-
-      if (_app_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isset(window.initDragDrop) && typeof window.initDragDrop === 'function') {
-        window.initDragDrop();
-      }
     }
   },
   initWoocommerce: function initWoocommerce(container) {

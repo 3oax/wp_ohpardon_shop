@@ -3248,7 +3248,17 @@ textarea {
 /* HEADINGS */
 
 .entry-title {
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.entry-title--lg {
   font-size: 4.5rem;
+  line-height: 1;
+}
+
+.entry-title--sm {
+  font-size: 3.75rem;
   line-height: 1;
 }
 

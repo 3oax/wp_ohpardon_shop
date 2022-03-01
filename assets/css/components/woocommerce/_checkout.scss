@@ -26,7 +26,7 @@
 
 p.form-row {
 
-  .woocommerce-checkout & {
+  form.woocommerce-checkout & {
     padding: 0 0.5rem;
   }
 
@@ -50,7 +50,7 @@ p.form-row {
   }
 
   width: 100%;
-  .woocommerce-checkout & {
+  form.woocommerce-checkout & {
     @media(min-width: $break__medium){
       width: 50%;
     }  

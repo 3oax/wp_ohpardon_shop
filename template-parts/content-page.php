@@ -31,7 +31,7 @@
   <?php else: ?>
   
     <?php oax_get_template_part('template-parts/page-header', [
-      'bg_color' => 'bg-green',
+      'bg_color' => 'bg-grey-light',
       
       'page_header_title' => get_the_title(),
       
@@ -45,7 +45,7 @@
 
 	<?php endif; ?>
 
-	<section class="c-section pt-3 pb-1 v-page__body">
+	<section class="c-section pt-3 pb-3 v-page__body">
 		<div class="container">
       <div class="v-page__content">
 			  <?php the_content(); ?>

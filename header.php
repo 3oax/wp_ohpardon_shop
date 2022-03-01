@@ -108,7 +108,7 @@ $namespace = oax_get_current_namespace();
 	<div class="c-cart__header w-full pt-15 lg:pt-2 px-15 lg:px-2">
 		<span class="h2 c-cart__title"><?= __( 'Cart', 'woocommerce' ); ?></span>
 	</div>
-	<div class="c-cart__scroll h-full w-full p-15 lg:p-2 overflow-scroll">
+	<div class="w-full p-15 lg:p-2">
 		<div class="widget_shopping_cart_content">
 			<?php woocommerce_mini_cart(); ?>
 		</div>	

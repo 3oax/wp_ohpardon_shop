@@ -67,6 +67,11 @@ function oax_remove_and_add_wc_scripts(){
 		wp_dequeue_script( 'yith-wcan-shortcodes' );
 	}
 
+	// PayPal
+	//
+	wp_dequeue_script('ppcp-smart-button');
+	wp_enqueue_script('ppcp-smart-button');
+
 	// wp_dequeue_script( 'the-neverending-homepage' );
 	// wp_enqueue_script( 'the-neverending-homepage' );
 }
@@ -223,6 +228,12 @@ remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_pr
 // -> Remove Variation wählen and add to card in loop
 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
 
+// -> Move PayPal Buttons on Single Page
+//
+add_filter('woocommerce_paypal_payments_single_product_renderer_hook', function() {
+	return 'woocommerce_after_add_to_cart_form';
+});	
+
 if( defined( 'YITH_WCWL' ) && ! function_exists( 'yith_wcwl_move_wishlist_button' ) ){
 	function yith_wcwl_move_wishlist_button(){
 		echo do_shortcode( '[yith_wcwl_add_to_wishlist]' );
@@ -251,6 +262,32 @@ function oax_yith_wcan_filter_title_tag(){
 	return '';
 }
 add_filter( 'yith_wcan_filter_title_tag', 'yith_wcan_filter_title_tag' );
+
+/**
+ * Mini Cart (Basket on site)
+ */
+add_action( 'woocommerce_widget_shopping_cart_buttons', function(){
+	// Removing Buttons
+	remove_action( 'woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_button_view_cart', 10 );
+	remove_action( 'woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_proceed_to_checkout', 20 );
+
+	// Adding customized Buttons
+	// add_action( 'woocommerce_widget_shopping_cart_buttons', 'custom_widget_shopping_cart_button_view_cart', 10 );
+	add_action( 'woocommerce_widget_shopping_cart_buttons', 'custom_widget_shopping_cart_proceed_to_checkout', 20 );
+}, 1 );
+
+// Custom cart button
+function custom_widget_shopping_cart_button_view_cart() {
+	$original_link = wc_get_cart_url();
+	echo '<a href="' . esc_url( $original_link ) . '" class="button wc-forward">' . esc_html__( 'View cart', 'woocommerce' ) . '</a>';
+}
+
+// Custom Checkout button
+function custom_widget_shopping_cart_proceed_to_checkout() {
+	$original_link = wc_get_checkout_url();
+	$link_title = 'Zur Kasse';
+	echo '<a href="' . esc_url( $original_link ) . '" class="button checkout wc-forward">' . $link_title . '</a>';
+}
 
 /******************************
  ****** WooCommerce END *******

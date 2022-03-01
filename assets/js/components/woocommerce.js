@@ -130,6 +130,18 @@ export default class WooCommerce {
 				$variationForm.WooVariationSwatches(); // eslint-disable-line
 			}
 		}
+		
+		/* eslint-disable */
+		if ( Utils.isset( paypal ) && Utils.isset( PayPalCommerceGateway ) ) {
+			/*
+			 * If PayPal Buttons Empty
+			 */
+			if ( ! $.trim( $container.find( PayPalCommerceGateway.button.wrapper ).html() ).length ){
+				// paypal.Buttons( PayPalCommerceGateway.button.style ).render(	PayPalCommerceGateway.button.wrapper );
+				paypal.Buttons().render( PayPalCommerceGateway.button.wrapper );
+			}
+		}
+		/* eslint-enable */
 	}
   
 	initVariationAddToCart(){
@@ -183,8 +195,8 @@ export default class WooCommerce {
 	}
 
 	initJetpackInfiniteScroll(){
-		if ( Utils.isset( infiniteScroll ) ){
-			infiniteScroll.scroller = new infiniteScroll.scroller.constructor( infiniteScroll.settings, true );
+		if ( Utils.isset( window.infiniteScroll ) ){
+			window.infiniteScroll.scroller = new infiniteScroll.scroller.constructor( infiniteScroll.settings, true );
 		}
 	}
 

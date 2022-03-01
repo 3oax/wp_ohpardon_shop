@@ -3927,6 +3927,20 @@ function () {
           $variationForm.WooVariationSwatches(); // eslint-disable-line
         }
       }
+      /* eslint-disable */
+
+
+      if (_app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset(paypal) && _app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset(PayPalCommerceGateway)) {
+        /*
+         * If PayPal Buttons Empty
+         */
+        if (!$.trim($container.find(PayPalCommerceGateway.button.wrapper).html()).length) {
+          // paypal.Buttons( PayPalCommerceGateway.button.style ).render(	PayPalCommerceGateway.button.wrapper );
+          paypal.Buttons().render(PayPalCommerceGateway.button.wrapper);
+        }
+      }
+      /* eslint-enable */
+
     }
   }, {
     key: "initVariationAddToCart",
@@ -3986,8 +4000,8 @@ function () {
   }, {
     key: "initJetpackInfiniteScroll",
     value: function initJetpackInfiniteScroll() {
-      if (_app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset(infiniteScroll)) {
-        infiniteScroll.scroller = new infiniteScroll.scroller.constructor(infiniteScroll.settings, true);
+      if (_app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset(window.infiniteScroll)) {
+        window.infiniteScroll.scroller = new infiniteScroll.scroller.constructor(infiniteScroll.settings, true);
       }
     }
   }, {

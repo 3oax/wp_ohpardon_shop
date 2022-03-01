@@ -296,6 +296,24 @@ get_header(); ?>
       echo oax_get_component('section-about'); 
     ?>
 
+    <section class="v-start__usps bg-black py-3 text-white">
+      <div class="container">
+        <div class="row flex flex-wrap justify-center">
+          <div class="md:w-1/2">
+            <?php 
+              /**
+               * USP Icons
+               */    
+              echo oax_get_component('list-usp-icons', [
+                'xclass_icons' => 'px-2 md:px-2'
+              ]); 
+            ?>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
 
   </div>
 <?php

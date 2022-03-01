@@ -3177,6 +3177,7 @@ ol {
 
 ul {
   list-style: disc;
+  padding-left: 1rem;
 }
 
 ol {
@@ -5612,7 +5613,7 @@ p.form-row {
   width: 100%;
 }
 
-.woocommerce-checkout p.form-row {
+form.woocommerce-checkout p.form-row {
   padding: 0 0.5rem;
 }
 
@@ -5639,7 +5640,7 @@ p.form-row .required {
 }
 
 @media (min-width: 992px) {
-  .woocommerce-checkout p.form-row {
+  form.woocommerce-checkout p.form-row {
     width: 50%;
   }
 }

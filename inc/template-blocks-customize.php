@@ -6,7 +6,7 @@ add_filter( 'render_block', function( $block_content, $block ) {
    * Heading
    */
 	if ( 'core/heading' === $block['blockName'] ) {	
-
+		/*
 		$block_content_random_int = rand(pow(10, 4-1), pow(10, 4)-1);
     $block_content_random_id = 'v-post__heading-svg--' . $block_content_random_int;
 		$block_content_html_id = 'v-post__heading--'. $block_content_random_int;
@@ -43,6 +43,7 @@ add_filter( 'render_block', function( $block_content, $block ) {
 			),
 			$block_content
 		);
+		*/
 	}
 
 	if( 'core/paragraphcore/embed' === $block['blockName'] ){

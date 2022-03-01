@@ -124,12 +124,12 @@
       margin-bottom: -1.5rem;
     }
 
-    form.cart + .legal-price-info  {
+    form.cart.variations_form + .legal-price-info  {
       margin-top: -1.5rem;
     } 
 
     .variations + p.price,
-    form.cart + .legal-price-info {
+    form.cart.variations_form + .legal-price-info {
       width: 50%;
       font-size: 0.75rem;
     }

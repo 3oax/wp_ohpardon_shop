@@ -6398,12 +6398,12 @@ p.form-row.validate-required.woocommerce-validated > .woocommerce-input-wrapper 
   margin-bottom: -1.5rem;
 }
 
-.v-product .summary form.cart + .legal-price-info {
+.v-product .summary form.cart.variations_form + .legal-price-info {
   margin-top: -1.5rem;
 }
 
 .v-product .summary .variations + p.price,
-.v-product .summary form.cart + .legal-price-info {
+.v-product .summary form.cart.variations_form + .legal-price-info {
   width: 50%;
   font-size: 0.75rem;
 }

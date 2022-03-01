@@ -101,7 +101,6 @@ do_action( 'woocommerce_before_main_content' );
 					</span>
 					<?php 
 						echo do_shortcode('[yith_wcan_filters slug="default-preset"]');
-						// echo do_shortcode('[woof sid="auto_shortcode" autohide=0]');
 					?>			
 					<?php 
 						/**
@@ -120,7 +119,7 @@ do_action( 'woocommerce_before_main_content' );
 			</div>
 		</div>
 
-		<div class="container container-lg">
+		<div class="container container-lg pb-2 md:pb-5">
 			<?php
 			if ( woocommerce_product_loop() ) {
 				
@@ -153,7 +152,7 @@ do_action( 'woocommerce_before_main_content' );
 				 *
 				 * @hooked wc_no_products_found - 10
 				 */
-				echo '<div class="text-center pt-3 pb-2 h4">';
+				echo '<div class="text-center pt-3 h4">';
 					do_action( 'woocommerce_no_products_found' );
 				echo '</div>';
 			}

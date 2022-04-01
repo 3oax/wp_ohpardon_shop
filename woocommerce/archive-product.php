@@ -17,6 +17,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
+global $wp_query;
+
 get_header( 'shop' );
 
 /**
@@ -62,6 +64,7 @@ do_action( 'woocommerce_before_main_content' );
 			do_action( 'woocommerce_sidebar' );
 		?>
 		
+		<!--
 		<style>
 			.c-filters {
 				transform: translateX(-100%);
@@ -86,22 +89,32 @@ do_action( 'woocommerce_before_main_content' );
 				}
 			}
 		</style>
-
+		-->
+		
+		
 		<div class="container container-lg">
 			<div class="pb-1 flex">
 				
-				<button class="btn c-filters__toggle md:hidden" aria-expanded="false" aria-controls="c-filters" onclick="document.getElementById('c-filters').classList.toggle('is-open');">
+				<!--
+				<button class="btn c-filters__toggle hidden" aria-expanded="false" aria-controls="c-filters" onclick="document.getElementById('c-filters').classList.toggle('is-open');">
 					Filter
 				</button>
-
+				-->
+				
 				<div id="c-filters" class="c-filters w-full h-screen md:w-full md:h-auto fixed md:relative md:pt-0">					
-					<span class="pb-1 flex flex-wrap justify-between md:hidden">
+							
+					<span class="pb-1 flex flex-wrap justify-between hidden">
 						<span class="inline-block h2">Filter:</span>
 						<span class="c-filters__close w-2 h-2 bg-black text-white flex items-center justify-center cursor-pointer" onclick="document.getElementById('c-filters').classList.remove('is-open');">&times;</span>
 					</span>
-					<?php 
-						echo do_shortcode('[yith_wcan_filters slug="default-preset"]');
-					?>			
+					<?php if( is_product_category() ): ?>
+						<?php $current_product_cat = $wp_query->get_queried_object(); ?>
+						<?php if(trim(strtolower($current_product_cat->name)) !== 'unikate'): // unikate ?>
+							<?php 						
+								echo do_shortcode('[yith_wcan_filters slug="default-preset"]');
+							?>			
+						<?php endif; ?>
+					<?php endif; ?>
 					<?php 
 						/**
 						 * Hook: woocommerce_before_shop_loop.

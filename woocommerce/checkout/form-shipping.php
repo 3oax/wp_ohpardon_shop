@@ -49,6 +49,7 @@ defined( 'ABSPATH' ) || exit;
 	<?php endif; ?>
 </div>
 
+<?php if(!empty($checkout->get_checkout_fields( 'order' ))): ?>
 <div class="woocommerce-additional-fields p-1 lg:p-2 bg-grey-light mt-1">
 	<?php do_action( 'woocommerce_before_order_notes', $checkout ); ?>
 
@@ -70,3 +71,4 @@ defined( 'ABSPATH' ) || exit;
 
 	<?php do_action( 'woocommerce_after_order_notes', $checkout ); ?>
 </div>
+<?php endif; ?>

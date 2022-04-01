@@ -38,7 +38,7 @@
         ]); ?> 
       <?php endif; ?>
       <?php if( !empty($video['button']) ): ?>
-        <a class="btn"<?php if( !empty($video['button']['target']) ): ?> target="<?= $video['button']['target']; ?>"<?php endif; ?> style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);" href="<?= $video['button']['url']; ?>"><?= $video['button']['title']; ?></a>
+        <a class="btn glightbox no-barba" type="video"<?php if( !empty($video['button']['target']) ): ?> target="<?= $video['button']['target']; ?>"<?php endif; ?> style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);" href="<?= $video['button']['url']; ?>"><?= $video['button']['title']; ?></a>
       <?php endif; ?>
     </div>
   <?php endif; ?>

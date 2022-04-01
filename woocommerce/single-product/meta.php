@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $product;
 ?>
-<div class="product_meta v-product__meta">
+<div class="product_meta v-product__meta md:text-sm">
 
 	<?php do_action( 'woocommerce_product_meta_start' ); ?>
 

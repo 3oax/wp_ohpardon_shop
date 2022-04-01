@@ -23,3 +23,4 @@
 		}
 	})
 </script>
+<link href="<?= oax_asset('css/lib/glightbox.min.css'); ?>" rel="stylesheet" media="print" onload="this.media='all'">

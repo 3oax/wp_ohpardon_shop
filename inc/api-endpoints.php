@@ -30,7 +30,7 @@ function createDiscountCouponForNewSubsciber(){
     $email_cleaned = preg_replace("/[^a-zA-Z]/", "", $email[0]);
     $random_code = $email_cleaned . '-' . $random_code;
   } else {
-    return "false";
+    return "no email";
   }
 
   $coupon_code = 'yo-' . $random_code; // Code
@@ -56,10 +56,15 @@ function createDiscountCouponForNewSubsciber(){
   update_post_meta($new_coupon_id, 'exclude_product_ids', '');
   update_post_meta($new_coupon_id, 'usage_limit', '1');
   update_post_meta($new_coupon_id, 'expiry_date', '');
-  update_post_meta($new_coupon_id, 'apply_before_tax', 'yes');
+  update_post_meta($new_coupon_id, 'apply_before_tax', 'no');
   update_post_meta($new_coupon_id, 'free_shipping', 'no');
   
-  return "ok";
+  if ( wp_mail($_POST['data']['email'], 'Dein Gutscheincode!', $coupon_code) ) {
+    return "ok";
+  } else {
+    return "mail failed";
+  }
+
 }
 
 add_action('rest_api_init', function () {

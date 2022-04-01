@@ -48,11 +48,19 @@ $themeConfig = oax_get_theme_config_json();
 				$shortcode_newsletter = get_field('shortcode_newsletter_form', 'options');
 				if( !empty($shortcode_newsletter) ):
 			?>
-			<div class="site__footer-newsletter py-5 bg-grey-light">
+			<div class="site__footer-newsletter bg-grey-light">
 
-				<div class="container">
-					<div class="row flex flex-wrap justify-end">
+				<div class="md:pl-0 md:pr-10">
+					<div class="row flex flex-wrap justify-end items-center">
 						<div class="w-full md:w-1/2">
+							<figure class="ratio-square relative w-full overflow-hidden">
+								<?= oax_image([
+									'src' => oax_asset('img/general/bg-newsletter.jpg'),
+									'xclass' => 'object-fit-cover inset'
+								]); ?>
+							</figure>						
+						</div>
+						<div class="w-full md:w-1/2 px-15 md:pr-0 md:pl-75 py-3 md:py-0">
 							<?= do_shortcode($shortcode_newsletter); ?>
 						</div>
 					</div>

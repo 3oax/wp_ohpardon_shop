@@ -17,7 +17,20 @@
 
 defined( 'ABSPATH' ) || exit;
 ?>
-
+<style>
+	.woocommerce-columns--2 { margin-top: 2rem; }
+	@media (min-width: 992px){
+		.woocommerce-columns--2 {
+			display: flex;
+		}
+		.woocommerce-columns--2 > .woocommerce-column--1 {
+			width: 50%;
+		}
+		.woocommerce-MyAccount-content section section address {
+			margin-bottom: 0;
+		}		
+	}	
+</style>
 <div class="woocommerce-order">
 
 	<?php
@@ -39,9 +52,14 @@ defined( 'ABSPATH' ) || exit;
 
 		<?php else : ?>
 
-			<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Thank you. Your order has been received.', 'woocommerce' ), $order ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+			<div class="h4 text-center font-bold">
+				<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received pb-0"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Thank you. Your order has been received.', 'woocommerce' ), $order ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+			</div>
+			<div class="pb-3">
+				<p class="text-center mt-05">Check deine Mails etc.</p>
+			</div>
 
-			<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
+			<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details p-1 pl-2 md:p-2 md:pl-3 mb-2" style="border: 1px solid var(--color__grey);">
 
 				<li class="woocommerce-order-overview__order order">
 					<?php esc_html_e( 'Order number:', 'woocommerce' ); ?>

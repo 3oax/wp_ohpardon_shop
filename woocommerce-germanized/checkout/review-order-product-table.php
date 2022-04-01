@@ -34,7 +34,7 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 	if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 		?>
         <tr class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
-            <td class="product-name pt-1 pb-1">
+            <td class="product-name">
 							<div class="flex flex-wrap items-center">
 							
 								<?php if ( get_option( 'woocommerce_gzd_display_checkout_thumbnails' ) == 'yes' ) : ?>
@@ -47,8 +47,8 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 
 								<?php endif; ?>
 
-									<?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;'; ?>
-									<?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times; %s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?>
+									<?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ''; ?>
+									<?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity pl-1 block">' . sprintf( '&times; %s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?>
 
 									<?php echo wc_get_formatted_cart_item_data( $cart_item ); ?>
 
@@ -60,10 +60,10 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 
 							</div>
             </td>
-						<td class="product-total text-right pr-1 pt-1">
+						<td class="product-total text-right" data-title="Einzelpreis">
 							<?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, 1 ), $cart_item, $cart_item_key ); ?>
 						</td>
-            <td class="product-total text-right pr-1 pt-1">
+            <td class="product-total text-right" data-title="<?php esc_html_e( 'Subtotal', 'woocommerce' ); ?>">
 							<?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); ?>
             </td>
         </tr>

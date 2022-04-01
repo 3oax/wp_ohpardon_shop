@@ -43,7 +43,7 @@ $wrapper_classes   = apply_filters(
 			
 		<div class="relative w-full md:w-3/5">
 			<?php
-			$thumbnails = $product->get_gallery_image_ids();
+			$thumbnails = false; // $product->get_gallery_image_ids();
 
 			if ( $product->get_image_id() ) {
 				// $html = wc_get_gallery_image_html( $post_thumbnail_id, true );
@@ -61,7 +61,7 @@ $wrapper_classes   = apply_filters(
 									'wrapper' => true,
 									'xclass_wrapper' => 'overflow-hidden inset woocommerce-product-gallery__image',
 									// 'placeholder' => true,
-									'lazy' => true
+									'lazy' => false
 								]);
 							echo '</div>';
 						foreach ( $thumbnails as $thumbnail ) {
@@ -102,12 +102,14 @@ $wrapper_classes   = apply_filters(
 			?>
 		</div>
 		
+		<!--
 		<div class="w-full relative md:w-3/5">
 			<div class="flex flex-wrap">
 				<?php 
-					do_action( 'woocommerce_product_thumbnails' );
+					// do_action( 'woocommerce_product_thumbnails' );
 				?>
 			</div>
 		</div>
+		-->
 	</div>
 </div>

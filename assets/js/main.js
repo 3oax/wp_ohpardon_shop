@@ -160,7 +160,7 @@ const APP = {
 		/**
 		 * Init Lightbox
 		 */
-		// NativeWPLightbox.init( container );
+		Utils.initLightbox( container );	
 
 		/**
 		 * Init Instafeed
@@ -622,6 +622,11 @@ const APP = {
 		 * Init Sliders
 		 */
 		Utils.initSliders( container );
+
+		/**
+		 * Init Lightbox
+		 */
+		Utils.initLightbox( container );		
 	
 		/**
 		 * Inject SVG's

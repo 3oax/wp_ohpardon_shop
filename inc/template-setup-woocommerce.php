@@ -1,4 +1,9 @@
 <?php
+/**
+ * Setup Woocommerce
+ */
+// require get_template_directory() . '/inc/woocommerce/woocommerce-coupon-email.php';
+
 /******************************
  ****** WooCommerce START *****
  ******************************/
@@ -71,6 +76,12 @@ function oax_remove_and_add_wc_scripts(){
 	//
 	wp_dequeue_script('ppcp-smart-button');
 	wp_enqueue_script('ppcp-smart-button');
+
+
+	// Iconic Variations (Linked Variations)
+	//
+	wp_dequeue_script('iconic-wlv');
+
 
 	// wp_dequeue_script( 'the-neverending-homepage' );
 	// wp_enqueue_script( 'the-neverending-homepage' );
@@ -199,20 +210,25 @@ function oax_woocommerce_cart_item_name( $title, $item, $item_key ) {
 	}
 
 	if( isset($title_sr) ){
-		return '<span class="block"><span class="block">'. $title .'</span><span class="block text-xs font-normal">'. $title_sr.'</span></span>';
+		$_title = $title;
+		$title = '<span class="block">';
+			$title .= '<strong class="block">'. $_title .'</strong>';
+			$title .= '<span class="block py-05">'. $title_sr .'</span>';
+		$title .= '</span>'; 
+		return $title;
 	}
 
-	return $title;
+	return '<strong class="block">' . $title . '</strong>';
 }
 add_filter( 'woocommerce_cart_item_name', 'oax_woocommerce_cart_item_name', 10, 3 );
+add_filter( 'woocommerce_order_item_name', 'oax_woocommerce_cart_item_name', 10, 3 );
 
 /*
  * Move Templates 
  */
-
 // -> Price
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
-add_action( 'woocommerce_after_variations_table', 'woocommerce_template_single_price', 45 );
+// remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+// add_action( 'woocommerce_after_variations_table', 'woocommerce_template_single_price', 45 );
 
 // -> META (Sku / Kategorie)
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
@@ -233,6 +249,16 @@ remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add
 add_filter('woocommerce_paypal_payments_single_product_renderer_hook', function() {
 	return 'woocommerce_after_add_to_cart_form';
 });	
+
+/**
+ * Checkout Fields
+ */
+// remove Order Notes from checkout field in Woocommerce
+add_filter( 'woocommerce_checkout_fields' , 'alter_woocommerce_checkout_fields' );
+function alter_woocommerce_checkout_fields( $fields ) {
+	unset($fields['order']['order_comments']);
+	return $fields;
+}
 
 if( defined( 'YITH_WCWL' ) && ! function_exists( 'yith_wcwl_move_wishlist_button' ) ){
 	function yith_wcwl_move_wishlist_button(){
@@ -287,6 +313,49 @@ function custom_widget_shopping_cart_proceed_to_checkout() {
 	$original_link = wc_get_checkout_url();
 	$link_title = 'Zur Kasse';
 	echo '<a href="' . esc_url( $original_link ) . '" class="button checkout wc-forward">' . $link_title . '</a>';
+}
+
+add_filter('iconic_wlv_group_attribute_term_data', 'oax_iconic_wlv_group_attribute_term_data', 10, 2);
+function oax_iconic_wlv_group_attribute_term_data($term_data, $visible_product_id){
+	$product_design = false;
+	$product_id = $term_data['linked_variation_data']['variation']['id'];
+
+	if( $term_data['has_image'] ){
+		$design_terms = wp_get_post_terms( $product_id, 'product_tag' );
+		if( isset($design_terms) && !empty($design_terms) ) {
+			$product_design = $design_terms[0];
+		}
+		if( $product_design !== false ){				
+			$design_image_id = get_term_meta( $product_design->term_id, 'thumbnail_id', true );
+			$design_thumbnail_img = wp_get_attachment_image_src( $design_image_id, 'thumbnail' );
+
+			if( !$term_data['current'] ){
+				$content = '<a class="iconic-wlv-terms__term-content iconic-wlv-terms__term-content--link" style="width: 50px;" href="';
+				$content .= $term_data['url'];
+				$content .= '">';
+			} else {
+				$content = '<span class="iconic-wlv-terms__term-content" style="width: 50px;">';
+			}
+
+			$content .= oax_image([
+				'src' => $design_thumbnail_img[0],
+				'lazy' => false,
+				'holder' => true,
+				'wrapper' => true,
+				'xclass' => 'inset'
+			]);
+
+			if( !$term_data['current'] ){
+				$content .= '</a>';
+			} else {
+				$content .= '</span>';
+			}
+
+			$term_data['content'] = $content;
+		}
+	}
+
+	return $term_data;
 }
 
 /******************************

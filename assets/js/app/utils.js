@@ -37,6 +37,16 @@ const Utils = {
 		Slider.swiper.init( container );
 	},
 
+	initLightbox( container ){
+		if ( $( container ).find( '.glightbox' ) ){
+			const lightBox = new GLightbox();
+			lightBox.on( 'open', () => {
+				// Do something
+				
+			} );
+		}
+	},
+
 	scrollTo( _x, _y, _animation, _duration ){
 		let x = this.isset( _x ) ? _x : 0;
 		let y = this.isset( _y ) ? _y : 0;

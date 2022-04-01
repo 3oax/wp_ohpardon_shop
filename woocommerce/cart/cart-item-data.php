@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<div class="variation text-xs my-0 pt-1">
+<div class="variation text-xs my-0 pt-05">
 	<?php foreach ( $item_data as $data ) : ?>
 		<div class="mb-0">
 			<div class="inline-block <?php echo sanitize_html_class( 'variation-' . $data['key'] ); ?>"><strong><?php echo wp_kses_post( $data['key'] ); ?>:</strong></div>

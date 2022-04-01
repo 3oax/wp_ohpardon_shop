@@ -55,9 +55,9 @@ if ( OAX.config.is_preloader === 'Y' ) {
 }
 
 /**
- * Load Lightgallery
+ * Load Lightbox
  */
-// require( '../lib/lightgallery/dist/js/lightgallery.js' );
+import GLightbox from 'glightbox'; window.GLightbox = GLightbox;
 
 /**
  * Particles JS

@@ -207,51 +207,6 @@ p.form-row.validate-required.woocommerce-validated > .woocommerce-input-wrapper 
   top: 0.6rem;
 }
 
-/**
- * Review Order Table
- */ 
-.woocommerce-checkout-review-order-table {
-  --color__table-border: var(--color__grey);
-  background-color: transparent !important;
-  border: 1px solid var(--color__table-border);
-  tbody {
-    .cart-item {
-      > td {
-        border-top: 1px solid var(--color__table-border);
-      }
-    }
-  }
-  tfoot {
-    tr {
-      &:first-child {
-        > th,
-        > td {
-          border-top: 1px solid var(--color__table-border);
-        }
-      }
-      &.order-tax {
-        &::before {
-          content: '';
-          display: table-cell;
-        }
-      }
-      > th,
-      > td  {
-        text-align: right;
-      }
-      > th + td {
-        padding-right: 1rem;
-      }
-    }
-    tr:last-child {
-      > th,
-      > td  {
-        padding-bottom: 1rem;
-      }
-    }
-  }
-}
-
 // Select 2
 // 
 .woocommerce-input-wrapper select {

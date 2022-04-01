@@ -11,6 +11,10 @@
   $headline = __('30+ Designs', 'oax-ohpardon');
 ?>
 <section class="c-section c-section--designs">
+  <style>@media( max-width: 992px){ 
+    .c-section--designs .c-section__col:nth-child(7){ display: none; } 
+    .c-section--designs .c-section__col:nth-child(8){ order: 1; } 
+  }</style>
   <div class="flex flex-wrap">
     <?php $slider_i = 0; foreach($slider_items as $slider_item): ?>
 

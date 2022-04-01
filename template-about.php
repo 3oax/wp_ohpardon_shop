@@ -18,7 +18,7 @@ get_header(); ?>
       <div class="container pb-3">
         <div class="row flex flex-wrap justify-center">
           <div class="w-full md:w-1/2 text-center flex flex-wrap justify-center">
-            <figure class="block mb-2 md:w-1/4">
+            <figure class="block mb-2 w-1/2 md:w-1/4">
               <?php get_template_part( 'template-parts/site-logo' ); ?>
             </figure>
             <div>
@@ -74,7 +74,7 @@ get_header(); ?>
     <section class="v-about__gentrification c-section pt-75 md:pt-10">
       <div class="container">
         <div class="row flex flex-wrap md:items-end md:flex-row-reverse">
-          <div class="w-full md:w-1/2 md:pl-2">
+          <div class="w-full md:w-1/2 md:pl-2 md:text-left text-center">
             <div class="pb-2 md:pr-2 md:pl-2">
               <?= oax_image([
                 'img' => $section_gentrification['headline_img'],
@@ -86,9 +86,9 @@ get_header(); ?>
             <h2 class="entry-title">
               <?= $section_gentrification['headline']; ?>
             </h2>
-            <div class="mt-2">
+            <div class="mt-2 pb-3 md:pb-0">
               <?= $section_gentrification['content']; ?>
-            </div>
+            </div>            
           </div>
           <div class="w-full md:w-1/2 md:pr-2">
             <?php if(!empty($section_gentrification['slider'])): ?>
@@ -186,7 +186,7 @@ get_header(); ?>
     <section class="v-about__leerstand c-section pt-75 md:pt-10">
       <div class="md:px-4">
         <div class="row flex flex-wrap items-center">
-          <div class="w-full md:w-1/2 md:pl-5 md:pr-5">      
+          <div class="w-full md:w-1/2 px-15 pb-3 md:pb-0 md:pl-5 md:pr-5">      
             <h3 class="entry-title">
               <?= $section_leerstand['headline']; ?>              
             </h3>
@@ -239,7 +239,7 @@ get_header(); ?>
     <section class="v-about__parasite c-section pt-75 md:pt-10">
       <div class="container">
         <div class="row flex flex-wrap items-center md:flex-row-reverse">
-          <div class="w-full md:w-1/2 md:pl-4">      
+          <div class="w-full md:w-1/2 pb-3 md:pb-0 md:pl-4">      
             <h3 class="entry-title">
               <?= $section_parasite['headline']; ?>
             </h3>

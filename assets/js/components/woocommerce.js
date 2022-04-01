@@ -13,6 +13,7 @@
  */
 
 import Utils from '../app/utils.js';
+import iconic_wlv from '../lib/woocommerce/iconic-woo-linked-variations.js'; // eslint-disable-line
 
 export default class WooCommerce {
 	constructor( settings ) {
@@ -24,6 +25,8 @@ export default class WooCommerce {
 			container: 'body',
 			product: {
 				variationsForm: '.variations_form',
+				linkedVariations: '.iconic-wlv-variations',
+				linkedVariationsLink: '.iconic-wlv-terms__term-content--link',
 				buyBtn: '.single_add_to_cart_button',
 				swatchesLoaded: 'wvs-loaded',
 			},
@@ -84,7 +87,11 @@ export default class WooCommerce {
 			namespace = $container.data( 'barbaNamespace' );
 			
 			if ( namespace === 'product' ){
+				const $linkedVariations = $container.find( this.options.product.linkedVariations );
 				this.addEventListener( container );
+				if ( $linkedVariations.length ){
+					iconic_wlv.on_ready();
+				}
 			}
 
 			if ( namespace === 'checkout' ){
@@ -107,7 +114,8 @@ export default class WooCommerce {
 	initProductDetail( $container ){
 		const $variationForm = $container.find( this.options.product.variationsForm );
 		const $buyButton = $container.find( this.options.product.buyBtn );
-		
+		const $linkedVariations = $container.find( this.options.product.linkedVariations );
+
 		if ( $variationForm.length ) {
 			if ( OAX.debug ) {
 				console.log( 'init: wc_variation_form' ); 
@@ -131,6 +139,10 @@ export default class WooCommerce {
 			}
 		}
 		
+		if ( $linkedVariations.length ){
+			iconic_wlv.on_ready();
+		}
+
 		/* eslint-disable */
 		if ( Utils.isset( paypal ) && Utils.isset( PayPalCommerceGateway ) ) {
 			/*
@@ -214,12 +226,17 @@ export default class WooCommerce {
 			const $container = $( container );
 			const namespace = $container.data( 'barbaNamespace' );
 
-			const $variationForm = $container.find( this.options.product.variationsForm );
-
+			const $variationForm = $container.find( this.options.product.variationsForm );			
 			if ( namespace === 'product' ){
 				$variationForm.on( 'show_variation', this.onShowVariation );
 				if ( this.options.features.Germanized ){
 					$variationForm.on( 'germanized_variation_data', this.onGermanizedVariationData );
+				}
+
+				const $linkedVariations = $container.find( this.options.product.linkedVariations );
+				if ( $linkedVariations.length ){
+					this.prefetchLinkedVariations( $linkedVariations );
+					// $linkedVariations.on( 'click.oax::change-linked-variations', this.options.product.linkedVariationsLink, $.proxy( this.onLinkedVariation, this ) );
 				}
 			}
 		}
@@ -263,6 +280,52 @@ export default class WooCommerce {
 		if ( Utils.isset( variationData.price_html ) && variationData.price_html !== '' ) {
 			$container.find( '.js--product-price' ).html( variationData.price_html );
 		}
+	}
+
+	prefetchLinkedVariations( $linkedVariationsContainer ){
+		const _prefetchVariations = () => {
+			$linkedVariationsContainer.find( 'a' ).each( ( i, _el ) => {
+				const $el = $( _el );
+				const href = $el.attr( 'href' );
+				barba.prefetch( href );
+			} );		
+		};
+		setTimeout( _prefetchVariations, 1000 );
+	}
+
+	// not used
+	onLinkedVariation( event ){
+		const self = this;
+		const $target = $( event.target ).is( 'a' ) ? $( event.target ) : $( event.target ).closest( 'a' );
+		const url = $target.attr( 'href' );
+
+		$.ajax( url ).done( ( response ) => {
+			const $DOC = $( '<div />' ).append( response );
+			self.changeTemplateFragmentsLinkedVariations( $DOC );
+		} );
+		
+		event.preventDefault();
+	}
+
+	// not used
+	changeTemplateFragmentsLinkedVariations( $DOC ){
+		const $container = $( '[data-barba="container"]' );
+		const templateSelectors = {
+			title: '.product_title',
+			form: 'form.cart',
+			image: '.woocommerce-product-gallery__wrapper'
+		};
+
+		// Title
+		$container.find( templateSelectors.title ).replaceWith( $DOC.find( templateSelectors.title ) );	
+		// Price
+		$container.find( templateSelectors.title ).replaceWith( $DOC.find( templateSelectors.title ) );				
+		// Image
+		$container.find( templateSelectors.image ).replaceWith( $DOC.find( templateSelectors.image ) );
+		// Form
+		$container.find( templateSelectors.form ).replaceWith( $DOC.find( templateSelectors.form ) );
+
+		console.log( $form );
 	}
 
 	onVariationAddToCart( event ){

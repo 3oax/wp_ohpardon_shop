@@ -55,6 +55,7 @@
   "dependencies": {
     "@barba/core": "^2.9.7",
     "@barba/prefetch": "^2.1.10",
+    "glightbox": "^3.1.0",
     "gsap": "file:assets/js/lib/gsap/npm-install-this/gsap-bonus.tgz",
     "headroom.js": "^0.9.4",
     "imagesloaded": "^4.1.4",
@@ -108,9 +109,9 @@
     "karma-sinon": "^1.0.5",
     "karma-webpack": "^2.0.4",
     "mini-css-extract-plugin": "^1.6.2",
-    "node-sass": "npm:sass@^1.43.4",    
     "mocha": "^4.0.1",
     "modernizr-loader": "^1.0.1",
+    "node-sass": "npm:sass@^1.43.4",
     "node-wp-i18n": "^1.2.3",
     "postcss-css-variables": "^0.18.0",
     "postcss-import": "^14.0.2",

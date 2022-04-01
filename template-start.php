@@ -24,11 +24,12 @@ get_header(); ?>
                 'img' => $hero_slider_item['img'],
                 'wrapper' => true,
                 'holder' => true,
+                'lazy' => count($hero_slider_items) > 1,
                 'xclass' => 'inset object-cover',
                 'xclass_wrapper' => 'bg-black-light'
               ]); ?>
             </div>
-            <div class="w-full md:w-1/3 px-15 md:px-4">
+            <div class="w-full md:w-1/3 pb-3 md:pb-0 px-15 md:px-4">
               <h1 class="mb-1 entry-title mt-15 md:mt-0">
                 <?= $hero_slider_item['headline']; ?>
               </h1>
@@ -45,18 +46,29 @@ get_header(); ?>
         <?php $hero_slider++; endforeach; ?>
       </div>
       <?php endif; ?>
-
+      
+      <!--
       <div class="container text-center pt-15 pb-3">
-        <?php
+        <?php /*
 	        while ( have_posts() ) : the_post();              
             the_content();
           endwhile; // End of the loop.
-        ?>
+        */ ?>
       </div>
+      -->
 
     </header>
 
-    <section class="c-section c-section--product-teaser pb-5">
+    <?php 
+      /**
+       * USP Icons
+       */    
+      echo oax_get_component('list-usp-icons', [
+        'xclass_icons' => 'px-2 md:px-2'
+      ]); 
+    ?>   
+
+    <section class="c-section c-section--product-teaser pb-5 pt-3 md:pt-0">
       <div class="c-section__content">
         
         <?php 
@@ -295,26 +307,6 @@ get_header(); ?>
        */    
       echo oax_get_component('section-about'); 
     ?>
-
-    <section class="v-start__usps bg-black py-3 text-white">
-      <div class="container">
-        <div class="row flex flex-wrap justify-center">
-          <div class="md:w-1/2">
-            <?php 
-              /**
-               * USP Icons
-               */    
-              echo oax_get_component('list-usp-icons', [
-                'xclass_icons' => 'px-2 md:px-2'
-              ]); 
-            ?>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    
-
   </div>
 <?php
 get_footer();

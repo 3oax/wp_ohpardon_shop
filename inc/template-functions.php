@@ -510,7 +510,11 @@ function oax_video($args){
 
 			if($has_holder){
 				$vid_dim = $video_info;
-				$video .= ' style="padding-bottom: '. $vid_dim['padding'] .'"';
+				if( $vid_dim !== false ){
+					$video .= ' style="padding-bottom: '. $vid_dim['padding'] .'"';
+				} else {
+					$video .= ' style="padding-bottom: 56.25%"';
+				}
 			}
 
 			$video .= '>';
@@ -548,8 +552,10 @@ function oax_video($args){
 			}
 		}
 
-		$video .= ' data-duration="' . $video_info['duration'] . '"';
-
+		if( isset($video_info['duration']) ) {
+			$video .= ' data-duration="' . $video_info['duration'] . '"';
+		}
+		
 		if(isset($args['id'])){
 			$video .= ' id="' . $args['id'] . '"';
 		}
@@ -594,10 +600,16 @@ function oax_video($args){
 			$video .= '"';
 		}
 
-		if( !$use_source_element && $is_lazy ) {
-			$video .= ' data-src="';
-				$video .= $src;
-			$video .= '"';
+		if( !$use_source_element ) {
+			if( $is_lazy ){
+				$video .= ' data-src="';
+					$video .= $src;
+				$video .= '"';
+			} else {
+				$video .= ' src="';
+					$video .= $src;
+				$video .= '"';
+			}
 		}
 
 		$video .= '>';
@@ -640,13 +652,19 @@ function oax_get_video_info($src){
 
 	$video_info = $getID3->analyze($src);
 
-	return [
-		'width' => $video_info['video']['resolution_x'],
-		'height' => $video_info['video']['resolution_y'],
-		'padding' => $video_info['video']['resolution_y'] / $video_info['video']['resolution_x'] * 100 . '%',
-		'ratio' => $video_info['video']['resolution_y'] . '/' . $video_info['video']['resolution_x'],
-		'duration' => $video_info['playtime_seconds']
-	];
+	if( !empty($video_info) && isset($video_info['video']) ){
+
+		return [
+			'width' => $video_info['video']['resolution_x'],
+			'height' => $video_info['video']['resolution_y'],
+			'padding' => $video_info['video']['resolution_y'] / $video_info['video']['resolution_x'] * 100 . '%',
+			'ratio' => $video_info['video']['resolution_y'] . '/' . $video_info['video']['resolution_x'],
+			'duration' => $video_info['playtime_seconds']
+		];
+
+	} 
+
+	return false;
 }
 
 function oax_yt($args){

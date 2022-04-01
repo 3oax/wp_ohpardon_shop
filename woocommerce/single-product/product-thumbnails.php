@@ -27,6 +27,7 @@ global $product;
 $attachment_ids = $product->get_gallery_image_ids();
 $product_img_id = $product->get_image_id();
 
+/*
 if ( $attachment_ids && $product->get_image_id() ) {
 	echo '<div class="woocommerce-product-gallery__thumbs">';
 		echo '<div data-init-by="product" class="woocommerce-product-gallery__thumbs-slider js--slider overflow-x-scroll overflow-y-hidden h-full w-full flex flex-wrap pr-1 flex-control-nav" style="max-height: 30rem;" data-slick=\'{"vertical": true, "verticalSwiping": true, "arrows": false, "slidesToShow": 4, "infinite": true, "focusOnSelect": true}\'>';
@@ -39,3 +40,27 @@ if ( $attachment_ids && $product->get_image_id() ) {
 		echo '</div>';
 	echo '</div>';
 }
+*/
+
+$pimp_slider_items = [];
+foreach($attachment_ids as $attachment_id){	
+	$pimp_slider_items[] = [
+		'img' => $attachment_id,
+		'xclass' => 'inset',
+		'xclass_wrapper' => 'mx-0 bg-grey-light',
+		'wrapper' => true,
+		'holder' => true,
+		'lazy' => true		
+	];
+}
+
+echo oax_get_component('slider/slide-track', [
+	'items' => $pimp_slider_items,
+	'ITEMS_SHOW_LG' => 1,
+	'ITEMS_SHOW_SM' => 1,
+	'xclass' => [
+		'inner' => 'pb-0',
+		'track' => 'px-0 mx-0 flex-end',
+		'main' => 'js--slider--bottom-nav',
+	]
+]);	

@@ -2456,6 +2456,13 @@ var Utils = {
      */
     _components_slider_js__WEBPACK_IMPORTED_MODULE_0__["default"].swiper.init(container);
   },
+  initLightbox: function initLightbox(container) {
+    if ($(container).find('.glightbox')) {
+      var lightBox = new GLightbox();
+      lightBox.on('open', function () {// Do something
+      });
+    }
+  },
   scrollTo: function scrollTo(_x, _y, _animation, _duration) {
     var x = this.isset(_x) ? _x : 0;
     var y = this.isset(_y) ? _y : 0;
@@ -3774,6 +3781,7 @@ function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return WooCommerce; });
 /* harmony import */ var _app_utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app/utils.js */ "./js/app/utils.js");
+/* harmony import */ var _lib_woocommerce_iconic_woo_linked_variations_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/woocommerce/iconic-woo-linked-variations.js */ "./js/lib/woocommerce/iconic-woo-linked-variations.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -3800,6 +3808,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * Handles Woocommerce.
  */
 
+ // eslint-disable-line
 
 var WooCommerce =
 /*#__PURE__*/
@@ -3815,6 +3824,8 @@ function () {
       container: 'body',
       product: {
         variationsForm: '.variations_form',
+        linkedVariations: '.iconic-wlv-variations',
+        linkedVariationsLink: '.iconic-wlv-terms__term-content--link',
         buyBtn: '.single_add_to_cart_button',
         swatchesLoaded: 'wvs-loaded'
       },
@@ -3876,7 +3887,12 @@ function () {
         namespace = $container.data('barbaNamespace');
 
         if (namespace === 'product') {
+          var $linkedVariations = $container.find(this.options.product.linkedVariations);
           this.addEventListener(container);
+
+          if ($linkedVariations.length) {
+            _lib_woocommerce_iconic_woo_linked_variations_js__WEBPACK_IMPORTED_MODULE_1__["default"].on_ready();
+          }
         }
 
         if (namespace === 'checkout') {
@@ -3900,6 +3916,7 @@ function () {
     value: function initProductDetail($container) {
       var $variationForm = $container.find(this.options.product.variationsForm);
       var $buyButton = $container.find(this.options.product.buyBtn);
+      var $linkedVariations = $container.find(this.options.product.linkedVariations);
 
       if ($variationForm.length) {
         if (OAX.debug) {
@@ -3926,6 +3943,10 @@ function () {
 
           $variationForm.WooVariationSwatches(); // eslint-disable-line
         }
+      }
+
+      if ($linkedVariations.length) {
+        _lib_woocommerce_iconic_woo_linked_variations_js__WEBPACK_IMPORTED_MODULE_1__["default"].on_ready();
       }
       /* eslint-disable */
 
@@ -4027,6 +4048,12 @@ function () {
           if (this.options.features.Germanized) {
             $variationForm.on('germanized_variation_data', this.onGermanizedVariationData);
           }
+
+          var $linkedVariations = $container.find(this.options.product.linkedVariations);
+
+          if ($linkedVariations.length) {
+            this.prefetchLinkedVariations($linkedVariations); // $linkedVariations.on( 'click.oax::change-linked-variations', this.options.product.linkedVariationsLink, $.proxy( this.onLinkedVariation, this ) );
+          }
         }
       }
     }
@@ -4076,6 +4103,52 @@ function () {
       if (_app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset(variationData.price_html) && variationData.price_html !== '') {
         $container.find('.js--product-price').html(variationData.price_html);
       }
+    }
+  }, {
+    key: "prefetchLinkedVariations",
+    value: function prefetchLinkedVariations($linkedVariationsContainer) {
+      var _prefetchVariations = function _prefetchVariations() {
+        $linkedVariationsContainer.find('a').each(function (i, _el) {
+          var $el = $(_el);
+          var href = $el.attr('href');
+          barba.prefetch(href);
+        });
+      };
+
+      setTimeout(_prefetchVariations, 1000);
+    } // not used
+
+  }, {
+    key: "onLinkedVariation",
+    value: function onLinkedVariation(event) {
+      var self = this;
+      var $target = $(event.target).is('a') ? $(event.target) : $(event.target).closest('a');
+      var url = $target.attr('href');
+      $.ajax(url).done(function (response) {
+        var $DOC = $('<div />').append(response);
+        self.changeTemplateFragmentsLinkedVariations($DOC);
+      });
+      event.preventDefault();
+    } // not used
+
+  }, {
+    key: "changeTemplateFragmentsLinkedVariations",
+    value: function changeTemplateFragmentsLinkedVariations($DOC) {
+      var $container = $('[data-barba="container"]');
+      var templateSelectors = {
+        title: '.product_title',
+        form: 'form.cart',
+        image: '.woocommerce-product-gallery__wrapper'
+      }; // Title
+
+      $container.find(templateSelectors.title).replaceWith($DOC.find(templateSelectors.title)); // Price
+
+      $container.find(templateSelectors.title).replaceWith($DOC.find(templateSelectors.title)); // Image
+
+      $container.find(templateSelectors.image).replaceWith($DOC.find(templateSelectors.image)); // Form
+
+      $container.find(templateSelectors.form).replaceWith($DOC.find(templateSelectors.form));
+      console.log($form);
     }
   }, {
     key: "onVariationAddToCart",
@@ -4949,6 +5022,54 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { if (typeof Symbol === 
 
 /***/ }),
 
+/***/ "./js/lib/woocommerce/iconic-woo-linked-variations.js":
+/*!************************************************************!*\
+  !*** ./js/lib/woocommerce/iconic-woo-linked-variations.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var iconic_wlv = {
+  /**
+   * Set up cache with common elements and vars.
+   */
+  cache: function cache() {
+    iconic_wlv.els = [];
+    iconic_wlv.els.term_link = $('.iconic-wlv-terms__term-content--link');
+  },
+
+  /**
+   * Run on doc ready.
+   */
+  on_ready: function on_ready() {
+    iconic_wlv.cache();
+    iconic_wlv.setup_term_links();
+  },
+
+  /**
+   * Setup term links.
+   */
+  setup_term_links: function setup_term_links() {
+    iconic_wlv.els.term_link.on('mouseenter', function () {
+      var $link = $(this),
+          $term = $link.closest('.iconic-wlv-terms__term'),
+          $term_label = $term.data('iconic-wlv-term-label'),
+          $selected_term = $link.closest('tr').find('.iconic-wlv-variations__selection');
+      $selected_term.text($term_label);
+    }).on('mouseleave', function () {
+      var $link = $(this),
+          $selected_term = $link.closest('tr').find('.iconic-wlv-variations__selection'),
+          $original_selected_term = $selected_term.data('iconic-wlv-selected-term-label');
+      $selected_term.text($original_selected_term);
+    });
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (iconic_wlv);
+
+/***/ }),
+
 /***/ "./js/main.js":
 /*!********************!*\
   !*** ./js/main.js ***!
@@ -5132,8 +5253,8 @@ var APP = {
     /**
      * Init Lightbox
      */
-    // NativeWPLightbox.init( container );
 
+    _app_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].initLightbox(container);
     /**
      * Init Instafeed
      */
@@ -5573,6 +5694,11 @@ var APP = {
      */
 
     _app_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].initSliders(container);
+    /**
+     * Init Lightbox
+     */
+
+    _app_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].initLightbox(container);
     /**
      * Inject SVG's
      */

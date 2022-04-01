@@ -69,9 +69,9 @@ export default class WooCommerce {
 			}
 
 			if ( namespace === 'archive' ){
-				setTimeout( () => {
-					self.initInfiniteScroll( $container );
-				}, 500 );				
+				self.initInfiniteScroll( $container );
+			} else {
+				self.destroyInfiniteScroll();
 			}
 
 			if ( namespace === 'checkout' ){
@@ -211,17 +211,25 @@ export default class WooCommerce {
 
 	initInfiniteScroll( $container ){		
 		if ( Utils.isset( window.yith_infs ) ){
-			$( window ).off( 'yith_infs_start' );
-			var infiniteScrollArgs = {
-				nextSelector: yith_infs.nextSelector,
-				navSelector: yith_infs.navSelector,
-				itemSelector: yith_infs.itemSelector,
-				contentSelector: yith_infs.contentSelector,
-				loader: `<img src="${yith_infs.loader}">`,
-				is_shop: '1'
+			const _initInfiniteScroll = () => {
+				$( window ).off( 'yith_infs_start' );
+				const infiniteScrollArgs = {
+					nextSelector: yith_infs.nextSelector,
+					navSelector: yith_infs.navSelector,
+					itemSelector: yith_infs.itemSelector,
+					contentSelector: yith_infs.contentSelector,
+					loader: `<img src="${yith_infs.loader}">`,
+					is_shop: '1'
+				};
+				$( yith_infs.contentSelector ).yit_infinitescroll( infiniteScrollArgs );
 			};
-			$( yith_infs.contentSelector ).yit_infinitescroll( infiniteScrollArgs );
+
+			setTimeout( _initInfiniteScroll, 500 );
 		}
+	}
+
+	destroyInfiniteScroll(){
+		$( window ).off( 'yith_infs_start' );
 	}
 
 	addEventListener( _container ){

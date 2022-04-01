@@ -3869,9 +3869,9 @@ function () {
         }
 
         if (namespace === 'archive') {
-          setTimeout(function () {
-            self.initInfiniteScroll($container);
-          }, 500);
+          self.initInfiniteScroll($container);
+        } else {
+          self.destroyInfiniteScroll();
         }
 
         if (namespace === 'checkout') {
@@ -4025,17 +4025,26 @@ function () {
     key: "initInfiniteScroll",
     value: function initInfiniteScroll($container) {
       if (_app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset(window.yith_infs)) {
-        $(window).off('yith_infs_start');
-        var infiniteScrollArgs = {
-          nextSelector: yith_infs.nextSelector,
-          navSelector: yith_infs.navSelector,
-          itemSelector: yith_infs.itemSelector,
-          contentSelector: yith_infs.contentSelector,
-          loader: "<img src=\"".concat(yith_infs.loader, "\">"),
-          is_shop: '1'
+        var _initInfiniteScroll = function _initInfiniteScroll() {
+          $(window).off('yith_infs_start');
+          var infiniteScrollArgs = {
+            nextSelector: yith_infs.nextSelector,
+            navSelector: yith_infs.navSelector,
+            itemSelector: yith_infs.itemSelector,
+            contentSelector: yith_infs.contentSelector,
+            loader: "<img src=\"".concat(yith_infs.loader, "\">"),
+            is_shop: '1'
+          };
+          $(yith_infs.contentSelector).yit_infinitescroll(infiniteScrollArgs);
         };
-        $(yith_infs.contentSelector).yit_infinitescroll(infiniteScrollArgs);
+
+        setTimeout(_initInfiniteScroll, 500);
       }
+    }
+  }, {
+    key: "destroyInfiniteScroll",
+    value: function destroyInfiniteScroll() {
+      $(window).off('yith_infs_start');
     }
   }, {
     key: "addEventListener",

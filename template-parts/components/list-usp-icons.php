@@ -175,19 +175,19 @@
       }  
     }
     .c-section__usp.is-in-view .c-list-usp-icons__marquee:nth-child(1) {
-      animation: marquee-first 40s linear;
+      animation: marquee-first 80s linear;
     }
     .c-section__usp.is-in-view .c-list-usp-icons__marquee:nth-child(2) {
-      animation: marquee 40s linear 0s infinite 
+      animation: marquee 80s linear 0s infinite 
     }
     .c-section__usp.is-in-view .c-list-usp-icons__marquee:nth-child(3) {
-      animation: marquee 40s linear 10s infinite
+      animation: marquee 80s linear 20s infinite
     }  
     .c-section__usp.is-in-view .c-list-usp-icons__marquee:nth-child(4) {
-      animation: marquee 40s linear 20s infinite
+      animation: marquee 80s linear 40s infinite
     } 
     .c-section__usp.is-in-view .c-list-usp-icons__marquee:nth-child(5) {
-      animation: marquee 40s linear 30s infinite
+      animation: marquee 80s linear 60s infinite
     }             
     .c-list-usp-icons svg { width: 2rem; height: 2rem; }    
   </style>

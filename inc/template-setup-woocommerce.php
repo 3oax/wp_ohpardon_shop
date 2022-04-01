@@ -25,16 +25,18 @@ function oax_remove_wc_styles(){
 		wp_dequeue_style( 'yith-wcan-frontend');
 	}
 
-	// wp_dequeue_style('the-neverending-homepage');
-	// wp_enqueue_style('the-neverending-homepage');
+	if( $OAX_INFINITESCROLL_SUPPORT ){
+		wp_dequeue_style('the-neverending-homepage');
+		wp_enqueue_style('the-neverending-homepage');
+	}
 }
 add_action( 'wp_enqueue_scripts', 'oax_remove_wc_styles', PHP_INT_MAX - 1 );
 
 function oax_dequeue_script() {
-	// wp_dequeue_script( 'the-neverending-homepage' );
-	// wp_enqueue_script( 'the-neverending-homepage' );
+	wp_dequeue_script( 'the-neverending-homepage' );
+	wp_enqueue_script( 'the-neverending-homepage' );
 }
-add_action( 'wp_print_scripts', 'oax_dequeue_script', PHP_INT_MAX - 2 );
+// add_action( 'wp_print_scripts', 'oax_dequeue_script', PHP_INT_MAX - 2 );
 
 function oax_remove_and_add_wc_scripts(){
 
@@ -82,9 +84,11 @@ function oax_remove_and_add_wc_scripts(){
 	//
 	wp_dequeue_script('iconic-wlv');
 
-
-	// wp_dequeue_script( 'the-neverending-homepage' );
-	// wp_enqueue_script( 'the-neverending-homepage' );
+	// Infinite Scroll
+	if( $OAX_INFINITESCROLL_SUPPORT ){
+		wp_dequeue_script( 'the-neverending-homepage' );
+		wp_enqueue_script( 'the-neverending-homepage' );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'oax_remove_and_add_wc_scripts', PHP_INT_MAX );
 
@@ -147,7 +151,7 @@ if($OAX_INFINITESCROLL_SUPPORT){
 	add_filter( 'infinite_scroll_archive_supported', 'oax_infinite_scroll_archive_supported');
 	
 	add_theme_support( 'infinite-scroll', array(
-		'type' => 'click',
+		'type' => 'scroll',
 		'container' => 'infinite-list',
 		'footer' => false,
 		'wrapper' => true,

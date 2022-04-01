@@ -124,7 +124,7 @@ if ( post_password_required() ) {
 	<?php // Video Section ?>
 	<section class="c-section c-section--product-layout c-section--product-layout--4">
 		<?= oax_video([
-			'src' => 'https://shop.ohpardon.art/wp-content/uploads/2022/02/file_example_MOV_640_800kB.mov',
+			'src' => 'http://shop.ohpardon.art/wp-content/uploads/2022/04/Untitled.mov',
 			'wrapper' => true,
 			'xclass_wrapper' => 'bg-grey',
 			'holder' => true,
@@ -193,7 +193,7 @@ if ( post_password_required() ) {
 		/**
 		 * Get Materialien Section
 		 */
-		echo oax_get_component('section-materialien'); 
+		// echo oax_get_component('section-materialien'); 
 	?>
 
 

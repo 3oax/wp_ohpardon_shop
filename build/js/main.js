@@ -3868,7 +3868,7 @@ function () {
         }
 
         if (namespace === 'archive') {
-          this.initJetpackInfiniteScroll();
+          this.initInfiniteScroll($container);
         }
 
         if (namespace === 'checkout') {
@@ -4019,10 +4019,19 @@ function () {
       var self = this;
     }
   }, {
-    key: "initJetpackInfiniteScroll",
-    value: function initJetpackInfiniteScroll() {
-      if (_app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset(window.infiniteScroll)) {
-        window.infiniteScroll.scroller = new infiniteScroll.scroller.constructor(infiniteScroll.settings, true);
+    key: "initInfiniteScroll",
+    value: function initInfiniteScroll($container) {
+      if (_app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset(window.yith_infs)) {
+        $(window).off('yith_infs_start');
+        var infiniteScrollArgs = {
+          nextSelector: $container.find(yith_infs.nextSelector),
+          navSelector: yith_infs.navSelector,
+          itemSelector: yith_infs.itemSelector,
+          contentSelector: yith_infs.contentSelector,
+          loader: "<img src=\"".concat(yith_infs.loader, "\">"),
+          is_shop: '1'
+        };
+        $container.find(yith_infs.contentSelector).yit_infinitescroll(infiniteScrollArgs);
       }
     }
   }, {

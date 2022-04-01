@@ -68,7 +68,7 @@ get_header(); ?>
       ]); 
     ?>   
 
-    <section class="c-section c-section--product-teaser pb-5 pt-3 md:pt-0">
+    <section class="c-section c-section--product-teaser pb-5 pt-3 md:pt-3">
       <div class="c-section__content">
         
         <?php 

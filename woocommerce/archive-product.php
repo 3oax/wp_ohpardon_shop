@@ -64,49 +64,28 @@ do_action( 'woocommerce_before_main_content' );
 			do_action( 'woocommerce_sidebar' );
 		?>
 		
-		<!--
 		<style>
-			.c-filters {
-				transform: translateX(-100%);
-				transition: transform .4s ease-in-out;
-				left: 0;
-				top: 0;
-			}
-			.c-filters.is-open {
-				transform: translateX(0%);
-			}
 			@media (max-width: 991.9px){
 				.c-filters {
-					z-index: 999999;
-					background-color: white;
-					padding: 5rem 1.5rem 3rem 1.5rem;
+					display: none;
 				}
-			}
-			@media (min-width: 992px){
-				.c-filters {
-					transition: unset;
-					transform: unset;	
+				.c-filters.is-open {
+					display: block;
 				}
 			}
 		</style>
-		-->
-		
 		
 		<div class="container container-lg">
-			<div class="pb-1 flex">
+			<div class="pb-1 flex flex-wrap md:pt-0">
 				
-				<!--
-				<button class="btn c-filters__toggle hidden" aria-expanded="false" aria-controls="c-filters" onclick="document.getElementById('c-filters').classList.toggle('is-open');">
-					Filter
-				</button>
-				-->
-				
-				<div id="c-filters" class="c-filters w-full h-screen md:w-full md:h-auto fixed md:relative md:pt-0">					
-							
-					<span class="pb-1 flex flex-wrap justify-between hidden">
-						<span class="inline-block h2">Filter:</span>
-						<span class="c-filters__close w-2 h-2 bg-black text-white flex items-center justify-center cursor-pointer" onclick="document.getElementById('c-filters').classList.remove('is-open');">&times;</span>
-					</span>
+				<div class="w-full md:hidden flex flex-wrap justify-end">
+					<button class="btn c-filters__toggle" aria-expanded="false" aria-controls="c-filters" onclick="document.getElementById('c-filters').classList.toggle('is-open');">
+						Filter
+					</button>
+				</div>
+
+				<div id="c-filters" class="c-filters w-full pt-1 md:w-full md:h-auto md:relative md:pt-0">					
+
 					<?php if( is_product_category() ): ?>
 						<?php $current_product_cat = $wp_query->get_queried_object(); ?>
 						<?php if(trim(strtolower($current_product_cat->name)) !== 'unikate'): // unikate ?>
@@ -115,6 +94,7 @@ do_action( 'woocommerce_before_main_content' );
 							?>			
 						<?php endif; ?>
 					<?php endif; ?>
+
 					<?php 
 						/**
 						 * Hook: woocommerce_before_shop_loop.
@@ -123,10 +103,13 @@ do_action( 'woocommerce_before_main_content' );
 						 * @hooked woocommerce_result_count - 20
 						 * @hooked woocommerce_catalog_ordering - 30
 						 */
-						echo '<div class="pb-2 text-right">';					
+
+						/*
+						echo '<div class="pt-1 pb-1 md:pt-0 md:pb-2 text-right">';					
 							do_action( 'woocommerce_before_shop_loop' );
 							// echo do_shortcode('')
 						echo '</div>';					
+						*/
 					?>
 				</div>
 			</div>

@@ -12,6 +12,7 @@
  * Handles Woocommerce.
  */
 
+import Fixes from '../app/fixes.js';
 import Utils from '../app/utils.js';
 import iconic_wlv from '../lib/woocommerce/iconic-woo-linked-variations.js'; // eslint-disable-line
 
@@ -255,8 +256,10 @@ export default class WooCommerce {
 
 				const $linkedVariations = $container.find( this.options.product.linkedVariations );
 				if ( $linkedVariations.length ){
-					this.prefetchLinkedVariations( $linkedVariations );
-					// $linkedVariations.on( 'click.oax::change-linked-variations', this.options.product.linkedVariationsLink, $.proxy( this.onLinkedVariation, this ) );
+					/*
+					 * this.prefetchLinkedVariations( $linkedVariations );
+					 * $linkedVariations.on( 'click.oax::change-linked-variations', this.options.product.linkedVariationsLink, $.proxy( this.onLinkedVariation, this ) );
+					 */
 				}
 			}
 		}
@@ -302,11 +305,22 @@ export default class WooCommerce {
 		}
 	}
 
-	prefetchLinkedVariations( $linkedVariationsContainer ){
+	prefetchLinkedVariations( $linkedVariationsContainer ){			
+		const $variationLinks = $linkedVariationsContainer.find( 'a' );
+		const prefetchUrls = [];
+
+		$variationLinks.each( ( i, _el ) => {
+			prefetchUrls.push( $( _el ).attr( 'href' ) );
+		} );
+
+		if ( Utils.isMobile() ){
+			prefetchUrls.slice( 0, 3 );
+		} else {
+			prefetchUrls.slice( 0, 10 );
+		}
+
 		const _prefetchVariations = () => {
-			$linkedVariationsContainer.find( 'a' ).each( ( i, _el ) => {
-				const $el = $( _el );
-				const href = $el.attr( 'href' );
+			prefetchUrls.forEach( ( href ) => {
 				barba.prefetch( href );
 			} );		
 		};

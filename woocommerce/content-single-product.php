@@ -121,20 +121,39 @@ if ( post_password_required() ) {
 		</section>
 	<?php // endif; ?>
 
-	<?php // Video Section ?>
-	<section class="c-section c-section--product-layout c-section--product-layout--4">
-		<?= oax_video([
-			'src' => 'http://shop.ohpardon.art/wp-content/uploads/2022/04/Untitled.mov',
-			'wrapper' => true,
-			'xclass_wrapper' => 'bg-grey',
-			'holder' => true,
-			'lazy' => true
-		]); ?>
-		<div class="inset flex flex-wrap items-center md:items-end justify-center md:justify-end text-white">
-			<div class="w-4/5 md:w-1/3 md:pb-2 md:pb-4 md:pr-2">
-				<h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</h2>
+	<?php 
+		// Video Section
+		$section_video = get_field('section_video', 'options');
+	?>
+	<section class="c-section c-section--product-layout c-section--product-layout--4 md:-mt-3">
+		<?php if( !empty($section_video) ): ?>
+			<?= oax_video([
+				'video' => $section_video['video_obj']['file'],
+				'poster' => $section_video['video_obj']['poster'],
+				'wrapper' => true,
+				'xclass_wrapper' => 'bg-grey',
+				'holder' => true,
+				'lazy' => true
+			]); ?>		
+			<div class="inset flex flex-wrap items-center md:items-end justify-center md:justify-end text-white">
+				<div class="w-4/5 md:w-1/3 md:pb-2 md:pb-4 md:pr-2">
+					<?= $section_video['content']; ?>
+				</div>
 			</div>
-		</div>
+		<?php else: ?>
+			<?= oax_video([
+				'src' => 'http://shop.ohpardon.art/wp-content/uploads/2022/04/Untitled.mov',
+				'wrapper' => true,
+				'xclass_wrapper' => 'bg-grey',
+				'holder' => true,
+				'lazy' => true
+			]); ?>
+			<div class="inset flex flex-wrap items-center md:items-end justify-center md:justify-end text-white">
+				<div class="w-4/5 md:w-1/3 md:pb-2 md:pb-4 md:pr-2">
+					<h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</h2>
+				</div>
+			</div>
+		<?php endif; ?>
 	</section>
 
 	<?php 
@@ -146,37 +165,41 @@ if ( post_password_required() ) {
 		]); 
 	?>   
 
-	<?php // Section ?>
+	<?php 
+		// Section 
+		$section_anbringung = get_field('section_anbringung', 'options');
+	?>
 	<section class="c-section c-section--product-layout c-section--product-layout--2 py-5 md:py-75">
 		<div class="c-section__content">
 			<div class="container container-lg">
-				<div class="row flex flex-wrap flex-row md:-mx-05">
-					<div class="w-full md:w-2/5 px-05">
-						<figure>
-							<div class="ratio-square bg-grey">
-
-							</div>
-							<figcaption class="mt-1">
-								<div><strong>Selbsklebende Rückseite</strong></div>
-								<div class="mt-05">
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+				<div class="row flex flex-wrap flex-row md:-mx-1">
+					<?php if( !empty($section_anbringung['column']) ): $section_anbringung_i = 0; foreach($section_anbringung['column'] as $col): ?>
+						<div class="w-full<?php if( $section_anbringung_i % 2 == 0 ): ?> md:w-2/5<?php else: ?> md:w-3/5<?php endif; ?><?php if($section_anbringung_i == 1): ?> mt-2 md:mt-0<?php endif; ?><?php if($section_anbringung_i > 1): ?> mt-2<?php endif; ?> md:px-1">
+							<figure class="relative<?php if($section_anbringung_i > 1): ?> md:mt-0<?php endif; ?>">
+								<div class="ratio-square bg-grey relative">
+									<?php if( !empty($col['img']) ): ?>
+										<?= oax_image([
+											'img' => $col['img'],
+											'xclass' => 'inset object-fit-cover'
+										]); ?>
+									<?php endif; ?>
 								</div>
-							</figcaption>
-						</figure>
-					</div>
-					<div class="w-full mt-2 md:mt-0 md:w-3/5 px-05">
-					<figure>
-							<div class="ratio-square bg-grey">
-
-							</div>
-							<figcaption class="mt-1">
-								<div><strong>Selbsklebende Rückseite</strong></div>
-								<div class="mt-05">
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-								</div>
-							</figcaption>
-						</figure>						
-					</div>					
+								<figcaption class="mt-1">
+									<?php if( !empty($col['headline']) ): ?>
+										<div><strong><?= $col['headline']; ?></strong></div>
+										<div class="mt-05">
+											<?= $col['content']; ?>
+										</div>											
+									<?php else: ?>
+										<div><strong>Selbsklebende Rückseite</strong></div>
+										<div class="mt-05">
+											<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+										</div>									
+									<?php endif; ?>
+								</figcaption>
+							</figure>
+						</div>
+					<?php $section_anbringung_i++; endforeach; endif; ?>
 				</div>
 			</div>
 		</div>

@@ -56,6 +56,7 @@ export default class WooCommerce {
 	}
 
 	init( _container ){
+		const self = this;
 		let container = Utils.isset( _container ) ? _container : this.options.container;
 		let $container = $( container );
 		let namespace = Utils.isset( $container.data( 'barbaNamespace' ) ) ? $container.data( 'barbaNamespace' ) : null;
@@ -68,7 +69,9 @@ export default class WooCommerce {
 			}
 
 			if ( namespace === 'archive' ){
-				this.initInfiniteScroll( $container );
+				setTimeout( () => {
+					self.initInfiniteScroll( $container );
+				}, 500 );				
 			}
 
 			if ( namespace === 'checkout' ){
@@ -210,14 +213,14 @@ export default class WooCommerce {
 		if ( Utils.isset( window.yith_infs ) ){
 			$( window ).off( 'yith_infs_start' );
 			var infiniteScrollArgs = {
-				nextSelector: $container.find( yith_infs.nextSelector ),
+				nextSelector: yith_infs.nextSelector,
 				navSelector: yith_infs.navSelector,
 				itemSelector: yith_infs.itemSelector,
 				contentSelector: yith_infs.contentSelector,
 				loader: `<img src="${yith_infs.loader}">`,
 				is_shop: '1'
 			};
-			$container.find( yith_infs.contentSelector ).yit_infinitescroll( infiniteScrollArgs );
+			$( yith_infs.contentSelector ).yit_infinitescroll( infiniteScrollArgs );
 		}
 	}
 

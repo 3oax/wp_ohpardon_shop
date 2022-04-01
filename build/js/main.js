@@ -3856,6 +3856,7 @@ function () {
   _createClass(WooCommerce, [{
     key: "init",
     value: function init(_container) {
+      var self = this;
       var container = _app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset(_container) ? _container : this.options.container;
       var $container = $(container);
       var namespace = _app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset($container.data('barbaNamespace')) ? $container.data('barbaNamespace') : null;
@@ -3868,7 +3869,9 @@ function () {
         }
 
         if (namespace === 'archive') {
-          this.initInfiniteScroll($container);
+          setTimeout(function () {
+            self.initInfiniteScroll($container);
+          }, 500);
         }
 
         if (namespace === 'checkout') {
@@ -4024,14 +4027,14 @@ function () {
       if (_app_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset(window.yith_infs)) {
         $(window).off('yith_infs_start');
         var infiniteScrollArgs = {
-          nextSelector: $container.find(yith_infs.nextSelector),
+          nextSelector: yith_infs.nextSelector,
           navSelector: yith_infs.navSelector,
           itemSelector: yith_infs.itemSelector,
           contentSelector: yith_infs.contentSelector,
           loader: "<img src=\"".concat(yith_infs.loader, "\">"),
           is_shop: '1'
         };
-        $container.find(yith_infs.contentSelector).yit_infinitescroll(infiniteScrollArgs);
+        $(yith_infs.contentSelector).yit_infinitescroll(infiniteScrollArgs);
       }
     }
   }, {

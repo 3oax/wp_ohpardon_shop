@@ -2038,6 +2038,10 @@ function () {
         _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].scrollDisable(true); // Utils.scrollLock( true );
       }
 
+      if (self.options.onLinkClicked !== null) {
+        self.options.onLinkClicked(HTMLElement);
+      }
+
       self.prev_scrolltop = jQuery(document).scrollTop();
     }
   }, {
@@ -4074,8 +4078,11 @@ function () {
 
           var $linkedVariations = $container.find(this.options.product.linkedVariations);
 
-          if ($linkedVariations.length) {// this.prefetchLinkedVariations( $linkedVariations );
-            // $linkedVariations.on( 'click.oax::change-linked-variations', this.options.product.linkedVariationsLink, $.proxy( this.onLinkedVariation, this ) );
+          if ($linkedVariations.length) {
+            /*
+             * this.prefetchLinkedVariations( $linkedVariations );
+             * $linkedVariations.on( 'click.oax::change-linked-variations', this.options.product.linkedVariationsLink, $.proxy( this.onLinkedVariation, this ) );
+             */
           }
         }
       }
@@ -5170,6 +5177,65 @@ if (OAX.config.is_preloader === 'Y') {
 
 
 var initModals = function initModals(container) {};
+/* eslint-disable */
+
+
+var initButtons = function initButtons(container) {
+  var $btns = $(container).find('button:not(.single_add_to_cart_button), .button:not(.single_add_to_cart_button), .btn');
+  var mouseObj = {
+    mouseCoords: null,
+    mousetThreshold: 0.12,
+    manageMouseLeave: function manageMouseLeave(event) {
+      event.currentTarget.style.boxShadow = '0 0 0 rgba(0,0,0,0.2)';
+    },
+    manageMouseMove: function manageMouseMove(event) {
+      var dot, eventDoc, doc, body, target, pageX, pageY;
+      event = event || window.event; // IE-ism
+
+      target = event.currentTarget; // (old IE)
+
+      if (event.pageX == null && event.clientX != null) {
+        eventDoc = event.target && event.target.ownerDocument || document;
+        doc = eventDoc.documentElement;
+        body = eventDoc.body;
+        event.pageX = event.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft || body && body.clientLeft || 0);
+        event.pageY = event.clientY + (doc && doc.scrollTop || body && body.scrollTop || 0) - (doc && doc.clientTop || body && body.clientTop || 0);
+      } // Use event.pageX / event.pageY here
+
+      /*
+       * normalize
+       * bodyRect = document.body.getBoundingClientRect(),
+       */
+
+
+      var elemRect = target.getBoundingClientRect(); // let $btn.getBoundingClientRect();
+
+      var mean = Math.round(elemRect.width / 2); // offset   = elemRect.top - bodyRect.top;
+      // mouseObj.mouseCoords = {mouse_x: event.pageX - elemRect.left , mouse_y:event.pageY - elemRect.top}
+
+      mouseObj.mouseCoords = {
+        mouse_true_x: event.pageX - elemRect.left,
+        mouse_x: (event.pageX - elemRect.left - mean) * mouseObj.mousetThreshold,
+        mouse_true_y: event.pageY - elemRect.top,
+        mouse_y: (event.pageY / 1.5 - elemRect.top / 1.5 - mean) * mouseObj.mousetThreshold
+      };
+      mouseObj.manageButtonShadow(-1, target);
+    },
+    manageButtonShadow: function manageButtonShadow(direction, target) {
+      if (mouseObj.mouseCoords) {
+        mouseObj.mouseCoords.mouse_x = Math.floor(mouseObj.mouseCoords.mouse_x);
+        target.style.boxShadow = "".concat(direction * mouseObj.mouseCoords.mouse_x, "px 0px 0.5em rgba(0,0,0,0.1)");
+      }
+    }
+  }; // init listeners
+
+  for (var i = 0; i < $btns.length; i++) {
+    $btns[i].addEventListener('mousemove', mouseObj.manageMouseMove, false);
+    $btns[i].addEventListener('mouseleave', mouseObj.manageMouseLeave, false);
+  }
+};
+/* eslint-enable */
+
 /**
  * Init Classes
  */
@@ -5308,6 +5374,11 @@ var APP = {
      */
 
     APP.initWoocommerce();
+    /**
+     * Init Buttons
+     */
+
+    initButtons(container);
     /**
      * Init First Page Visit
      */
@@ -5660,6 +5731,8 @@ var APP = {
    * On Link Clicked
    */
   onLinkClicked: function onLinkClicked(HTMLElement) {
+    console.log(HTMLElement);
+    $(HTMLElement).addClass('redirecting');
     _app_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].progressBar('start');
   },
 
@@ -5742,6 +5815,11 @@ var APP = {
      */
 
     _app_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].initVideos(container);
+    /**
+     * Init Buttons
+     */
+
+    initButtons(container);
   }
 };
 $(document).ready(function () {

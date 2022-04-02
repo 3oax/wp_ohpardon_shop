@@ -220,6 +220,10 @@ export default class Router {
 			// Utils.scrollLock( true );
 		}
 
+		if ( self.options.onLinkClicked !== null ){
+			self.options.onLinkClicked( HTMLElement );
+		}
+
 		self.prev_scrolltop = jQuery( document ).scrollTop();
 	}
 	

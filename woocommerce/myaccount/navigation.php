@@ -42,7 +42,6 @@ do_action( 'woocommerce_before_account_navigation' );
 			position: sticky;
 			top: 5rem;
 			*/
-
 		}
 	}	
 
@@ -84,7 +83,7 @@ do_action( 'woocommerce_before_account_navigation' );
 	<ul class="list-none p-0">
 		<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
 			<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); ?>">
-				<a class="py-025 block" href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"><?php echo esc_html( $label ); ?></a>
+				<a class="py-025 block<?php if($endpoint === 'customer-logout'): ?> no-barba<?php endif; ?>" href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"><?php echo esc_html( $label ); ?></a>
 			</li>
 		<?php endforeach; ?>
 	</ul>

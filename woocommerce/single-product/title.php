@@ -29,6 +29,9 @@ $terms = wp_get_post_terms( $product->get_id(), 'product_tag' );
 if(!empty($terms)){
 	$first_term = $terms[0];
 	echo '<h1 class="product_title entry-title">';
+		echo '<span class="sr-only">';
+			echo str_replace($first_term->name, '', get_the_title());
+		echo '</span>';
 		echo $first_term->name;
 	echo '</h1>';
 } else {

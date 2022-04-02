@@ -192,6 +192,8 @@ function oax_get_image_obj($attachment_id = 0) {
 function oax_image($args){
 	$url = isset($args['url']) ? $args['url'] : '';
 
+	$use_css_aspect_ratio = isset($args['css_aspect_ratio']) ? $args['css_aspect_ratio'] : false;
+
 	$has_wrapper = isset($args['wrapper']) && $args['wrapper'] == true;
 	$has_holder = isset($args['holder']) && $args['holder'] == true;
 	$has_caption = (isset($args['caption']) && $args['caption'] != false) ? $args['caption'] : false;
@@ -263,14 +265,22 @@ function oax_image($args){
 				$img_dim = oax_get_image_dimensions($url);
 
 				if(!$has_caption) {
-					$img .= ' relative" style="padding-bottom: '. $img_dim['padding'];					
+					if( $use_css_aspect_ratio ) {
+						$img .= ' relative" style="aspect-ratio: '. $img_dim['width'] . ' / '. $img_dim['height'];
+					} else {
+						$img .= ' relative" style="padding-bottom: '. $img_dim['padding'];
+					}
 				}
 			}
 			$img .= '">';
 		}
 		
 		if($has_wrapper && $has_holder && $has_caption){
-			$img .= '<div class="relative" style="padding-bottom: '. $img_dim['padding'] . '">';					
+			if( $use_css_aspect_ratio ) {
+				$img .= '<div class="relative" style="aspect-ratio: '. $img_dim['width'] . ' / '. $img_dim['height'] .'">';
+			} else {
+				$img .= '<div class="relative" style="padding-bottom: '. $img_dim['padding'] . '">';
+			}
 		}
 
 		$img .= '<img';
@@ -464,6 +474,10 @@ function oax_video($args){
 		
 		$src = '';
 		$video = '';
+		$video_obj = false;
+
+		$use_css_aspect_ratio = true;
+
 		$has_wrapper = isset($args['wrapper']) ? $args['wrapper'] : false;
 		$has_holder = isset($args['holder']) ? $args['holder'] : false;
 		$is_playbtn = isset($args['playbtn']) ? $args['playbtn'] : true;
@@ -493,12 +507,13 @@ function oax_video($args){
 		if(!empty($args['video'])){
 			if(is_array($args['video'])){
 				$src = $args['video']['url'];
+				$video_obj = $args['video'];
 			} else {
 
 			}
 		}
 
-		$video_info = oax_get_video_info($src);
+		$video_info = oax_get_video_info($src, $video_obj);
 		
 		if($has_wrapper){
 			$video .= '<figure';
@@ -511,9 +526,17 @@ function oax_video($args){
 			if($has_holder){
 				$vid_dim = $video_info;
 				if( $vid_dim !== false ){
-					$video .= ' style="padding-bottom: '. $vid_dim['padding'] .'"';
+					if( $use_css_aspect_ratio ){
+						$video .= ' style="aspect-ratio: '. $vid_dim['width'] .' / '. $vid_dim['height'] .';"'; 
+					} else {
+						$video .= ' style="padding-bottom: '. $vid_dim['padding'] .';"';
+					}
 				} else {
-					$video .= ' style="padding-bottom: 56.25%"';
+					if( $use_css_aspect_ratio ){
+						$video .= ' style="aspect-ratio: 16 / 9;"';
+					} else {
+						$video .= ' style="padding-bottom: 56.25%;"';
+					}
 				}
 			}
 
@@ -637,20 +660,29 @@ function oax_video($args){
 	}
 }
 
-function oax_get_video_info($src){
+function oax_get_video_info($src, $video_obj = false){
 	$dim = [];
-
-	$getID3 = new getID3;
-
 	$replaceUrl = esc_url( home_url( '/' ));
+	
 	/*
 	if( null !== ICL_LANGUAGE_CODE && ICL_LANGUAGE_CODE !== 'de'){
 		$replaceUrl = str_replace( ICL_LANGUAGE_CODE . '/', '', $replaceUrl);
 	}
 	*/
+
 	$src = str_replace( $replaceUrl, ABSPATH, $src);
 
-	$video_info = $getID3->analyze($src);
+	if( $video_obj !== false && isset($video_obj['width']) && isset($video_obj['height']) ){
+		$video_info = [
+			'video' => [
+				'resolution_x' => $video_obj['width'],
+				'resolution_y' => $video_obj['height']
+			]
+		];
+	} else {	
+		$getID3 = new getID3;		
+		$video_info = $getID3->analyze($src);
+	}
 
 	if( !empty($video_info) && isset($video_info['video']) ){
 

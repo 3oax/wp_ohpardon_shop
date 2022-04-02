@@ -22,10 +22,9 @@ if ( ! empty( $terms ) ){
 	}
 }
 ?>
-
   
 <?php oax_get_template_part('template-parts/page-header', [
-	'bg_color' => 'bg-white',
+	'bg_color' => 'bg-grey-light',
 	
 	'page_header_title' => get_the_title(),
 	
@@ -37,7 +36,7 @@ if ( ! empty( $terms ) ){
 	'xclass_content_footer' => ''      
 ]); ?>	  
 
-<section class="c-section c-section--products pt-2 pb-5">
+<section class="c-section c-section--products pt-4 pb-4">
 	<div class="c-section__content">
 
 		<div class="container container-lg">

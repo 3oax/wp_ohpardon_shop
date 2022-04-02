@@ -40,14 +40,14 @@ function oax_dequeue_script() {
 
 function oax_remove_and_add_wc_scripts(){
 
-	wp_dequeue_script( 'wc-checkout' );
-	wp_enqueue_script( 'wc-checkout' );
+	// wp_dequeue_script( 'wc-checkout' );
+	// wp_enqueue_script( 'wc-checkout' );
 
-	wp_dequeue_script( 'wc-country-select' );
-	wp_enqueue_script( 'wc-country-select' );
+	// wp_dequeue_script( 'wc-country-select' );
+	// wp_enqueue_script( 'wc-country-select' );
 
-	wp_dequeue_script( 'wc-address-i18n' );
-	wp_enqueue_script( 'wc-address-i18n' );
+	// wp_dequeue_script( 'wc-address-i18n' );
+	// wp_enqueue_script( 'wc-address-i18n' );
 
 	wp_dequeue_script( 'wc-cart' );	
 	// wp_enqueue_script( 'wc-cart' );	
@@ -78,7 +78,8 @@ function oax_remove_and_add_wc_scripts(){
 	//
 	wp_dequeue_script('ppcp-smart-button');
 	wp_enqueue_script('ppcp-smart-button');
-
+	wp_dequeue_script('paypal-checkout-sdk');
+	wp_enqueue_script('paypal-checkout-sdk');
 
 	// Iconic Variations (Linked Variations)
 	//
@@ -190,15 +191,14 @@ function woocommerce_template_loop_product_title() {
 	$terms = wp_get_post_terms( $product->get_id(), 'product_tag' );
 	if( isset($terms) && !empty($terms) ) {
 		$first_term = $terms[0];
-		$title_st = $title;
+		$title_sr = str_replace($first_term->name, '', $title);
 		$title = $first_term->name;
 	}
-	
-	echo '<span>'. $title .'</span>';
 
 	if($title_sr !== false){
 		echo '<span class="sr-only">' . $title_sr . '</span>'; 
-	}
+	}	
+	echo '<span>'. $title .'</span>';
 }
 
 // Cart Items
@@ -209,7 +209,7 @@ function oax_woocommerce_cart_item_name( $title, $item, $item_key ) {
 	$terms = wp_get_post_terms( $item['product_id'], 'product_tag' );
 	if( isset($terms) && !empty($terms) ) {
 		$first_term = $terms[0];
-		$title_sr = $title;
+		$title_sr = str_replace($first_term->name, '', $title);
 		$title = $first_term->name;
 	}
 
@@ -316,7 +316,7 @@ function custom_widget_shopping_cart_button_view_cart() {
 function custom_widget_shopping_cart_proceed_to_checkout() {
 	$original_link = wc_get_checkout_url();
 	$link_title = 'Zur Kasse';
-	echo '<a href="' . esc_url( $original_link ) . '" class="button checkout wc-forward">' . $link_title . '</a>';
+	echo '<a href="' . esc_url( $original_link ) . '" class="button checkout wc-forward no-barba">' . $link_title . '</a>';
 }
 
 add_filter('iconic_wlv_group_attribute_term_data', 'oax_iconic_wlv_group_attribute_term_data', 10, 2);
@@ -331,7 +331,7 @@ function oax_iconic_wlv_group_attribute_term_data($term_data, $visible_product_i
 		}
 		if( $product_design !== false ){				
 			$design_image_id = get_term_meta( $product_design->term_id, 'thumbnail_id', true );
-			$design_thumbnail_img = wp_get_attachment_image_src( $design_image_id, 'thumbnail' );
+			$design_thumbnail_img = wp_get_attachment_image_src( $design_image_id, array(50, 50) );
 
 			if( !$term_data['current'] ){
 				$content = '<a class="iconic-wlv-terms__term-content iconic-wlv-terms__term-content--link" style="width: 50px;" href="';

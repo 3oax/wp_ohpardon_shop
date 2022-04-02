@@ -4,7 +4,7 @@
    */
   $page_header_bg_color = isset($bg_color) ? $bg_color : 'bg-green';
   $page_header_footer = !isset($page_header_footer) ? false : $page_header_footer;
-  $headline_split = true;
+  $headline_split = false;
 ?>
 
 <header class="c-section c-section--header flex items-center justify-center<?php if(isset($xclass_section_padding) && !empty($xclass_section_padding)): ?> <?= $xclass_section_padding; ?><?php else: ?> pt-5 md:pt-75 pb-3 md:pb-4 <?php endif; ?><?= isset($xclass_section) ? $xclass_section : ''; ?>">
@@ -34,7 +34,7 @@
           </i>
         <?php endif; ?>        
         
-        <?php if($page_header_title != false): ?>
+        <?php if( $page_header_title != false): ?>
           <?php if( $headline_split && substr($page_header_title, 0, 1) !== '<'): ?>
 
             <?php 

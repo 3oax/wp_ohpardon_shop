@@ -44,6 +44,76 @@ const initModals = ( container ) => {
 	
 };
 
+/* eslint-disable */
+const initButtons = ( container ) => {
+	const $btns = $(container).find('button:not(.single_add_to_cart_button), .button:not(.single_add_to_cart_button), .btn');
+	const mouseObj = {
+		mouseCoords: null,
+		mousetThreshold: 0.12,
+		manageMouseLeave( event ) {
+			event.currentTarget.style.boxShadow = '0 0 0 rgba(0,0,0,0.2)';
+		},
+		manageMouseMove( event ) {
+			let dot, 
+				eventDoc, 
+				doc, 
+				body,
+				target,
+				pageX, 
+				pageY;
+			
+			event = event || window.event; // IE-ism
+			target = event.currentTarget;
+			
+			// (old IE)
+			if ( event.pageX == null && event.clientX != null ) {
+				eventDoc = event.target && event.target.ownerDocument || document;
+				doc = eventDoc.documentElement;
+				body = eventDoc.body;
+	
+				event.pageX = event.clientX
+					+ ( doc && doc.scrollLeft || body && body.scrollLeft || 0 )
+					- ( doc && doc.clientLeft || body && body.clientLeft || 0 );
+				event.pageY = event.clientY
+					+ ( doc && doc.scrollTop || body && body.scrollTop || 0 )
+					- ( doc && doc.clientTop || body && body.clientTop || 0 );
+			}
+			// Use event.pageX / event.pageY here
+
+			/*
+			 * normalize
+			 * bodyRect = document.body.getBoundingClientRect(),
+			 */
+			let elemRect = target.getBoundingClientRect();
+			// let $btn.getBoundingClientRect();
+			let mean = Math.round( elemRect.width / 2 );
+			// offset   = elemRect.top - bodyRect.top;
+	
+			// mouseObj.mouseCoords = {mouse_x: event.pageX - elemRect.left , mouse_y:event.pageY - elemRect.top}
+			mouseObj.mouseCoords = {
+				mouse_true_x: event.pageX - elemRect.left,
+				mouse_x: ( event.pageX - elemRect.left - mean ) * mouseObj.mousetThreshold,
+				mouse_true_y: event.pageY - elemRect.top,
+				mouse_y: ( event.pageY / 1.5 - elemRect.top / 1.5 - mean ) * mouseObj.mousetThreshold
+			};
+			mouseObj.manageButtonShadow( -1, target );
+		},
+		manageButtonShadow( direction, target ) {
+			if ( mouseObj.mouseCoords ) {
+				mouseObj.mouseCoords.mouse_x = Math.floor( mouseObj.mouseCoords.mouse_x );
+				target.style.boxShadow = `${direction * mouseObj.mouseCoords.mouse_x}px 0px 0.5em rgba(0,0,0,0.1)`;
+			}
+		}
+	};
+	
+	// init listeners
+	for ( let i = 0; i < $btns.length; i++ ) {
+		$btns[i].addEventListener( 'mousemove', mouseObj.manageMouseMove, false );
+		$btns[i].addEventListener( 'mouseleave', mouseObj.manageMouseLeave, false );
+	}	
+};
+/* eslint-enable */
+
 /**
  * Init Classes
  */
@@ -181,6 +251,11 @@ const APP = {
 		 * Init WooCommerce
 		 */	
 		APP.initWoocommerce();
+
+		/**
+		 * Init Buttons
+		 */
+		initButtons( container );
 
 		/**
 		 * Init First Page Visit
@@ -553,6 +628,8 @@ const APP = {
 	 * On Link Clicked
 	 */	
 	onLinkClicked( HTMLElement ){
+		console.log( HTMLElement );		
+		$( HTMLElement ).addClass( 'redirecting' );
 		Utils.progressBar( 'start' );
 	},
 
@@ -637,6 +714,11 @@ const APP = {
 		 * Init Videos
 		 */
 		Utils.initVideos( container );
+
+		/**
+		 * Init Buttons
+		 */
+		initButtons( container );		
 	}
 };
 

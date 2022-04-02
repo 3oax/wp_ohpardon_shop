@@ -4906,7 +4906,7 @@ button,
   cursor: pointer;
   display: inline-block;
   font-family: var(--font__serif);
-  font-size: 1em;
+  font-size: 1rem;
   font-weight: normal;
   height: unset;
   padding: 0.5rem 1.5rem;
@@ -4917,12 +4917,28 @@ button,
   border: none;
   line-height: 1.75;
   color: white;
+  -webkit-transition: color 0.3s ease, background-color 0.3s ease, -webkit-box-shadow 0.1s linear;
+  transition: color 0.3s ease, background-color 0.3s ease, -webkit-box-shadow 0.1s linear;
+  -o-transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.1s linear;
+  transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.1s linear;
+  transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.1s linear, -webkit-box-shadow 0.1s linear;
 }
 
 button:hover,
 .button:hover,
 .btn:hover {
+  color: black;
+  background-color: var(--color__grey-light);
+}
+
+button:focus,
+button:active,
+.button:focus,
+.button:active,
+.btn:focus,
+.btn:active {
   color: white;
+  background-color: black;
 }
 
 button > *,
@@ -4967,11 +4983,74 @@ button--white:hover,
   color: black;
 }
 
+button.single_add_to_cart_button:not(.loading):hover,
+.button.single_add_to_cart_button:not(.loading):hover,
+.btn.single_add_to_cart_button:not(.loading):hover {
+  color: white;
+  background-color: black;
+}
+
+button[disabled],
+.button[disabled],
+.btn[disabled] {
+  cursor: not-allowed;
+  background-color: var(--color__grey);
+  color: white;
+}
+
 button.loading,
 .button.loading,
 .btn.loading {
-  opacity: 0.5;
+  opacity: 0.75;
   cursor: progress;
+}
+
+button.loading::after,
+.button.loading::after,
+.btn.loading::after {
+  content: "";
+  -webkit-animation: btn-loading-spin 1s linear infinite;
+       -o-animation: btn-loading-spin 1s linear infinite;
+          animation: btn-loading-spin 1s linear infinite;
+  border: 0.1em solid white;
+  border-top: 3px solid var(--color__grey);
+  border-radius: 50%;
+  height: 1.25em;
+  width: 1.25em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -0.75em;
+  margin-top: -0.75em;
+}
+
+button.loading:not(input),
+.button.loading:not(input),
+.btn.loading:not(input) {
+  opacity: 1;
+  color: transparent;
+}
+
+@-webkit-keyframes btn-loading-spin {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes btn-loading-spin {
+  to {
+    -o-transform: rotate(360deg);
+       transform: rotate(360deg);
+  }
+}
+
+@keyframes btn-loading-spin {
+  to {
+    -webkit-transform: rotate(360deg);
+         -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
 /*---------------------------

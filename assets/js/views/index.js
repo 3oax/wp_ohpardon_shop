@@ -1,9 +1,6 @@
 /* eslint one-var: [0] */
 
 import ViewHome from './home.js';
-import ViewContact from './contact.js';
-import ViewProduct from './product.js';
-import ViewProductCat from './product-cat.js';
 import Animations from '../app/animations.js';
 import ViewportAnimations from '../components/viewportAnimations.js';
 
@@ -12,9 +9,6 @@ const Views = {
 	getAll(){
 		return [
 			ViewHome,
-			ViewContact,
-			ViewProduct,
-			ViewProductCat
 		];
 	},
 

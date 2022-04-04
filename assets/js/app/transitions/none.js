@@ -42,7 +42,7 @@ const TransitionNone = {
 			} );
 		}, loaderTimeoutMS );
 
-		if ( Utils.isset( data.next.container ) ){
+		if ( Utils.isset( data.next.container ) && data.next.container !== null ){
 			gsap.set( data.next.container, {
 				display: 'none'
 			} );

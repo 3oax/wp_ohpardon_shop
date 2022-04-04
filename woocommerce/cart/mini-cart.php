@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
 do_action( 'woocommerce_before_mini_cart' ); ?>
 
 <?php if ( ! WC()->cart->is_empty() ) : ?>
-	<div class="c-cart__scroll -mr-05 overflow-y-scroll overflow-x-hidden" style="max-height: calc(100vh - 16.3rem);">
+	<div class="c-cart__scroll -mr-05 overflow-y-scroll overflow-x-hidden" style="max-height: calc(100vh - 18.5rem);">
 		<ul class="woocommerce-mini-cart cart_list product_list_widget <?php echo esc_attr( $args['list_class'] ); ?>" data-cart-product-count="<?= WC()->cart->get_cart_contents_count(); ?>">
 			<?php
 			do_action( 'woocommerce_before_mini_cart_contents' );
@@ -49,7 +49,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 					$price_with_qty = $raw_price * $cart_item['quantity'];
 					$product_price = wc_price($price_with_qty);
 					?>
-					<li class="woocommerce-mini-cart-item mb-1 <?php echo esc_attr( apply_filters( 'woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key ) ); ?>" data-product-id="<?= esc_attr( $product_id ); ?>" data-cart-item-key="<?= esc_attr( $cart_item_key ); ?>">
+					<li class="woocommerce-mini-cart-item mb-1 <?php echo esc_attr( apply_filters( 'woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key ) ); ?>" data-product-id="<?= esc_attr( $product_id ); ?>" data-cart-item-qty="<?= $cart_item['quantity'] ?>" data-cart-item-key="<?= esc_attr( $cart_item_key ); ?>">
 						<?php
 						echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							'woocommerce_cart_item_remove_link',
@@ -75,10 +75,10 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 						<?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						
 						<div class="flex pr-2 justify-between items-center">
-							<div class="js--cart-qty-change flex flex-wrap">
-								<button class="js--cart-qty-change-btn js--cart-qty-change-btn--minus inline-block w-2 h-2 flex items-center justify-center cursor-pointer bg-grey-light" style="border: none;">&minus;</button>
-								<input type="text" style="border: none;" value="<?= $cart_item['quantity'] ?>" class="js--cart-qty-change-input h-2 w-2 text-center">
-								<button class="js--cart-qty-change-btn js--cart-qty-change-btn--plus inline-block w-2 h-2 flex items-center justify-center cursor-pointer bg-grey-light" style="border: none;">&plus;</button>
+							<div class="js--cart-qty-change flex flex-wrap bg-grey-light justify-between" data-qty="<?= $cart_item['quantity'] ?>" style="width: calc(35% + 1px);">
+								<button class="js--cart-qty-change-btn js--cart-qty-change-btn--minus inline-block w-2 h-2 flex items-center justify-center cursor-pointer bg-grey-light flex-shrink-0" style="border: none;">&minus;</button>
+								<input type="text" style="border: none;" readonly value="<?= $cart_item['quantity'] ?>" class="js--cart-qty-change-input h-2 w-2 text-center flex-grow">
+								<button class="js--cart-qty-change-btn js--cart-qty-change-btn--plus inline-block w-2 h-2 flex items-center justify-center cursor-pointer bg-grey-light flex-shrink-0" style="border: none;">&plus;</button>
 							</div>
 							<div>
 								<?= $product_price ?>

@@ -103,7 +103,7 @@ defined( 'ABSPATH' ) || exit;
 
 	</table>
 
-	<div class="wc-proceed-to-checkout mt-1">
+	<div class="wc-proceed-to-checkout mt-1 text-center">
 		<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
 	</div>
 

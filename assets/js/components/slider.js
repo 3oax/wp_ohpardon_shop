@@ -26,7 +26,7 @@ const Slider = {
 
 		initSlider(){
 			const self = this;
-
+			
 			if ( 
 				$( this.options.container ).find( this.options.selector_slider ).length
 			){

@@ -7,9 +7,6 @@
 /******************************
  ****** WooCommerce START *****
  ******************************/
-
-$OAX_INFINITESCROLL_SUPPORT = false;
-
 /* 
 * Remove Styles and Scripts
 */
@@ -23,11 +20,6 @@ function oax_remove_wc_styles(){
 	if ( defined( 'YITH_WCAN' ) ){
 		wp_dequeue_style( 'yith-wcan-shortcodes' );
 		wp_dequeue_style( 'yith-wcan-frontend');
-	}
-
-	if( $OAX_INFINITESCROLL_SUPPORT ){
-		wp_dequeue_style('the-neverending-homepage');
-		wp_enqueue_style('the-neverending-homepage');
 	}
 }
 add_action( 'wp_enqueue_scripts', 'oax_remove_wc_styles', PHP_INT_MAX - 1 );
@@ -84,12 +76,6 @@ function oax_remove_and_add_wc_scripts(){
 	// Iconic Variations (Linked Variations)
 	//
 	wp_dequeue_script('iconic-wlv');
-
-	// Infinite Scroll
-	if( $OAX_INFINITESCROLL_SUPPORT ){
-		wp_dequeue_script( 'the-neverending-homepage' );
-		wp_enqueue_script( 'the-neverending-homepage' );
-	}
 }
 add_action( 'wp_enqueue_scripts', 'oax_remove_and_add_wc_scripts', PHP_INT_MAX );
 
@@ -142,35 +128,6 @@ add_filter( 'woocommerce_output_related_products_args', 'oax_related_products_ar
 function oax_related_products_args( $args ) {
 	$args['posts_per_page'] = 3; // for related products
 	return $args;
-}
-
-if($OAX_INFINITESCROLL_SUPPORT){
-
-	function oax_infinite_scroll_archive_supported(){
-		return true;
-	}
-	add_filter( 'infinite_scroll_archive_supported', 'oax_infinite_scroll_archive_supported');
-	
-	add_theme_support( 'infinite-scroll', array(
-		'type' => 'scroll',
-		'container' => 'infinite-list',
-		'footer' => false,
-		'wrapper' => true,
-		'render' => 'oax_product_infinite_scroll_render',
-		'posts_per_page' => 6,
-	) );
-
-	function oax_product_infinite_scroll_render() {
-		while ( have_posts() ) {
-			the_post();
-			/**
-			 * Hook: woocommerce_shop_loop.
-			 */
-			do_action( 'woocommerce_shop_loop' );
-
-			wc_get_template_part( 'content', 'product' );
-		}
-	}
 }
 
 add_action( 'before_woocommerce_init', function() {

@@ -56,9 +56,10 @@ if ( ! function_exists( 'oax_template_setup' ) ) :
 		 */		
 		add_filter( 'intermediate_image_sizes', function( $sizes )
 		{
+			// print_r($sizes);
 			return array_filter( $sizes, function( $val )
 			{
-					return 'medium_large' !== $val; // Filter out 'medium_large'
+				return ('medium_large' !== $val && '1536x1536' !== $val && '2048x2048' !== $val); // Filter out 'medium_large'
 			} );
 		} );
 

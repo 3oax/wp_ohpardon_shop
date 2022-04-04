@@ -7,24 +7,12 @@
 
 import Utils from './utils.js';
 import AnimationTemplateStart from './animations/template-start';
-import AnimationPost from './animations/post';
-import AnimationEvent from './animations/tribe_events';
 
 const Animations = {
 	/**
 	 * Start Page
 	 */
 	'template-start': AnimationTemplateStart,	
-
-	/**
-	 * Post
-	 */	
-	post: AnimationPost,
-
-	/**
-	 * Event
-	 */	
-	tribe_events: AnimationEvent,	
 
 	hasAnimation( view, fn, _type ){
 		let checkAnimation = false;

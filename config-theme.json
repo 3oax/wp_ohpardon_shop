@@ -7,6 +7,7 @@
     "grey-light"  : "#eeeeee",
     "danger"      : "#e53232",
     "success"     : "#1dc617",
+    "success-dark": "#4BB543",
     "warning"     : "#fca207"
   } 
 }

@@ -29,6 +29,70 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 ?>
 
+<style>
+	/* Damit Safari iPhone nicht reinzoomt */
+	@media (max-width: 500px){
+		.is-ios.is-safari p.form-row input[type=text], 
+		.is-ios.is-safari p.form-row input[type=password], 
+		.is-ios.is-safari p.form-row input[type=email], 
+		.is-ios.is-safari p.form-row input[type=tel], 
+		.is-ios.is-safari p.form-row textarea,
+		.is-ios.is-safari .select2-container .select2-selection--single, 
+		.is-ios.is-safari .select2-results, .woocommerce-input-wrapper select {
+			font-size: 16px;
+		}
+	}
+	p.form-row.mailchimp-newsletter  {
+		font-size: .75rem;
+		margin-top: 0.5rem;
+		padding: 1rem !important;
+		display: flex !important;
+	}
+	p.form-row.mailchimp-newsletter input {
+		margin-top: 0;
+	}
+	p.form-row.mailchimp-newsletter label {
+		padding: 0 !important;
+		margin-left: 0.25rem !important
+	}
+	@media (min-width: 992px) {
+		.woocommerce-checkout .wc-gzd-checkbox-placeholder {
+			width: 50%;
+		}
+		.woocommerce-checkout .wc-gzd-checkbox-placeholder p.form-row
+		{
+			width: 100%;
+		}
+		.wc-gzd-place-order > *:not(button) {
+			padding-right: 1rem;	
+		}			
+	}
+
+	.wc-gzd-checkbox-placeholder > p {
+		margin-bottom: 0; 
+	}
+	.wc-gzd-place-order {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
+	.wc-gzd-place-order > *:not(button) {
+		text-align: left;	
+	}
+	.wc-gzd-place-order > *:empty {
+		display: none;
+	}
+	.wc-gzd-place-order > *:nth-child(2n):not(button) {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.woocommerce-checkout-review-order-table tr.order-tax { display: none; }
+	.woocommerce-checkout-review-order-table #shipping_method input[type="radio"] { margin-right: 0.25rem; }
+	.woocommerce-checkout-review-order-table #shipping_method li + li { margin-top: 0.5rem; }
+</style>
+
 <form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
 	<?php if ( $checkout->get_checkout_fields() ) : ?>
@@ -64,3 +128,32 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 </form>
 
 <?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>
+
+<div id="c-modal--fakeorder" class="fixed inset" style="display: none; background-color: rgba(0,0,0,0.2);">
+	<div class="c-modal__close absolute right-0 top-0 w-2 h-2 bg-grey-light text-white" onclick="$('#c-modal--fakeorder').hide();">&times;</div>
+	<div class="pt-5 w-full md:w-1/3">
+		<div class="px-1">
+			<div class="p-2 bg-white"></div>
+		</div>
+	</div>
+</div>
+
+<script>
+	const $checkoutForm = $('form[name="checkout"].woocommerce-checkout');
+	const $submitBtn = $('[type="submit"][name="woocommerce_checkout_place_order"]');
+
+	const initFakeCheckout = () => {
+		$( document.body ).off( 'init_checkout' );
+		$( document.body ).off( 'update_checkout' );
+		$checkoutForm.off('submit');
+		$checkoutForm.on('submit', (event) => {
+			// alert('HAA! HAA!');
+			$('#c-modal--fakeorder').show();
+			event.preventDefault();
+			return false;
+		});		
+	};
+
+	setTimeout(initFakeCheckout ,2000);
+
+</script>

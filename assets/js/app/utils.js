@@ -30,7 +30,7 @@ const Utils = {
 		return true;	    
 	},
 
-	initSliders( container ) {
+	initSliders( container ) {		
 		/**
 		 * Swiper
 		 */

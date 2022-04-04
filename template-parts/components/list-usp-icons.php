@@ -100,27 +100,27 @@
       'id'  => 'c-section__usp-icon-set--upcycling'
     ],
     [
-      'title' => 'Easy Application',
+      'title' => 'Einfache Anbringung',
       'svg' => oax_asset('img/icons/easy-application.svg'),
       'id'  => 'c-section__usp-icon-set--easy-application'
     ],
     [
-      'title' => 'Nice Surface',
+      'title' => 'Schöne Oberfläche',
       'svg' => oax_asset('img/icons/nice-feel.svg'),
       'id'  => 'c-section__usp-icon-set--feel'
     ],
     [
-      'title' => 'Real Streetartists',
+      'title' => 'Echte Streetartists',
       'svg' => oax_asset('img/icons/streetartists.svg'),
       'id'  => 'c-section__usp-icon-set--streetartists'
     ],
     [
-      'title' => '30 Days Return',
+      'title' => '30 Tage Testen',
       'svg' => oax_asset('img/icons/30-days-return.svg'),
       'id'  => 'c-section__usp-icon-set--30-days-return'
     ],
     [
-      'title' => 'Customer Chat',
+      'title' => 'Kundenchat',
       'svg' => oax_asset('img/icons/chat.svg'),
       'id'  => 'c-section__usp-icon-set--chat'
     ],
@@ -129,11 +129,6 @@
 
 <div class="relative">
   <style>
-    :root {
-      --offset: 20vw;
-      --move-initial: 0%;
-      --move-final: -82.25%;
-    }
     @keyframes marquee {
       0% {        
         transform: translateX(100%);

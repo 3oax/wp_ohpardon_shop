@@ -33,7 +33,8 @@ if ( ! wc_coupons_enabled() ) { // @codingStandardsIgnoreLine.
 		<p><?php esc_html_e( 'If you have a coupon code, please apply it below.', 'woocommerce' ); ?></p>
 	</div>
 
-	<div class="flex flex-wrap justify-center items-center w-full md:w-2/3 mt-05">
+	<div class="flex flex-wrap justify-center items-center w-full md:w-2/3">
+		<!--
 		<p class="form-row form-row-first">
 			<input type="text" name="coupon_code" class="input-text w-full" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" id="coupon_code" value="" />
 		</p>
@@ -41,6 +42,18 @@ if ( ! wc_coupons_enabled() ) { // @codingStandardsIgnoreLine.
 		<p class="form-row form-row-last">
 			<button type="submit" class="btn button" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Apply coupon', 'woocommerce' ); ?></button>
 		</p>
+		-->
+
+		<div class="relative w-full mt-1 mb-05">
+			<p class="form-row text-left" style="margin-bottom: 0;">
+				<label for="coupon_code"><?php esc_html_e( 'Coupon:', 'woocommerce' ); ?></label> 
+				<input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" /> 
+			</p>
+			<button type="submit" style="position: absolute; height: auto; bottom: 0; top: -0.25rem;" class="btn button absolute w-3 right-0 top-0" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>">
+				<span aria-hidden="true" style="font-size: 2.4em; display: inline-block; width: 1em; height: 1em; transform: rotate(120deg); position: absolute; left: 50%; top: 50%; margin-left: -0.5em; margin-top: -0.5em; transform-origin: 50% 50%; text-align: center; line-height: 0.85em;">&not;</span>
+				<span class="sr-only"><?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?></span>
+			</button>
+		</div>		
 	</div>
 
 	<div class="clear"></div>

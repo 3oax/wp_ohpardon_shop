@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <noscript>
 			<?php printf( esc_html__( 'Since your browser does not support JavaScript, or it is disabled, please ensure you click the %1$sUpdate Totals%2$s button before placing your order. You may be charged more than the amount stated above if you fail to do so.', 'woocommerce-germanized' ), '<em>', '</em>' ); ?>
             <br/>
-            <button type="submit" class="button alt btn" name="woocommerce_checkout_update_totals"
+            <button type="submit" class="button alt btn w-full" name="woocommerce_checkout_update_totals"
                     value="<?php esc_attr_e( 'Update totals', 'woocommerce' ); ?>"><?php esc_html_e( 'Update totals', 'woocommerce' ); ?></button>
         </noscript>
 
@@ -42,7 +42,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		do_action( 'woocommerce_gzd_review_order_before_submit' );
 		?>
 
-		<?php echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" class="button alt btn" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr( $order_button_text ) . '" data-value="' . esc_attr( $order_button_text ) . '">' . esc_html( $order_button_text ) . '</button>' ); ?>
+		<?php echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" class="button alt btn mt-1 md:mt-0 w-full md:w-1/2" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr( $order_button_text ) . '" data-value="' . esc_attr( $order_button_text ) . '">' . esc_html( $order_button_text ) . '</button>' ); ?>
 
 		<?php if ( $include_nonce ) :
 			wp_nonce_field( 'woocommerce-process_checkout', '_wpnonce' ); ?>

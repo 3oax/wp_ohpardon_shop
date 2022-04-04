@@ -1082,8 +1082,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./js/app/utils.js");
 /* harmony import */ var _animations_template_start__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animations/template-start */ "./js/app/animations/template-start.js");
-/* harmony import */ var _animations_post__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./animations/post */ "./js/app/animations/post.js");
-/* harmony import */ var _animations_tribe_events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animations/tribe_events */ "./js/app/animations/tribe_events.js");
 /* eslint one-var: [0]*/
 
 /* eslint max-len: [0]*/
@@ -1097,23 +1095,11 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint no-multi-assign: [0]*/
 
 
-
-
 var Animations = {
   /**
    * Start Page
    */
   'template-start': _animations_template_start__WEBPACK_IMPORTED_MODULE_1__["default"],
-
-  /**
-   * Post
-   */
-  post: _animations_post__WEBPACK_IMPORTED_MODULE_2__["default"],
-
-  /**
-   * Event
-   */
-  tribe_events: _animations_tribe_events__WEBPACK_IMPORTED_MODULE_3__["default"],
   hasAnimation: function hasAnimation(view, fn, _type) {
     var checkAnimation = false;
     var type = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isset(_type) ? _type : false; // eslint-disable-line
@@ -1130,153 +1116,6 @@ var Animations = {
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (Animations);
-
-/***/ }),
-
-/***/ "./js/app/animations/post.js":
-/*!***********************************!*\
-  !*** ./js/app/animations/post.js ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./js/app/utils.js");
-/* harmony import */ var _fixes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../fixes.js */ "./js/app/fixes.js");
-/* eslint new-cap: [0] */
-
-/* eslint one-var: [0] */
-
-/* eslint max-len: [0] */
-
-
-var AnimationPost = {
-  enter: function enter(args) {
-    var $headline = $(args.newContainer).find('.v-post__header .entry-title');
-    var $tags = $(args.newContainer).find('.v-post__tags > li');
-    var $meta = $(args.newContainer).find('.v-post__meta');
-    var $content = $(args.newContainer).find('.v-post__content');
-    var tl = gsap.timeline({
-      defaults: {
-        duration: 0.75
-      },
-      paused: true
-    });
-    var tweenSplit = new SplitText($headline, {
-      type: 'lines,words,chars',
-      linesClass: 'overflow-hidden js--text-split--line',
-      wordsClass: 'overflow-hidden js--text-split--word'
-    });
-    $meta.addClass('overflow-hidden');
-    tl.from(_fixes_js__WEBPACK_IMPORTED_MODULE_1__["default"].safari.is() ? tweenSplit.chars : tweenSplit.words, {
-      yPercent: _fixes_js__WEBPACK_IMPORTED_MODULE_1__["default"].chrome.is() ? 100 : 101,
-      stagger: _fixes_js__WEBPACK_IMPORTED_MODULE_1__["default"].safari.is() ? 0.02 : 0.1
-    });
-    tl.addLabel('wordsDone');
-    tl.from($meta.find('> *'), {
-      yPercent: 100,
-      stagger: 0.1
-    }, 'wordsDone-=0.6');
-
-    if ($tags.length) {
-      tl.from($tags, {
-        yPercent: 15,
-        opacity: 0,
-        stagger: 0.1
-      }, 'wordsDone-=0.6');
-    }
-
-    tl.from($content, {
-      y: 30,
-      opacity: 0
-    }, 'wordsDone-=0.4');
-    return tl;
-  },
-  initViewportFx: function initViewportFx(container) {
-    this.viewportHeadline(container);
-    /*
-     * this.viewportEntryTitle( {
-     * newContainer: container
-     * } );
-     */
-  },
-  viewportEntryTitle: function viewportEntryTitle(args) {
-    var $headline = $(args.newContainer).find('.v-post__header .entry-title');
-    var $tags = $(args.newContainer).find('.v-post__tags > li');
-    var $meta = $(args.newContainer).find('.v-post__meta');
-    var $content = $(args.newContainer).find('.v-post__content');
-    var tl = gsap.timeline({
-      defaults: {
-        duration: 0.75
-      },
-      scrollTrigger: {
-        trigger: $headline,
-        toggleActions: 'play none none reverse',
-        start: 'top bottom-=20%'
-      }
-    });
-    var tweenSplit = new SplitText($headline, {
-      type: 'lines,words,chars',
-      linesClass: 'overflow-hidden js--text-split--lines',
-      wordsClass: 'overflow-hidden js--text-split--words'
-    });
-    $meta.addClass('overflow-hidden');
-    tl.from(tweenSplit.words, {
-      yPercent: 100,
-      stagger: 0.1
-    });
-    tl.addLabel('wordsDone');
-    tl.from($meta.find('> *'), {
-      yPercent: 100,
-      stagger: 0.1
-    }, 'wordsDone-=0.6');
-
-    if ($tags.length) {
-      tl.from($tags, {
-        yPercent: 15,
-        opacity: 0,
-        stagger: 0.1
-      }, 'wordsDone-=0.6');
-    }
-
-    return tl;
-  },
-  viewportHeadline: function viewportHeadline(container) {
-    var $headlines = $(container).find('.v-post__heading');
-    var duration = 0.5;
-
-    if ($headlines.length > 0) {
-      $headlines.each(function (i, el) {
-        var $el = $(el);
-        var tl = gsap.timeline({
-          defaults: {
-            duration: duration
-          },
-          scrollTrigger: {
-            trigger: $el,
-            toggleActions: 'play none none reverse',
-            start: 'top bottom-=20%'
-          }
-        });
-        tl.from($el.find('mask:nth-of-type(3)').find('> g'), {
-          x: 0,
-          scaleX: 0,
-          transformOrigin: '0% 50%'
-        }).from($el.find('mask:nth-of-type(2)').find('> g'), {
-          x: '100%',
-          scaleX: 0,
-          transformOrigin: '100% 50%'
-        }, '-=0.2').from($el.find('mask:nth-of-type(1)').find('> g'), {
-          x: 0,
-          scaleX: 0,
-          transformOrigin: '0% 50%'
-        }, '-=0.2');
-      });
-    }
-  }
-};
-/* harmony default export */ __webpack_exports__["default"] = (AnimationPost);
 
 /***/ }),
 
@@ -1307,66 +1146,6 @@ var AnimationTemplateStart = {
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (AnimationTemplateStart);
-
-/***/ }),
-
-/***/ "./js/app/animations/tribe_events.js":
-/*!*******************************************!*\
-  !*** ./js/app/animations/tribe_events.js ***!
-  \*******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./js/app/utils.js");
-/* harmony import */ var _fixes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../fixes.js */ "./js/app/fixes.js");
-/* eslint new-cap: [0] */
-
-/* eslint one-var: [0] */
-
-/* eslint max-len: [0] */
-
-
-var AnimationEvent = {
-  enter: function enter(args) {
-    var $headline = $(args.newContainer).find('.v-event__header .entry-title');
-    var $date = $headline.find(' + div');
-    var $price = $(args.newContainer).find('.v-event__price');
-    var $content = $(args.newContainer).find('.tribe_events');
-    var tl = gsap.timeline({
-      defaults: {
-        duration: 0.75
-      },
-      paused: true
-    });
-    var tweenSplit = new SplitText($headline, {
-      type: 'lines,words,chars',
-      linesClass: 'overflow-hidden js--text-split--line',
-      wordsClass: 'overflow-hidden js--text-split--word'
-    });
-    tl.from(_fixes_js__WEBPACK_IMPORTED_MODULE_1__["default"].safari.is() ? tweenSplit.chars : tweenSplit.words, {
-      yPercent: 100,
-      stagger: _fixes_js__WEBPACK_IMPORTED_MODULE_1__["default"].safari.is() ? 0.02 : 0.1
-    });
-    tl.addLabel('wordsDone');
-    tl.from($date, {
-      y: 20,
-      opacity: 0
-    }, 'wordsDone-=0.6');
-    tl.from($price, {
-      y: 20,
-      opacity: 0
-    }, 'wordsDone-=0.4');
-    tl.from($content, {
-      y: 30,
-      opacity: 0
-    }, 'wordsDone-=0.2');
-    return tl;
-  },
-  initViewportFx: function initViewportFx(container) {}
-};
-/* harmony default export */ __webpack_exports__["default"] = (AnimationEvent);
 
 /***/ }),
 
@@ -2360,7 +2139,7 @@ var TransitionNone = {
       });
     }, loaderTimeoutMS);
 
-    if (_utils__WEBPACK_IMPORTED_MODULE_0__["default"].isset(data.next.container)) {
+    if (_utils__WEBPACK_IMPORTED_MODULE_0__["default"].isset(data.next.container) && data.next.container !== null) {
       gsap.set(data.next.container, {
         display: 'none'
       });
@@ -3824,10 +3603,14 @@ function () {
 
     var defaults = {
       features: {
-        WooVariationSwatches: 1,
-        Germanized: 1
+        WooVariationSwatches: 0,
+        Germanized: 1,
+        LinkedVariations: 1
       },
       container: 'body',
+      selectors: {
+        noticesWrapper: '.woocommerce-notices-wrapper'
+      },
       product: {
         variationsForm: '.variations_form',
         linkedVariations: '.iconic-wlv-variations',
@@ -3841,6 +3624,7 @@ function () {
         trigger_product_count: '.js--cart-trigger__desc-count',
         selector: '.c-cart',
         close: '.c-cart__close',
+        remove_product: '.remove[data-product_id]',
         data_product_count: 'data-cart-product-count'
       },
       scripts: {
@@ -3896,11 +3680,14 @@ function () {
         namespace = $container.data('barbaNamespace');
 
         if (namespace === 'product') {
-          var $linkedVariations = $container.find(this.options.product.linkedVariations);
           this.addEventListener(container);
 
-          if ($linkedVariations.length) {
-            _lib_woocommerce_iconic_woo_linked_variations_js__WEBPACK_IMPORTED_MODULE_2__["default"].on_ready();
+          if (this.options.LinkedVariations) {
+            var $linkedVariations = $container.find(this.options.product.linkedVariations);
+
+            if ($linkedVariations.length) {
+              _lib_woocommerce_iconic_woo_linked_variations_js__WEBPACK_IMPORTED_MODULE_2__["default"].on_ready();
+            }
           }
         }
 
@@ -3954,8 +3741,10 @@ function () {
         }
       }
 
-      if ($linkedVariations.length) {
-        _lib_woocommerce_iconic_woo_linked_variations_js__WEBPACK_IMPORTED_MODULE_2__["default"].on_ready();
+      if (this.options.LinkedVariations) {
+        if ($linkedVariations.length) {
+          _lib_woocommerce_iconic_woo_linked_variations_js__WEBPACK_IMPORTED_MODULE_2__["default"].on_ready();
+        }
       }
       /* eslint-disable */
 
@@ -4058,8 +3847,10 @@ function () {
       var container = _app_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isset(_container) ? _container : null;
 
       if (container === null) {
-        $(document).on('click.oax::add-to-cart', "".concat(this.options.product.buyBtn, ":not(.disabled)"), this.onVariationAddToCart);
+        $(document).on('click.oax::add-to-cart', "".concat(this.options.product.buyBtn, ":not(.disabled)"), this.onAddToCart);
+        $(document.body).on('adding_to_cart', $.proxy(this.onAddingToCart, this));
         $(document.body).on('added_to_cart', $.proxy(this.onAddedToCard, this));
+        $(document.body).on('removed_from_cart', $.proxy(this.onRemovedFromCart, this));
         $(document.body).on('wc_fragments_loaded', $.proxy(this.onFragmentsLoaded, this));
         $(document).on('click.oax::open-cart', this.options.cart.trigger, $.proxy(this.onToggleCart, this));
         $(document).on('click.oax::change-cart-qty', '.js--cart-qty-change-btn', this.onItemQtyChange);
@@ -4090,15 +3881,6 @@ function () {
   }, {
     key: "removeEventListener",
     value: function removeEventListener() {}
-  }, {
-    key: "onAddedToCard",
-    value: function onAddedToCard(event, fragments, cartHash, $button) {
-      if (OAX.debug) {
-        console.log('onaddadetocart', event, fragments, cartHash, $button);
-      }
-
-      this.openCart();
-    }
   }, {
     key: "onFragmentsLoaded",
     value: function onFragmentsLoaded(event) {
@@ -4191,8 +3973,8 @@ function () {
       console.log($form);
     }
   }, {
-    key: "onVariationAddToCart",
-    value: function onVariationAddToCart(event) {
+    key: "onAddToCart",
+    value: function onAddToCart(event) {
       var $thisbutton = $(event.target);
       var $form = $thisbutton.closest('form.cart');
       /*
@@ -4216,18 +3998,51 @@ function () {
           $thisbutton.removeClass('added').addClass('loading');
         },
         complete: function complete(response) {
-          $thisbutton.addClass('added').removeClass('loading');
+          $thisbutton.removeClass('loading');
+          setTimeout(function () {
+            $thisbutton.removeClass('added').removeClass('error');
+          }, 5000);
         },
         success: function success(response) {
           if (response.error && response.product_url) {
+            $thisbutton.removeClass('loading');
+            $thisbutton.addClass('error');
             window.location = response.product_url;
             return;
           }
 
+          $thisbutton.addClass('added');
           $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, $thisbutton]);
         }
       });
       event.preventDefault();
+    }
+  }, {
+    key: "onAddingToCart",
+    value: function onAddingToCart(event, $thisbutton, data) {
+      var self = this;
+
+      if (OAX.debug) {
+        console.log('onaddingtocart', event, $thisbutton, data);
+      } // action
+
+    }
+  }, {
+    key: "onAddedToCard",
+    value: function onAddedToCard(event, fragments, cartHash, $button) {
+      var self = this;
+
+      if (OAX.debug) {
+        console.log('onaddadetocart', event, fragments, cartHash, $button);
+      }
+
+      if (_app_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isset($button) && $button.hasClass('added')) {
+        setTimeout(function () {
+          self.openCart();
+        }, 500);
+      } else {
+        this.openCart();
+      }
     }
     /*
      * Shopping Cart
@@ -4284,9 +4099,12 @@ function () {
       var $item = $target.closest('.woocommerce-mini-cart-item');
       var $items = $item.siblings('.woocommerce-mini-cart-item');
       var $cart = $('.c-cart');
+      var $component = $target.closest('.js--cart-qty-change');
       var $siblingTargets = $item.find('.js--cart-qty-change-btn, .js--cart-qty-change-input');
       var cartItemKey = $item.data('cartItemKey');
       var cartItemQty = parseInt($item.find('.js--cart-qty-change-input').val(), 10);
+
+      var _oldCartItemQty = $item.data('cartItemQty');
 
       if ($target.hasClass('js--cart-qty-change-btn')) {
         if ($target.hasClass('js--cart-qty-change-btn--minus')) {
@@ -4296,37 +4114,47 @@ function () {
         }
       }
 
-      $cart.addClass('is-loading');
-      var $loader = $(OAX.template.loader.html);
-      $cart.append($loader.css({
-        position: 'absolute',
-        left: '50%',
-        top: '50%'
-      }));
-      $siblingTargets.prop('disabled', true);
-      var data = {
-        action: 'oax_ajax_cart_update_qty',
-        cart_item_key: cartItemKey,
-        // eslint-disable-line
-        cart_item_qty: cartItemQty // eslint-disable-line
+      if (cartItemQty !== _oldCartItemQty) {
+        $cart.addClass('is-loading');
+        var $loader = $(OAX.template.loader.html);
+        $cart.append($loader.css({
+          position: 'absolute',
+          left: '50%',
+          top: '50%'
+        }));
+        $siblingTargets.prop('disabled', true);
+        var data = {
+          action: 'oax_ajax_cart_update_qty',
+          cart_item_key: cartItemKey,
+          // eslint-disable-line
+          cart_item_qty: cartItemQty // eslint-disable-line
 
-      };
-      $.post(OAX.config.url_ajax, data, function (response) {
-        jQuery(document.body).one('wc_fragments_refreshed', function () {
-          $siblingTargets.prop('disabled', false);
-          $cart.find(OAX.template.loader.selector).remove();
-          $cart.removeClass('is-loading');
-          jQuery(document.body).trigger('wc_fragments_loaded');
+        };
+        $.post(OAX.config.url_ajax, data, function (response) {
+          console.log(response);
+          jQuery(document.body).one('wc_fragments_refreshed', function () {
+            $siblingTargets.prop('disabled', false);
+            $cart.find(OAX.template.loader.selector).remove();
+            $cart.removeClass('is-loading');
+            jQuery(document.body).trigger('wc_fragments_loaded');
 
-          if ($('form.woocommerce-checkout').length) {
-            jQuery(document.body).trigger('update_checkout');
-          }
+            if ($('form.woocommerce-checkout').length) {
+              jQuery(document.body).trigger('update_checkout');
+            }
+          });
+          jQuery(document.body).trigger('wc_fragment_refresh');
         });
-        jQuery(document.body).trigger('wc_fragment_refresh');
-      });
+      }
 
       if (event.type === 'click') {
         event.preventDefault();
+      }
+    }
+  }, {
+    key: "onRemovedFromCart",
+    value: function onRemovedFromCart(event, fragments, cartHash, $thisbutton) {
+      if ($('form.woocommerce-checkout').length) {
+        jQuery(document.body).trigger('update_checkout');
       }
     }
     /* eslint-disable */
@@ -5378,10 +5206,13 @@ var APP = {
      * Init Buttons
      */
 
-    initButtons(container);
+    if (!_app_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isMobile()) {
+      initButtons(container);
+    }
     /**
      * Init First Page Visit
      */
+
 
     $(window).on('load', this.firstPageVisit(container));
   },
@@ -5511,6 +5342,11 @@ var APP = {
       onBrowserNav: this.onBrowserNav,
       preventLinks: function preventLinks(el, event, href) {
         var selectorList = ['.remove_from_wishlist', '.remove[data-product_id]', '.restore-item', WC.options.cart.trigger];
+        var selectorParentList = [WC.options.selectors.noticesWrapper];
+
+        if ($(el).closest(WC.options.selectors.noticesWrapper).length !== 0) {
+          return true;
+        }
 
         if ($(el).closest('.js--pagination').length !== 0) {
           return true;
@@ -5731,9 +5567,7 @@ var APP = {
    * On Link Clicked
    */
   onLinkClicked: function onLinkClicked(HTMLElement) {
-    console.log(HTMLElement);
-    $(HTMLElement).addClass('redirecting');
-    _app_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].progressBar('start');
+    $(HTMLElement).addClass('redirecting'); // Utils.progressBar( 'start' );
   },
 
   /**
@@ -5776,11 +5610,6 @@ var APP = {
 
     navigation.setActiveState();
     /**
-     * Woocommerce
-     */
-
-    APP.initWoocommerce(container);
-    /**
      * Forms
      */
 
@@ -5816,10 +5645,17 @@ var APP = {
 
     _app_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].initVideos(container);
     /**
+     * Woocommerce
+     */
+
+    APP.initWoocommerce(container);
+    /**
      * Init Buttons
      */
 
-    initButtons(container);
+    if (!_app_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isMobile()) {
+      initButtons(container);
+    }
   }
 };
 $(document).ready(function () {
@@ -5868,53 +5704,6 @@ function skipLinkFocus() {
     }, false);
   }
 }
-
-/***/ }),
-
-/***/ "./js/views/contact.js":
-/*!*****************************!*\
-  !*** ./js/views/contact.js ***!
-  \*****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _app_animations_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app/animations.js */ "./js/app/animations.js");
-/* harmony import */ var _app_utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app/utils.js */ "./js/app/utils.js");
-/* eslint one-var: [0]*/
-
-/* eslint max-len: [0]*/
-
-/* eslint max-lines: [0]*/
-
-/* eslint max-params: [0]*/
-
-/* eslint complexity: [0]*/
-
-/* eslint no-multi-assign: [0]*/
-
-/* eslint prefer-const: [0]*/
-
-/* eslint consistent-return: [0] */
-
-
-var ViewContact = {
-  namespace: 'template-kontakt',
-  beforeAppear: function beforeAppear(data) {// console.log( this.namespace, 'beforeAppear', data );
-  },
-  afterAppear: function afterAppear(data) {// console.log( this.namespace, 'afterAppear', data );
-  },
-  beforeLeave: function beforeLeave(data) {// console.log( this.namespace, 'beforeLeave', data );
-  },
-  afterLeave: function afterLeave(data) {// console.log( this.namespace, 'afterLeave', data );
-  },
-  beforeEnter: function beforeEnter(data) {//		
-  },
-  afterEnter: function afterEnter(data) {// console.log( this.namespace, 'afterEnter', data );	
-  }
-};
-/* harmony default export */ __webpack_exports__["default"] = (ViewContact);
 
 /***/ }),
 
@@ -5981,22 +5770,16 @@ var ViewHome = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home.js */ "./js/views/home.js");
-/* harmony import */ var _contact_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./contact.js */ "./js/views/contact.js");
-/* harmony import */ var _product_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./product.js */ "./js/views/product.js");
-/* harmony import */ var _product_cat_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./product-cat.js */ "./js/views/product-cat.js");
-/* harmony import */ var _app_animations_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../app/animations.js */ "./js/app/animations.js");
-/* harmony import */ var _components_viewportAnimations_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/viewportAnimations.js */ "./js/components/viewportAnimations.js");
+/* harmony import */ var _app_animations_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app/animations.js */ "./js/app/animations.js");
+/* harmony import */ var _components_viewportAnimations_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/viewportAnimations.js */ "./js/components/viewportAnimations.js");
 /* eslint one-var: [0] */
 
 
 
-
-
-
-var vA = new _components_viewportAnimations_js__WEBPACK_IMPORTED_MODULE_5__["default"]();
+var vA = new _components_viewportAnimations_js__WEBPACK_IMPORTED_MODULE_2__["default"]();
 var Views = {
   getAll: function getAll() {
-    return [_home_js__WEBPACK_IMPORTED_MODULE_0__["default"], _contact_js__WEBPACK_IMPORTED_MODULE_1__["default"], _product_js__WEBPACK_IMPORTED_MODULE_2__["default"], _product_cat_js__WEBPACK_IMPORTED_MODULE_3__["default"]];
+    return [_home_js__WEBPACK_IMPORTED_MODULE_0__["default"]];
   },
   beforeAppearAll: function beforeAppearAll(data) {// console.log( 'beforeAppearAll', data ); 
   },
@@ -6011,9 +5794,9 @@ var Views = {
     var namespace = data.next.namespace;
 
     if (data.trigger === 'barba') {
-      if (_app_animations_js__WEBPACK_IMPORTED_MODULE_4__["default"].hasAnimation(namespace, 'initViewportFx')) {
+      if (_app_animations_js__WEBPACK_IMPORTED_MODULE_1__["default"].hasAnimation(namespace, 'initViewportFx')) {
         setTimeout(function () {
-          _app_animations_js__WEBPACK_IMPORTED_MODULE_4__["default"][namespace].initViewportFx(data.next.container);
+          _app_animations_js__WEBPACK_IMPORTED_MODULE_1__["default"][namespace].initViewportFx(data.next.container);
         }, 300);
       }
     } // console.log( 'beforeEnterAll', data ); 
@@ -6022,9 +5805,9 @@ var Views = {
   onEnterAll: function onEnterAll(data) {
     var namespace = data.next.namespace;
 
-    if (_app_animations_js__WEBPACK_IMPORTED_MODULE_4__["default"].hasAnimation(namespace, 'initViewportFx')) {
+    if (_app_animations_js__WEBPACK_IMPORTED_MODULE_1__["default"].hasAnimation(namespace, 'initViewportFx')) {
       setTimeout(function () {
-        _app_animations_js__WEBPACK_IMPORTED_MODULE_4__["default"][namespace].initViewportFx(data.next.container);
+        _app_animations_js__WEBPACK_IMPORTED_MODULE_1__["default"][namespace].initViewportFx(data.next.container);
       }, 300);
     }
     /**
@@ -6036,9 +5819,9 @@ var Views = {
       vA.reInit(data.next.container);
     }, 450);
 
-    if (_app_animations_js__WEBPACK_IMPORTED_MODULE_4__["default"].hasAnimation(namespace, 'enter')) {
+    if (_app_animations_js__WEBPACK_IMPORTED_MODULE_1__["default"].hasAnimation(namespace, 'enter')) {
       setTimeout(function () {
-        _app_animations_js__WEBPACK_IMPORTED_MODULE_4__["default"][namespace].enter({
+        _app_animations_js__WEBPACK_IMPORTED_MODULE_1__["default"][namespace].enter({
           newContainer: data.next.container
         });
       }, 500);
@@ -6050,131 +5833,6 @@ var Views = {
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (Views);
-
-/***/ }),
-
-/***/ "./js/views/product-cat.js":
-/*!*********************************!*\
-  !*** ./js/views/product-cat.js ***!
-  \*********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _app_animations_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app/animations.js */ "./js/app/animations.js");
-/* harmony import */ var _app_utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app/utils.js */ "./js/app/utils.js");
-/* eslint-disable */
-
-/* eslint one-var: [0]*/
-
-/* eslint max-len: [0]*/
-
-/* eslint max-lines: [0]*/
-
-/* eslint max-params: [0]*/
-
-/* eslint complexity: [0]*/
-
-/* eslint no-multi-assign: [0]*/
-
-/* eslint prefer-const: [0]*/
-
-/* eslint consistent-return: [0] */
-
-
-var ViewProductCat = {
-  namespace: 'product-cat',
-  beforeAppear: function beforeAppear(data) {// console.log( this.namespace, 'beforeAppear', data );
-  },
-  afterAppear: function afterAppear(data) {// console.log( this.namespace, 'afterAppear', data );
-  },
-  beforeLeave: function beforeLeave(data) {// console.log( this.namespace, 'beforeLeave', data );
-  },
-  afterLeave: function afterLeave(data) {// console.log( this.namespace, 'afterLeave', data );
-  },
-  beforeEnter: function beforeEnter(data) {
-    this.addEventListener(data.next.container);
-    this.initFilter(data.next.container);
-  },
-  afterEnter: function afterEnter(data) {// console.log( this.namespace, 'afterEnter', data );	
-  },
-  addEventListener: function addEventListener(container) {
-    var self = this;
-  },
-  initFilter: function initFilter(container) {
-    var $filters = $(container).find('.yith-wcan-filter');
-
-    if ($filters.length && !$filters.find('.yith-wcan-dropdown').length) {
-      $(document).trigger('yith_wcan_init_shortcodes');
-
-      if (_app_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isset(yith_wcan_shortcodes)) {
-        yith_wcan_shortcodes.base_url = location.href;
-      }
-    }
-  }
-};
-/* harmony default export */ __webpack_exports__["default"] = (ViewProductCat);
-
-/***/ }),
-
-/***/ "./js/views/product.js":
-/*!*****************************!*\
-  !*** ./js/views/product.js ***!
-  \*****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _app_animations_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app/animations.js */ "./js/app/animations.js");
-/* harmony import */ var _app_utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app/utils.js */ "./js/app/utils.js");
-/* eslint-disable */
-
-/* eslint one-var: [0]*/
-
-/* eslint max-len: [0]*/
-
-/* eslint max-lines: [0]*/
-
-/* eslint max-params: [0]*/
-
-/* eslint complexity: [0]*/
-
-/* eslint no-multi-assign: [0]*/
-
-/* eslint prefer-const: [0]*/
-
-/* eslint consistent-return: [0] */
-
-
-var ViewProduct = {
-  namespace: 'product',
-  els: {},
-  beforeAppear: function beforeAppear(data) {// console.log( this.namespace, 'beforeAppear', data );
-  },
-  afterAppear: function afterAppear(data) {// console.log( this.namespace, 'afterAppear', data );
-  },
-  beforeLeave: function beforeLeave(data) {// console.log( this.namespace, 'beforeLeave', data );
-  },
-  afterLeave: function afterLeave(data) {// console.log( this.namespace, 'afterLeave', data );
-  },
-  beforeEnter: function beforeEnter(data) {
-    var self = this;
-    this.initMainSlider(data.next.container);
-    this.initThumbnailSlider(data.next.container);
-  },
-  afterEnter: function afterEnter(data) {
-    // console.log( this.namespace, 'afterEnter', data );	
-    this.addEventListener(data.next.container);
-  },
-  addEventListener: function addEventListener(container) {
-    var self = this;
-  },
-  initMainSlider: function initMainSlider(container) {},
-  initThumbnailSlider: function initThumbnailSlider(container) {}
-};
-/* harmony default export */ __webpack_exports__["default"] = (ViewProduct);
 
 /***/ }),
 

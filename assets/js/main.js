@@ -255,7 +255,9 @@ const APP = {
 		/**
 		 * Init Buttons
 		 */
-		initButtons( container );
+		if ( ! Utils.isMobile() ) {
+			initButtons( container );
+		}
 
 		/**
 		 * Init First Page Visit
@@ -395,8 +397,16 @@ const APP = {
 					'.remove_from_wishlist',
 					'.remove[data-product_id]',
 					'.restore-item',
-					WC.options.cart.trigger
+					WC.options.cart.trigger			
 				];
+
+				const selectorParentList = [
+					WC.options.selectors.noticesWrapper
+				];
+
+				if ( $( el ).closest( WC.options.selectors.noticesWrapper ).length !== 0 ) {
+					return true;
+				}
 
 				if ( $( el ).closest( '.js--pagination' ).length !== 0 ){
 					return true;
@@ -628,9 +638,8 @@ const APP = {
 	 * On Link Clicked
 	 */	
 	onLinkClicked( HTMLElement ){
-		console.log( HTMLElement );		
 		$( HTMLElement ).addClass( 'redirecting' );
-		Utils.progressBar( 'start' );
+		// Utils.progressBar( 'start' );
 	},
 
 	/**
@@ -669,17 +678,12 @@ const APP = {
 		 * Fixes
 		 */
 		Fixes.reInit( container );
-	
+		
 		/**
 		 * Navigation
 		 */
 		navigation.setActiveState();
-
-		/**
-		 * Woocommerce
-		 */		
-		APP.initWoocommerce( container );
-
+		
 		/**
 		 * Forms
 		 */
@@ -698,6 +702,7 @@ const APP = {
 		/**
 		 * Init Sliders
 		 */
+
 		Utils.initSliders( container );
 
 		/**
@@ -716,9 +721,16 @@ const APP = {
 		Utils.initVideos( container );
 
 		/**
+		 * Woocommerce
+		 */		
+		APP.initWoocommerce( container );
+
+		/**
 		 * Init Buttons
 		 */
-		initButtons( container );		
+		if ( ! Utils.isMobile() ) {
+			initButtons( container );
+		}		
 	}
 };
 

@@ -31,10 +31,10 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-<div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'v-product', $product ); ?>>
+<div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'v-product pt-5 md:pt-0', $product ); ?>>
 
 	<div class="row flex flex-wrap">
-		<div class="w-full md:w-3/5 bg-grey-light flex justify-center pt-5 md:pt-75 md:pb-5">
+		<div class="w-full md:w-3/5 bg-grey-light flex justify-center md:pt-75 md:pb-5">
 			<?php
 			/**
 			 * Hook: woocommerce_before_single_product_summary.
@@ -94,7 +94,7 @@ if ( post_password_required() ) {
 											'xclass_wrapper' => 'mx-0 bg-grey-light',
 											'wrapper' => true,
 											'holder' => true,
-											'lazy' => 'slider'
+											'lazy' => count($pimp_slider) > 1 ? 'slider' : true
 										];
 									}								
 									echo oax_get_component('slider/slide-track', [
@@ -103,7 +103,7 @@ if ( post_password_required() ) {
 										'ITEMS_SHOW_SM' => 1,
                     'xclass' => [
                       'inner' => 'pb-0',
-                      'track' => 'px-0 mx-0 flex-end',
+                      'track' => 'px-0 mx-0 items-end',
                       'main' => 'js--slider--bottom-nav',
                     ]
 									]);								

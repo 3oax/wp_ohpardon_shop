@@ -128,32 +128,3 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 </form>
 
 <?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>
-
-<div id="c-modal--fakeorder" class="fixed inset" style="display: none; background-color: rgba(0,0,0,0.2);">
-	<div class="c-modal__close absolute right-0 top-0 w-2 h-2 bg-grey-light text-white" onclick="$('#c-modal--fakeorder').hide();">&times;</div>
-	<div class="pt-5 w-full md:w-1/3">
-		<div class="px-1">
-			<div class="p-2 bg-white"></div>
-		</div>
-	</div>
-</div>
-
-<script>
-	const $checkoutForm = $('form[name="checkout"].woocommerce-checkout');
-	const $submitBtn = $('[type="submit"][name="woocommerce_checkout_place_order"]');
-
-	const initFakeCheckout = () => {
-		$( document.body ).off( 'init_checkout' );
-		$( document.body ).off( 'update_checkout' );
-		$checkoutForm.off('submit');
-		$checkoutForm.on('submit', (event) => {
-			// alert('HAA! HAA!');
-			$('#c-modal--fakeorder').show();
-			event.preventDefault();
-			return false;
-		});		
-	};
-
-	setTimeout(initFakeCheckout ,2000);
-
-</script>

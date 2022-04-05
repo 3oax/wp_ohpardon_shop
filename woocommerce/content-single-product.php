@@ -19,6 +19,18 @@ defined( 'ABSPATH' ) || exit;
 
 global $product;
 
+$is_unikat = false;
+$current_product_category = false;
+$current_product_categories = get_the_terms( $product->get_id(), 'product_cat' );
+if( !empty($current_product_categories) ) {
+	$current_product_category = $current_product_categories[0];	
+	if( $current_product_category->slug == 'unikate' ) {
+		$is_unikat = true;
+	}
+}
+
+
+
 /**
  * Hook: woocommerce_before_single_product.
  *
@@ -75,14 +87,14 @@ if ( post_password_required() ) {
 					<div class="row flex flex-wrap flex-row-reverse md:flex-row md:items-center md:justify-end">
 						
 						<?php if( !empty($section_pimp['headline']) ): ?>
-							<div class="w-full md:w-1/2 md:pr-10 md:pl-3">
+							<div class="w-full mt-2 md:w-1/2 md:mt-0 md:pr-10 md:pl-3">
 								<h2 class=""><?= $section_pimp['headline']; ?></h2>			
 								<div class="md:pr-2 pt-1">
 									<?= $section_pimp['content']; ?>
 								</div>
 							</div>
 						<?php endif; ?>
-						
+
 						<div class="w-full md:w-1/2 mt-2 md:mt-0">
 							<?php $pimp_slider = $section_pimp['slider']; if(!empty($pimp_slider)): ?>
 								<?php 
@@ -120,7 +132,8 @@ if ( post_password_required() ) {
 			</div>
 		</section>
 	<?php // endif; ?>
-
+	
+	<?php if( !$is_unikat ): ?>
 	<?php 
 		// Video Section
 		$section_video = get_field('section_video', 'options');
@@ -155,7 +168,8 @@ if ( post_password_required() ) {
 			</div>
 		<?php endif; ?>
 	</section>
-
+	<?php endif; ?>
+	
 	<?php 
 		/**
 		 * USP Icons
@@ -165,6 +179,7 @@ if ( post_password_required() ) {
 		]); 
 	?>   
 
+	<?php if( !$is_unikat ): ?>
 	<?php 
 		// Section 
 		$section_anbringung = get_field('section_anbringung', 'options');
@@ -204,7 +219,8 @@ if ( post_password_required() ) {
 			</div>
 		</div>
 	</section>
-
+	<?php endif; ?>
+	
 	<?php 
 		/**
 		 * Get Instagram Section

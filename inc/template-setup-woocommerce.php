@@ -319,6 +319,16 @@ function oax_iconic_wlv_group_attribute_term_data($term_data, $visible_product_i
 	return $term_data;
 }
 
+// Fake Shop
+function oax_fake_woocommerce_order_button_html( $html ){
+	// print_r($html);
+	
+	return '<span name="woocommerce_checkout_place_order" class="button alt btn mt-1 md:mt-0 w-full md:w-1/2 text-center" style="text-align: center;">Jetzt Kaufen</span>';
+
+
+}
+add_filter('woocommerce_order_button_html', 'oax_fake_woocommerce_order_button_html', 10, 1);
+
 /******************************
  ****** WooCommerce END *******
  ******************************/

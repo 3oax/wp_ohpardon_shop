@@ -515,13 +515,20 @@ export default class WooCommerce {
 			};
 
 			$.post( OAX.config.url_ajax, data, ( response ) => {
-				console.log( response );
 				jQuery( document.body ).one( 'wc_fragments_refreshed', () => {
 					$siblingTargets.prop( 'disabled', false );
 					$cart.find( OAX.template.loader.selector ).remove();
 					$cart.removeClass( 'is-loading' );
 					jQuery( document.body ).trigger( 'wc_fragments_loaded' );	
 					
+					if ( response.errors !== false ){						
+						/*
+						 * response.errors.errors.forEach( ( errorText ) => {
+						 * alert( errorText );
+						 * } );
+						 */
+					}
+
 					if ( $( 'form.woocommerce-checkout' ).length ){
 						jQuery( document.body ).trigger( 'update_checkout' );
 					}				

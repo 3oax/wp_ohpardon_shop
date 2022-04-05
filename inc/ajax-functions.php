@@ -18,14 +18,15 @@ function oax_ajax_cart_update_qty(){
       if ( (float) $_POST['cart_item_qty'] > 0 ) {
         WC()->cart->set_quantity( $_POST['cart_item_key'], (float) $_POST['cart_item_qty'] );
         
-        if( ! WC()->cart->check_cart_item_stock() ){
+        $is_cart_ok = WC()->cart->check_cart_item_stock();
+
+        if( $is_cart_ok !== true ){
           WC()->cart->set_quantity( $_POST['cart_item_key'], (float) $_old_qty_cart_item );          
           
           echo json_encode( array( 
             'action' => 'update_qty',
             'success' => false,
-            'error' => true,
-            'errorMessage' => 'wrongStock'
+            'errors' => $is_cart_ok
           ) );         
 
           die();
@@ -39,7 +40,7 @@ function oax_ajax_cart_update_qty(){
     echo json_encode( array( 
       'action' => 'update_qty',
       'success' => true,
-      'error' => false
+      'errors' => false
     ) );
 
     die();

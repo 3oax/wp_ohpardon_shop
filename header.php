@@ -24,7 +24,7 @@ $namespace = oax_get_current_namespace();
 	<script id="oax-js-classes">(function(H){H.className=H.className.replace(/\bno-js\b/,'js site--is-loading page--is-loading')})(document.documentElement);</script>
 		
 	<script id="oax-js-preloader">
-		window.OAX = window.OAX || {};
+		window.OAX = window.OAX || {};
 		window.OAX.preloader = {};
 	</script>
 

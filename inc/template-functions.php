@@ -192,7 +192,7 @@ function oax_get_image_obj($attachment_id = 0) {
 function oax_image($args){
 	$url = isset($args['url']) ? $args['url'] : '';
 
-	$use_css_aspect_ratio = isset($args['css_aspect_ratio']) ? $args['css_aspect_ratio'] : false;
+	$use_css_aspect_ratio = isset($args['css_aspect_ratio']) ? $args['css_aspect_ratio'] : true;
 
 	$has_wrapper = isset($args['wrapper']) && $args['wrapper'] == true;
 	$has_holder = isset($args['holder']) && $args['holder'] == true;

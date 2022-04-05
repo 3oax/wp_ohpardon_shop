@@ -19,9 +19,38 @@ const Slider = {
 			selector_pagination_nums: '.c-pagination__nums',
 		},
 
+		breakointQuery: '(max-width: 992px)',
+
+		sliders: [],
+
 		init( container ){
 			this.options.container = container;
-			this.initSlider();
+			// this.initSlider();
+			const breakpoint = window.matchMedia( this.breakointQuery );
+			breakpoint.addEventListener( 'change', $.proxy( this.breakpointChecker, this ) );			
+			this.breakpoint = breakpoint;
+			this.breakpointChecker();
+		},
+
+		breakpointChecker( event ){
+			const self = this;
+
+			// if larger viewport and multi-row layout needed
+			if ( self.breakpoint.matches === true ) {
+				if ( self.sliders.length ) {
+					self.destroySliders( 'all' );
+				}
+				self.restoreClasses( 'init' );
+
+				// or/and do nothing
+				return true;
+				// else if a small viewport and single column layout needed
+			} else if ( self.breakpoint.matches === false ) {
+				// fire small viewport version of swiper
+				return self.initSlider();
+			}
+
+			return true;
 		},
 
 		initSlider(){
@@ -67,8 +96,22 @@ const Slider = {
 							loadPrevNext: true,
 						},
 					}, swiperParams ) );
+
+					self.sliders.push( slider );
 				} );
 			}			
+		},
+
+		destroySliders( item ){
+			const self = this;
+			const destroyAll = item === 'all';
+			if ( destroyAll ){
+				this.sliders.forEach( ( slider ) => {
+					self.restoreClasses( slider );
+					slider.destroy( true, true );
+				} );
+				this.sliders = [];
+			}
 		},
 
 		getParams( slider ){
@@ -132,6 +175,36 @@ const Slider = {
 			if ( ! $slider.hasClass( 'js--slider--carousel' ) ){
 				$sliderInner.append( '<div class="c-slider__button c-slider__button--prev swiper-button-prev"></div>' );
 				$sliderInner.append( '<div class="c-slider__button c-slider__button--next swiper-button-next"></div>' );
+			}
+		},
+
+		restoreClasses( swiperSlider ) {	
+			if ( swiperSlider === 'init' ) {
+				if ( 
+					$( this.options.container ).find( this.options.selector_slider ).length
+				){
+					$( this.options.container ).find( this.options.selector_slider ).each( ( i, el ) => {
+						const $slider = $( el );
+						const $sliderImgs = $slider.find( 'img' );
+						const $sliderImgsNotLoaded = $sliderImgs.filter( '[data-src]:not(.swiper-lazy-loaded)' );
+						$sliderImgsNotLoaded.each( ( _i, _el ) => {
+							$( _el ).removeClass( 'swiper-lazy' ).addClass( 'js--lazy' );							
+						} );
+						$slider.find( '.swiper-lazy-preloader' ).remove();
+					} );	
+				}			
+			} else {
+				const $sliderWrapper = $( swiperSlider.$wrapperEl );
+				const $sliderEl = $( swiperSlider.$el );
+				const $slider = $sliderWrapper.closest( '.js--slider' );
+				const $sliderImg = $sliderEl.find( 'img' );
+				
+				const $sliderImgsNotLoaded = $sliderImg.filter( '[data-src]:not(.swiper-lazy-loaded)' );
+				$sliderImgsNotLoaded.each( ( i, el ) => {
+					$( el ).removeClass( 'swiper-lazy' ).addClass( 'js--lazy' );
+				} );
+				
+				$slider.find( '.swiper-lazy-preloader' ).remove();
 			}
 		}
 	},

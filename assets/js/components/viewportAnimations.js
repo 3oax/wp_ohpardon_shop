@@ -341,14 +341,17 @@ export default class ViewportAnimations {
 					trigger: el,
 					start: 'top bottom',
 					onToggle: ( _self ) => {
-						const swiper = $( el ).find( '.swiper-initialized' )[0].swiper;								
-						if ( $slider.hasClass( classes.autoplay ) ){
-							if ( _self.isActive ){
-								swiper.autoplay.start();								
-								$slider.addClass( 'is-autoplay' );
-							} else {
-								swiper.autoplay.stop();
-								$slider.removeClass( 'is-autoplay' );
+						const $sliderSlider = $( el ).find( '.swiper-initialized' );
+						if ( $sliderSlider.length ){
+							const swiper = $sliderSlider[0].swiper;
+							if ( $slider.hasClass( classes.autoplay ) ){
+								if ( _self.isActive ){
+									swiper.autoplay.start();								
+									$slider.addClass( 'is-autoplay' );
+								} else {
+									swiper.autoplay.stop();
+									$slider.removeClass( 'is-autoplay' );
+								}
 							}
 						}
 					},

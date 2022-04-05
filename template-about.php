@@ -313,7 +313,7 @@ get_header(); ?>
               'xclass_wrapper' => 'mx-05 bg-grey-light',
               'wrapper' => true,
               'holder' => true,
-              'lazy' => 'slider'
+              'lazy' => true
             ];
           }
           echo oax_get_component('slider/slide-track', [

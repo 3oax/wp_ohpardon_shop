@@ -75,15 +75,16 @@
 				let basketItemsString = '';
 				basketItems.forEach((bI, bIIndex) => {
 					let fakePurchaseItemString = bI.id + ':' + bI.anzahl + ':' + bI.gesamtsumme;
-					window.gtag('event', 'fakePurchaseItem', bI.id + ':' + bI.anzahl + ':' + bI.gesamtsumme);
+					window.gtag('event', 'fakePurchaseItem', {'item' : bI.id + ':' + bI.anzahl + ':' + bI.gesamtsumme });
+					// console.log('event', 'fakePurchaseItem', {'item' : bI.id + ':' + bI.anzahl + ':' + bI.gesamtsumme });
 					if( bIIndex !== 0 ){
 						basketItemsString += ':';
 					}
 					basketItemsString += fakePurchaseItemString;
 				});
 				
-				window.gtag('event', 'fakePurchase', basketItemsString);
-
+				window.gtag('event', 'fakePurchase', {'items' : basketItems});
+				// console.log('event', 'fakePurchase', basketItemsString);
 				is_submitted = true;
 			}
 		};

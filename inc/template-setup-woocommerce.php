@@ -303,7 +303,8 @@ function oax_iconic_wlv_group_attribute_term_data($term_data, $visible_product_i
 				'lazy' => false,
 				'holder' => true,
 				'wrapper' => true,
-				'xclass' => 'inset'
+				'xclass' => 'inset',
+				'css_aspect_ratio' => false
 			]);
 
 			if( !$term_data['current'] ){

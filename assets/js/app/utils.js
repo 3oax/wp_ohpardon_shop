@@ -550,6 +550,9 @@ const Utils = {
 		if ( typeof _gaq !== 'undefined' ){
 			_gaq.push( ['_trackPageview', url.replace( OAX.config.url_base, '' )] );
 		}		
+		if ( typeof gtag !== 'undefined' ){
+			gtag( 'event', 'page_view' );
+		}
 		
 		/** Facebook */
 		if ( typeof fbq !== 'undefined' && typeof fbq === 'function' ){

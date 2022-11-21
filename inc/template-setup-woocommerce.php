@@ -328,7 +328,7 @@ function oax_fake_woocommerce_order_button_html( $html ){
 
 
 }
-add_filter('woocommerce_order_button_html', 'oax_fake_woocommerce_order_button_html', 10, 1);
+// add_filter('woocommerce_order_button_html', 'oax_fake_woocommerce_order_button_html', 10, 1);
 
 /******************************
  ****** WooCommerce END *******

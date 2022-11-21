@@ -33,9 +33,6 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
 				if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_widget_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 					$product_name      = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
-					// if()
-					
-					
 					$thumbnail         = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
 					$product_price     = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
 					$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
@@ -45,11 +42,12 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 					} else {
 						$raw_price = wc_get_price_excluding_tax( $_product );
 					}
-
+					
 					$price_with_qty = $raw_price * $cart_item['quantity'];
-					$product_price = wc_price($price_with_qty);
+					$product_price = apply_filters( 'woocommerce_cart_item_price', wc_price($price_with_qty), $cart_item, $cart_item_key );
 					?>
 					<li class="woocommerce-mini-cart-item mb-1 <?php echo esc_attr( apply_filters( 'woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key ) ); ?>" data-product-id="<?= esc_attr( $product_id ); ?>" data-cart-item-qty="<?= $cart_item['quantity'] ?>" data-cart-item-key="<?= esc_attr( $cart_item_key ); ?>">
+						
 						<?php
 						echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							'woocommerce_cart_item_remove_link',
@@ -64,6 +62,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 							$cart_item_key
 						);
 						?>
+
 						<?php if ( empty( $product_permalink ) ) : ?>
 							<?php echo $thumbnail . wp_kses_post( $product_name ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						<?php else : ?>

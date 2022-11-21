@@ -148,7 +148,7 @@ if ( post_password_required() ) {
 				'holder' => true,
 				'lazy' => true
 			]); ?>		
-			<div class="inset flex flex-wrap items-center md:items-end justify-center md:justify-end text-white">
+			<div class="inset flex flex-wrap items-center md:items-end md:justify-end text-white pl-15">
 				<div class="w-4/5 md:w-1/3 md:pb-2 md:pb-4 md:pr-2">
 					<?= $section_video['content']; ?>
 				</div>

@@ -32,7 +32,7 @@
 	/**
 	 * Fake Checkout
 	 */
-	$is_fake_checkout = true;
+	$is_fake_checkout = false;
 ?>
 <?php if( is_checkout() && $is_fake_checkout ): ?>
 	<?php

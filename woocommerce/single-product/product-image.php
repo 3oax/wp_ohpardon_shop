@@ -87,6 +87,7 @@ $wrapper_classes   = apply_filters(
 						'xclass_wrapper' => 'overflow-hidden woocommerce-product-gallery__image',
 						'holder' => true,
 						'placeholder' => true,
+						'css_aspect_ratio' => false,
 						'lazy' => true
 					]);
 				}

@@ -59,6 +59,13 @@ function createDiscountCouponForNewSubsciber(){
   update_post_meta($new_coupon_id, 'apply_before_tax', 'no');
   update_post_meta($new_coupon_id, 'free_shipping', 'no');
   
+  $coupon_email = 'Danke für deine Anmeldung bei unserem Newsletter!';
+  $coupon_email .= '\r\n';
+  $coupon_email .= '\r\n';
+  $coupon_email .= 'Dein persönlicher 10% Gutscheincode:';
+  $coupon_email .= '\r\n';
+  $coupon_email .= $coupon_code;
+
   if ( wp_mail($_POST['data']['email'], 'Dein Gutscheincode!', $coupon_code) ) {
     return "ok";
   } else {

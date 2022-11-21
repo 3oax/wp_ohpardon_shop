@@ -73,7 +73,7 @@ $namespace = oax_get_current_namespace();
 					'container'			 => false
 				) );
 			?>	
-		</div>		
+		</div>	
 
 		<ul class="site__navigation-user flex items-center list-none m-0 p-0 nav-menu">
 			<li>
